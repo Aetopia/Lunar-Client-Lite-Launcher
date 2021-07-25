@@ -53,5 +53,6 @@ Project inspired by [LCLI](https://github.com/couleur-tweak-tips/utils/blob/main
 
 ## Discord Servers
 These discord servers also helped me to make this project.  
-1. [Hone](https://discord.com/invite/hone) for the Patcher script.
-2. [Couleur Tweak Tips](http://discord.gg/CTT)
+1. [Hone](https://discord.com/invite/hone)  
+(For the Patcher script.)
+3. [Couleur Tweak Tips](http://discord.gg/CTT)
