@@ -17,7 +17,7 @@ IfNotExist, wrapper.cmd
 Gui, New
 IniRead, GUIArguments, Config.ini, LC, Arguments
 Gui, Add, Text,, Java VM Arguments:
-Gui, Add, Edit, w550, %GUIArguments%
+Gui, Add, Edit, w550 h21, %GUIArguments%
 IfNotExist, patcher.cmd
 	OptiPatchVisiblity = 0
 If (OptiPatchVisiblity = 1){
@@ -41,7 +41,7 @@ Gui, Show, w600 h400, LC Lite
 ;Functions
 Launch(){	
 	GuiControlGet, JVMArgs,, Edit1
-	IniWrite, '%JVMArgs%', Config.ini, LC, Arguments
+	IniWrite, %JVMArgs%, Config.ini, LC, Arguments
 	IniRead, LCArgs, Config.ini, LC, Arguments
 	IniRead, LCVer, Config.ini, LC, Version
 	IniRead, MCAssetIndex, Config.ini, Minecraft, AssetIndex
@@ -60,7 +60,7 @@ ConfigCreate()
 {
 	IniWrite, '1.8', Config.ini, LC, Version
 	IniWrite, '1.8', Config.ini, Minecraft, AssetIndex
-	IniWrite, '-Xms3072m -Xmx3072m', Config.ini, LC, Arguments	
+	IniWrite, ""-Xms3G -Xmx3G"", Config.ini, LC, Arguments	
 	IniWrite, 0, Config.ini, Minecraft, OptiPatch
 }
 
