@@ -16,7 +16,7 @@ https://github.com/Aetopia/Lunar-Client-Lite-Launcher/releases
 [![github.png](https://i.postimg.cc/pVp3MkDD/github.png)](https://postimg.cc/CdpcjGr1)
 
 4. You can specify custom JVM Arguments within `Java VM Arguments` section.  
-By default the arguments are set to `-Xms3072m -Xmx3072m`.  
+By default the arguments are set to `"-Xms3G -Xmx3G"`.  
 You can click on the handy `?` button for help with the `Java VM Arguments` section!
 
 5. Within the `Game Options` Section, you can enable the `Optifine Patcher`.  
