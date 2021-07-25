@@ -4,7 +4,8 @@ A lightweight launcher for Lunar Client.
 Lunar Client is a simple lightweight launcher which features a optifine settings patcher, quicker version switching, custom JVM arguments and a simple interface.
 <b>LC Lite isn't meant to be a replacement for Lunar Client, rather a utility or tool that should be used along side it.</b> 
 ## Requirements
-Before you begin using LC Lite, make sure that you have Lunar Client installed. Also ensure you have your favourite LC versions installed. (If you don't have LC installed then the application will redirect you to the download page of Lunar Client.)
+Before you begin using LC Lite, make sure that you have Lunar Client installed. Also ensure you have your favourite LC versions installed.  
+(If you don't have LC installed then the application will redirect you to the download page of Lunar Client.)
 ## How to use & setup?
 1. Download the latest release from here.  
 https://github.com/Aetopia/Lunar-Client-Lite-Launcher/releases
