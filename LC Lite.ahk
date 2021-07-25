@@ -52,7 +52,7 @@ Launch(){
 	}
 	}
      Run, wrapper.cmd %LCVer% %MCAssetIndex% %LCArgs%,, Hide
-	Sleep, 1000
+	Sleep, 250
 	ExitApp
 }
 
