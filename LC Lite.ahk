@@ -41,7 +41,7 @@ Gui, Show, w600 h400, LC Lite
 ;Functions
 Launch(){	
 	GuiControlGet, JVMArgs,, Edit1
-	IniWrite, %JVMArgs%, Config.ini, LC, Arguments
+	IniWrite, '%JVMArgs%', Config.ini, LC, Arguments
 	IniRead, LCArgs, Config.ini, LC, Arguments
 	IniRead, LCVer, Config.ini, LC, Version
 	IniRead, MCAssetIndex, Config.ini, Minecraft, AssetIndex
@@ -121,7 +121,7 @@ VersionRead(){
 }
 
 JVMArgsHelp(){
-	MsgBox,, Help: JVM Arguments,Here, you can set custom JVM arguments for LC. Only change the JVM arguments if you know what you are doing!
+	MsgBox,, Help: JVM Arguments,Here, you can set custom JVM arguments for LC. Only change the JVM arguments if you know what you are doing! Always make sure you enclose the arguments with double quotes!
 }
 
 LCCheck(){
