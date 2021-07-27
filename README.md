@@ -30,6 +30,14 @@ You can use this option to keep your optifine settings tidy, everytime you switc
 Click on any version, you would like to use.  
 
 7. Finally click on the launch button to launch Lunar Client!
+### Which JVM Arguments are good for LC?
+LC uses Java 16 so they aren't many "optimal" JVM arguments which you can find online.  
+Here is a list of arguments you can use for LC via LC Lite which I consider optimal.  
+
+1. `-Xmx3G`  
+Using this argument can be useful if you are low on RAM since using this argument will force LC to use only 3 GB of RAM.
+2. `-Xms4G -Xmx4G -XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=32M`  
+This is a slightly modified version of MC's default arguments for Java 16. From what I have seen using these arguments will make LC use 6 GB RAM and should provide optimal performance.
 
 # Extras
 ## Information about `patcher.cmd` and `wrapper.cmd`
