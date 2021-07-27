@@ -56,16 +56,14 @@ Launch(){
 	ExitApp
 }
 
-ConfigCreate()
-{
+ConfigCreate(){
 	IniWrite, '1.8', Config.ini, LC, Version
 	IniWrite, '1.8', Config.ini, Minecraft, AssetIndex
 	IniWrite, ""-Xms3G -Xmx3G"", Config.ini, LC, Arguments	
 	IniWrite, 0, Config.ini, Minecraft, OptiPatch
 }
 
-VersionWrite()
-{
+VersionWrite(){
 	GuiControlGet, UserVersion,, ListBox1
 	If (UserVersion = 1.7) 
 	{
@@ -152,7 +150,7 @@ OptifinePatcher(){
 		run, patcher.cmd "3",, hide
 	}
 	return
-	}
+}
 nowrappercmd(){
 	MsgBox,, Important File not found.,"wrapper.cmd" wasn't found. It is required for the functioning of LC Lite.
      ExitApp
