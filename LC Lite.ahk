@@ -3,9 +3,8 @@ SendMode Input
 SetWorkingDir %A_ScriptDir%
 #SingleInstance, Force
 #NoTrayIcon
-;Variables
+;Visiblity Variables
 OptiPatchVisiblity = 1
-LaunchPatcher = 0
 IfNotExist, C:\Users\%A_UserName%\AppData\Local\Programs\lunarclient\Lunar Client.exe
 	LCCheck()
 ;GUI for LC Mini
@@ -18,6 +17,7 @@ Gui, New
 IniRead, GUIArguments, Config.ini, LC, Arguments
 Gui, Add, Text,, Java VM Arguments:
 Gui, Add, Edit, w550 h21, %GUIArguments%
+;Removes the Optifine Patcher Option if Patcher.cmd doesn't exist
 IfNotExist, patcher.cmd
 	OptiPatchVisiblity = 0
 If (OptiPatchVisiblity = 1){
@@ -139,6 +139,7 @@ OptiPatchToggle(){
 		IniWrite, 0, Config.ini, Minecraft, OptiPatch
 	}
 }
+;Patches your optifine settings.
 OptifinePatcher(){
 	IniRead, PatcherVersion, Config.ini, LC, Version
 	If (PatcherVersion = 1.7){
