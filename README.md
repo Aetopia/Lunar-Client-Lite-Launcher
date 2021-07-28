@@ -34,6 +34,7 @@ Click on any version, you would like to use.
 
 <b>NOTE: To update Lunar Client and its dependencies, you must use the official LC launcher to update them.</b>
 ### Which JVM Arguments are good for LC?
+<b>Make sure that you enclose your custom JVM Arguments entered within LC Lite with double quotes.</b>
 LC uses Java 16 so they aren't many "optimal" JVM arguments which you can find online.  
 Here is a list of arguments you can use for LC via LC Lite which I consider optimal.  
 
