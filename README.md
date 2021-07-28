@@ -30,7 +30,7 @@ You can use this option to keep your optifine settings tidy, everytime you switc
 Click on the `Configure Button`.  
 If you have `Notepad++ x64` or `Notepad++ x86` then `patcher.cmd` will open in `Notepad++` else `patcher.cmd` will open in Notepad.
 
-Here are the options you can configure within `patcher.cmd`:
+Here are the options, you can configure within `patcher.cmd`:
 ```
 ::Configurable Settings
 
