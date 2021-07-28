@@ -3,32 +3,30 @@ SendMode Input
 SetWorkingDir %A_ScriptDir%
 #SingleInstance, Force
 #NoTrayIcon
-;Visiblity Variables
-OptiPatchVisiblity = 1
+
+;File Existence Checks
 IfNotExist, C:\Users\%A_UserName%\AppData\Local\Programs\lunarclient\Lunar Client.exe
 	LCCheck()
-;GUI for LC Mini
 IfNotExist, Config.ini
 	ConfigCreate()
 IfNotExist, wrapper.cmd
 	nowrappercmd()
+IfNotExist, patcher.cmd
+	nopatchercmd()
+
 ;GUI
 Gui, New
 IniRead, GUIArguments, Config.ini, LC, Arguments
 Gui, Add, Text,, Java VM Arguments:
 Gui, Add, Edit, w550 h21, %GUIArguments%
-;Removes the Optifine Patcher Option if Patcher.cmd doesn't exist
 IfNotExist, patcher.cmd
-	OptiPatchVisiblity = 0
-If (OptiPatchVisiblity = 1){
-Gui, Add, Text,, Game Options:
+	Gui, Add, Text,, Game Options:
 IniRead, OptiPatchToggle, Config.ini, Minecraft, OptiPatch
 If (OptiPatchToggle = 1){
 	Gui, Add, Checkbox, Checked vOptiPatch gOptiPatchToggle, Optifine Patcher
 }
 else if (OptiPatchToggle = 0){
 	Gui, Add, Checkbox, vOptiPatch gOptiPatchToggle, Optifine Patcher
-}
 }
 Gui, Add, Text, x10 y300, Version:
 Gui, Add, Button, x560 y23 w25 h25 gJVMArgsHelp, ?
@@ -46,24 +44,24 @@ Launch(){
 	IniRead, LCVer, Config.ini, LC, Version
 	IniRead, MCAssetIndex, Config.ini, Minecraft, AssetIndex
 	IniRead, OptiPatchToggle, Config.ini, Minecraft, OptiPatch
-	If (OptiPatchVisiblity = 1){
 	If (OptiPatchToggle=1){
 		OptifinePatcher()
-	}
 	}
      Run, wrapper.cmd %LCVer% %MCAssetIndex% %LCArgs%,, Hide
 	Sleep, 250
 	ExitApp
 }
 
-ConfigCreate(){
+ConfigCreate()
+{
 	IniWrite, '1.8', Config.ini, LC, Version
 	IniWrite, '1.8', Config.ini, Minecraft, AssetIndex
 	IniWrite, ""-Xms3G -Xmx3G"", Config.ini, LC, Arguments	
 	IniWrite, 0, Config.ini, Minecraft, OptiPatch
 }
 
-VersionWrite(){
+VersionWrite()
+{
 	GuiControlGet, UserVersion,, ListBox1
 	If (UserVersion = 1.7) 
 	{
@@ -119,12 +117,12 @@ VersionRead(){
 }
 
 JVMArgsHelp(){
-	MsgBox,, Help: JVM Arguments,Here, you can set custom JVM arguments for LC. Only change the JVM arguments if you know what you are doing! Always make sure you enclose the arguments with double quotes!
+	MsgBox,, Help: JVM Arguments,Here, you can set custom JVM arguments for LC.`nOnly change the JVM arguments if you know what you are doing!`nAlways make sure you enclose the arguments with double quotes!
 }
 
 LCCheck(){
 	MsgBox,, No LC Installation Detected, No Lunar Client installation is present on this device.`nPlease download the latest version of Lunar Client!
-     Run, https://www.lunarclient.com/download/
+     	Run, https://www.lunarclient.com/download/
 	ExitApp
 }
 
@@ -137,7 +135,7 @@ OptiPatchToggle(){
 		IniWrite, 0, Config.ini, Minecraft, OptiPatch
 	}
 }
-;Patches your optifine settings.
+
 OptifinePatcher(){
 	IniRead, PatcherVersion, Config.ini, LC, Version
 	If (PatcherVersion = 1.7){
@@ -151,10 +149,18 @@ OptifinePatcher(){
 	}
 	return
 }
+
+;Dependencies	
 nowrappercmd(){
-	MsgBox,, Important File not found.,"wrapper.cmd" wasn't found. It is required for the functioning of LC Lite.
+	MsgBox,, Error: Dependency not found.,"wrapper.cmd" wasn't found. It is required for the functioning of LC Lite.
      ExitApp
 }
+
+nopatchercmd(){
+	MsgBox,, Error: Dependency not found.,"patcher.cmd" wasn't found. It is required for the functioning of LC Lite.
+     ExitApp
+}
+
 GuiClose(){
 	ExitApp
 }
