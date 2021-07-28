@@ -34,7 +34,7 @@ Gui, Add, ListBox, x10 y121 gVersionWrite c30 r5, 1.7|1.8|1.12|1.16|1.17
 Gui, Add, Button, x270 y22 w25 h25 gJVMArgsHelp, ?
 VersionRead()
 Gui, Add, Button, x191 y141 w100 h50 gLaunch, Launch
-GuiControl, Focus, Button1
+GuiControl, Focus, Button2
 Gui, Show, w300 h200, LC Lite
 
 ;Functions
