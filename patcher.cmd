@@ -1,18 +1,40 @@
 @echo off
+::Configurable Settings
+
+set FullscreenMode=Default
+::'Default' will scale Minecraft according to your current resolution
+::If you want it to force a downscale (like 720p) then type in 1280x720
+::The main downside is long tab-out times (3-5 seconds black screens)
+
+set FastRender=true
+::Setting Fast Render false will decrease FPS but make lc motion-blur work
+
+set SmoothFPS=false
+::Setting Smooth FPS to true will decrease FPS but let more resources to OBS (e.g encoding lag)
+
+set RenderDistance=6
+set CustomSky=false
+
+:: To set 'X' as the zoom key, it's stored as the number 45.
+:: IF YOU WANT A 
+set Zoom Key-old=45
+set Zoom Key-new=x
+:: In older versions, 45 = X for controls
+::----------------------------------------------------------------------------------------------
+
 cd %APPDATA%/.minecraft
 if '%~1'=='1' goto 1.7.10
 if '%~1'=='2' goto 1.8.9
-if '%~1'=='3' goto 1.16
+if '%~1'=='3' goto 1.12+
 :1.7.10
-TITLE Optimizing Optifine For 1.7.10
-(echo ofRenderDistanceChunks:4) > optionsof.txt
+(echo ofRenderDistanceChunks:%RenderDistance%) > optionsof.txt
 (echo ofFogType:3) >> optionsof.txt
 (echo ofFogStart:0.8) >> optionsof.txt
 (echo ofMipmapType:3) >> optionsof.txt
 (echo ofLoadFar:false) >> optionsof.txt
 (echo ofPreloadedChunks:0) >> optionsof.txt
 (echo ofOcclusionFancy:false) >> optionsof.txt
-(echo ofSmoothFps:false) >> optionsof.txt
+(echo ofSmoothFps:%SmoothFPS%) >> optionsof.txt
 (echo ofSmoothWorld:false) >> optionsof.txt
 (echo ofAoLevel:0.0) >> optionsof.txt
 (echo ofClouds:3) >> optionsof.txt
@@ -63,24 +85,23 @@ TITLE Optimizing Optifine For 1.7.10
 (echo ofSmoothBiomes:false) >> optionsof.txt
 (echo ofCustomFonts:false) >> optionsof.txt
 (echo ofCustomColors:false) >> optionsof.txt
-(echo ofCustomSky:false) >> optionsof.txt
+(echo ofCustomSky:%CustomSky%) >> optionsof.txt
 (echo ofShowCapes:true) >> optionsof.txt
 (echo ofNaturalTextures:false) >> optionsof.txt
 (echo ofLazyChunkLoading:false) >> optionsof.txt
 (echo ofDynamicFov:true) >> optionsof.txt
 (echo ofDynamicLights:3) >> optionsof.txt
-(echo ofFullscreenMode:Default) >> optionsof.txt
+(echo ofFullscreenMode:%FullscreenMode%) >> optionsof.txt
 (echo ofFastMath:true) >> optionsof.txt
-(echo ofFastRender:true) >> optionsof.txt
+(echo ofFastRender:%FastRender%) >> optionsof.txt
 (echo ofTranslucentBlocks:1) >> optionsof.txt
 exit
 :1.8.9
-TITLE Optimizing Optifine for 1.8.9
 (echo ofFogType:3) > optionsof.txt
 (echo ofFogStart:0.6) >> optionsof.txt
 (echo ofMipmapType:3) >> optionsof.txt
 (echo ofOcclusionFancy:false) >> optionsof.txt
-(echo ofSmoothFps:false) >> optionsof.txt
+(echo ofSmoothFps:%SmoothFPS%) >> optionsof.txt
 (echo ofSmoothWorld:false) >> optionsof.txt
 (echo ofAoLevel:0.0) >> optionsof.txt
 (echo ofClouds:3) >> optionsof.txt
@@ -129,7 +150,7 @@ TITLE Optimizing Optifine for 1.8.9
 (echo ofCustomFonts:false) >> optionsof.txt
 (echo ofCustomColors:false) >> optionsof.txt
 (echo ofCustomItems:false) >> optionsof.txt
-(echo ofCustomSky:false) >> optionsof.txt
+(echo ofCustomSky:%CustomSky%) >> optionsof.txt
 (echo ofShowCapes:true) >> optionsof.txt
 (echo ofNaturalTextures:false) >> optionsof.txt
 (echo ofEmissiveTextures:false) >> optionsof.txt
@@ -143,18 +164,18 @@ TITLE Optimizing Optifine for 1.8.9
 (echo ofCustomEntityModels:false) >> optionsof.txt
 (echo ofCustomGuis:false) >> optionsof.txt
 (echo ofShowGlErrors:true) >> optionsof.txt
-(echo ofFullscreenMode:Default) >> optionsof.txt
+(echo ofFullscreenMode:%FullscreenMode%) >> optionsof.txt
 (echo ofFastMath:true) >> optionsof.txt
-(echo ofFastRender:true) >> optionsof.txt
+(echo ofFastRender:%FastRender%) >> optionsof.txt
 (echo ofTranslucentBlocks:1) >> optionsof.txt
+(echo key_of.key.zoom:%Zoom Key-old%) >> optionsof.txt
 exit
-:1.16
-TITLE Optimizing Optifine for 1.16
+:1.12+
 (echo ofFogType:3) > optionsof.txt
 (echo ofFogStart:0.6) >> optionsof.txt
 (echo ofMipmapType:3) >> optionsof.txt
 (echo ofOcclusionFancy:false) >> optionsof.txt
-(echo ofSmoothFps:false) >> optionsof.txt
+(echo ofSmoothFps:%SmoothFPS%) >> optionsof.txt
 (echo ofSmoothWorld:false) >> optionsof.txt
 (echo ofAoLevel:0.0) >> optionsof.txt
 (echo ofClouds:3) >> optionsof.txt
@@ -201,7 +222,7 @@ TITLE Optimizing Optifine for 1.16
 (echo ofCustomFonts:false) >> optionsof.txt
 (echo ofCustomColors:false) >> optionsof.txt
 (echo ofCustomItems:false) >> optionsof.txt
-(echo ofCustomSky:false) >> optionsof.txt
+(echo ofCustomSky:%CustomSky%) >> optionsof.txt
 (echo ofShowCapes:true) >> optionsof.txt
 (echo ofNaturalTextures:false) >> optionsof.txt
 (echo ofEmissiveTextures:true) >> optionsof.txt
@@ -216,8 +237,9 @@ TITLE Optimizing Optifine for 1.16
 (echo ofCustomGuis:false) >> optionsof.txt
 (echo ofShowGlErrors:true) >> optionsof.txt
 (echo ofFastMath:true) >> optionsof.txt
-(echo ofFastRender:true) >> optionsof.txt
+(echo ofFastRender:%FastRender%) >> optionsof.txt
 (echo ofTranslucentBlocks:1) >> optionsof.txt
 (echo ofChatBackground:0) >> optionsof.txt
 (echo ofChatShadow:true) >> optionsof.txt
+(echo key_of.key.zoom:key.keyboard.left.control) >> optionsof.txt
 exit
