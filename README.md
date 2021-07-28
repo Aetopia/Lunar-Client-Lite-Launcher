@@ -72,12 +72,9 @@ To use this functionality of the script, use the following format:
 
 ## Credits
 <b>Original launch command made by [`lemons#2555`](https://github.com/respecting)  
-Original Optifine Patcher made by `temp`  
-Project inspired by [LCLI](https://github.com/couleur-tweak-tips/utils/blob/main/LCLI.bat)</b>
+LCLI Settings Patcher made by CTT (Original Optifine Patcher made by `temp`)  
+Project inspired by [LCLI](https://github.com/couleur-tweak-tips/utils/blob/main/LCLI.bat)</b>  
 
-## Discord Servers
-These discord servers also helped me to make this project.  
-1. [Hone](https://discord.com/invite/hone)  
-(For the Patcher script.)
-2. [Couleur Tweak Tips](http://discord.gg/CTT)  
-(For LCLI.)
+LC Lite is made of CTT.  
+Join CTT:  
+https://dsc.gg/CTT
