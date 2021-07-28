@@ -72,9 +72,6 @@ To use this functionality of the script, use the following format:
 
 ## Credits
 <b>Original launch command made by [`lemons#2555`](https://github.com/respecting)  
-LCLI Settings Patcher made by CTT (Original Optifine Patcher made by `temp`)  
+LCLI Settings Patcher made by [CTT](https://dsc.gg/CTT) (Original Optifine Patcher made by `temp`)  
 Project inspired by [LCLI](https://github.com/couleur-tweak-tips/utils/blob/main/LCLI.bat)</b>  
 
-LC Lite is made of CTT.  
-Join CTT:  
-https://dsc.gg/CTT
