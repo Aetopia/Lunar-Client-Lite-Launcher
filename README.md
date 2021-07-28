@@ -8,7 +8,7 @@ Lunar Client Lite is a simple lightweight launcher which features the following:
 4. A Simple-to-Use Interface  
 ## Requirements
 Before you begin using LC Lite, make sure that you have Lunar Client installed and also ensure you have your favourite LC versions installed.  
-(If you don't have LC installed then the application will redirect you to the download page of Lunar Client.)
+(If you don't have LC installed then the application will redirect you to the download page of Lunar Client.)  
 ## How to use & setup?
 1. Download the latest release from here.  
 https://github.com/Aetopia/Lunar-Client-Lite-Launcher/releases
@@ -29,7 +29,10 @@ You can use this option to keep your optifine settings tidy, everytime you switc
 6. You can select version you would like to use via the `Version` Listbox. 
 Click on any version, you would like to use.  
 
-7. Finally click on the launch button to launch Lunar Client!
+7. Finally click on the launch button to launch Lunar Client!  
+
+
+<b>NOTE: To update Lunar Client and its dependencies, you must use the official LC launcher to update them.</b>
 ### Which JVM Arguments are good for LC?
 LC uses Java 16 so they aren't many "optimal" JVM arguments which you can find online.  
 Here is a list of arguments you can use for LC via LC Lite which I consider optimal.  
