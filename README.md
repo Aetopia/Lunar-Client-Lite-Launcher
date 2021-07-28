@@ -93,8 +93,9 @@ Using `wrapper.cmd` its possible to specify arguments to launch a specific versi
 To use this functionality of the script, use the following format:  
 `wrapper.cmd "Version" "Asset Index of Version" "JVM Arguments"`  
 i.e  
-`wrapper.cmd "1.8" "1.8" "-Xms3072m -Xmx3072m"`  
-This will launch `LC 1.8` and will allocate 3 GB to LC..  
+`wrapper.cmd "1.8" "1.8" "-Xms3072m -Xmx3072m"` 
+
+This will launch `LC 1.8` and will allocate 3 GB to LC.  
 
 You can do the same for `patcher.cmd`. This script is used to patch optifine settings.  
 To use this functionality of the script, use the following format:  
