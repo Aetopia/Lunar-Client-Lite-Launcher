@@ -166,12 +166,8 @@ ConfigurePatcher(){
 	IfNotExist C:\Program Files\Notepad++\notepad++.exe
 		Run, notepad.exe patcher.cmd	
 	
-	IfNotExist C:\Program Files (x86)\Notepad++\notepad++.exe
-		Run, notepad.exe patcher.cmd	
-	
 	IfNotExist C:\Windows\notepad.exe
 		return
-	
 }
 
 ;Dependencies	
