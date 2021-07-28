@@ -22,14 +22,42 @@ https://github.com/Aetopia/Lunar-Client-Lite-Launcher/releases
 By default the arguments are set to `"-Xms3G -Xmx3G"`.  
 You can click on the handy `?` button for help with the `Java VM Arguments` section!
 
-5. Within the `Game Options` Section, you can enable the `Optifine Patcher`.  
+5. Within the `Game Options` Section, you can enable the `OptiFine Patcher`.  
 Enabling this option will patch your optifine settings, everytime you use LC Lite.  
 You can use this option to keep your optifine settings tidy, everytime you switch versions.
+6. You can also configure the OptiFine Patcher.  
 
-6. You can select version you would like to use via the `Version` Listbox. 
+Click on the `Configure Button`.  
+If you have `Notepad++ x64` or `Notepad++ x86` then `patcher.cmd` will open in `Notepad++` else `patcher.cmd` will open in Notepad.
+
+Here are the options you can configure within `patcher.cmd`:
+```
+::Configurable Settings
+
+set FullscreenMode=Default
+::'Default' will scale Minecraft according to your current resolution
+::If you want it to force a downscale (like 720p) then type in 1280x720
+::The main downside is long tab-out times (3-5 seconds black screens)
+
+set FastRender=true
+::Setting Fast Render false will decrease FPS but make lc motion-blur work
+
+set SmoothFPS=false
+::Setting Smooth FPS to true will decrease FPS but let more resources to OBS (e.g encoding lag)
+
+set RenderDistance=6
+set CustomSky=false
+
+:: To set 'X' as the zoom key, it's stored as the number 45.
+:: IF YOU WANT A 
+set Zoom Key-old=45
+set Zoom Key-new=x
+:: In older versions, 45 = X for controls
+```
+7. You can select version you would like to use via the `Version` Listbox. 
 Click on any version, you would like to use.  
 
-7. Finally click on the launch button to launch Lunar Client!  
+8. Finally click on the launch button to launch Lunar Client!  
 
 
 <b>NOTE: To update Lunar Client and its dependencies, you must use the official LC launcher to update them.</b>
