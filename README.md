@@ -39,8 +39,16 @@ Here is a list of arguments you can use for LC via LC Lite which I consider opti
 
 1. `-Xmx3G`  
 Using this argument can be useful if you are low on RAM since using this argument will force LC to use only 3 GB of RAM.
-2. `-Xms4G -Xmx4G -XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=32M`  
+2.
+ ```
+-Xms4G -Xmx4G -XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=32M
+```  
 This is a slightly modified version of MC's default arguments for Java 16. From what I have seen using these arguments will make LC use 6 GB RAM and should provide optimal performance.
+3. 
+```
+-XX:+UseG1GC -Xmx4G -Xms4G -Dsun.rmi.dgc.server.gcInterval=2147483646 -XX:+UnlockExperimentalVMOptions -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=32M
+```
+This is a slightly modified version of MC's default arguments for Java 16. Here MC clears out RAM more slowly as compared to any other arguments listed here.
 
 # Extras
 ## Information about `patcher.cmd` and `wrapper.cmd`
