@@ -16,11 +16,11 @@ IfNotExist, patcher.cmd
 
 ;GUI
 Gui, New
+Gui, -MaximizeBox -MinimizeBox
 IniRead, GUIArguments, Config.ini, LC, Arguments
 Gui, Add, Text,, Java VM Arguments:
-Gui, Add, Edit, w550 h21, %GUIArguments%
-IfNotExist, patcher.cmd
-	Gui, Add, Text,, Game Options:
+Gui, Add, Edit, w260 h20, %GUIArguments%
+Gui, Add, Text,, Game Options:
 IniRead, OptiPatchToggle, Config.ini, Minecraft, OptiPatch
 If (OptiPatchToggle = 1){
 	Gui, Add, Checkbox, Checked vOptiPatch gOptiPatchToggle, Optifine Patcher
@@ -28,13 +28,14 @@ If (OptiPatchToggle = 1){
 else if (OptiPatchToggle = 0){
 	Gui, Add, Checkbox, vOptiPatch gOptiPatchToggle, Optifine Patcher
 }
-Gui, Add, Text, x10 y300, Version:
-Gui, Add, Button, x560 y23 w25 h25 gJVMArgsHelp, ?
-Gui, Add, ListBox, gVersionWrite c30 r5 x10 y315, 1.7|1.8|1.12|1.16|1.17
+Gui, Add, Button, x105 y65 gConfigurePatcher, Configure
+Gui, Add, Text, x10 y105, Version:
+Gui, Add, ListBox, x10 y121 gVersionWrite c30 r5, 1.7|1.8|1.12|1.16|1.17
+Gui, Add, Button, x270 y22 w25 h25 gJVMArgsHelp, ?
 VersionRead()
-Gui, Add, Button, x492 y335 w100 h50 gLaunch, Launch
+Gui, Add, Button, x191 y141 w100 h50 gLaunch, Launch
 GuiControl, Focus, Button1
-Gui, Show, w600 h400, LC Lite
+Gui, Show, w300 h200, LC Lite
 
 ;Functions
 Launch(){	
@@ -87,6 +88,11 @@ VersionWrite()
 	{
 		IniWrite, '1.17', Config.ini, LC, Version
 		IniWrite, '1.17', Config.ini, Minecraft, AssetIndex
+	}
+	Else If (UserVersion = 1.18) 
+	{
+		IniWrite, '1.18', Config.ini, LC, Version
+		IniWrite, '1.18', Config.ini, Minecraft, AssetIndex
 	}
 	return
 }
@@ -148,6 +154,24 @@ OptifinePatcher(){
 		run, patcher.cmd "3",, hide
 	}
 	return
+}
+
+ConfigurePatcher(){
+	IfExist C:\Program Files\Notepad++\notepad++.exe
+		Run, C:\Program Files\Notepad++\notepad++.exe patcher.cmd
+		
+	IfExist C:\Program Files (x86)\Notepad++\notepad++.exe
+		Run, C:\Program Files (x86)\Notepad++\notepad++.exe patcher.cmd	
+	
+	IfNotExist C:\Program Files\Notepad++\notepad++.exe
+		Run, notepad.exe patcher.cmd	
+	
+	IfNotExist C:\Program Files (x86)\Notepad++\notepad++.exe
+		Run, notepad.exe patcher.cmd	
+	
+	IfNotExist C:\Windows\notepad.exe
+		return
+	
 }
 
 ;Dependencies	
