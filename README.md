@@ -28,7 +28,7 @@ Enabling this option will patch your optifine settings, everytime you use LC Lit
 You can use this option to keep your optifine settings tidy, everytime you switch versions.
 6. You can also configure the OptiFine Patcher.  
 
-Click on the `Configure Button`.  
+Click on the "`Configure`" Button.  
 If you have `Notepad++ x64` or `Notepad++ x86` then `patcher.cmd` will open in `Notepad++` else `patcher.cmd` will open in Notepad.
 
 Here are the options, you can configure within `patcher.cmd`:
