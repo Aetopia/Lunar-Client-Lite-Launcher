@@ -20,6 +20,7 @@ https://github.com/Aetopia/Lunar-Client-Lite-Launcher/releases
 
 4. You can specify custom JVM Arguments within `Java VM Arguments` section.  
 By default the arguments are set to `"-Xms3G -Xmx3G"`.  
+To save your custom JVM Arguments, you must at least launch LC once via LC Lite to save them.
 You can click on the handy `?` button for help with the `Java VM Arguments` section!
 
 5. Within the `Game Options` Section, you can enable the `OptiFine Patcher`.  
@@ -67,10 +68,10 @@ Click on any version, you would like to use.
 LC uses OpenJDK 16 so they aren't many "optimal" JVM arguments which you can find online.  
 Here is a list of arguments you can use for LC via LC Lite which I consider optimal.  
 
-1. Using this argument can be useful if you are low on RAM since using this argument will force LC to use only 3 GB of RAM.  
+1. Using this argument can be useful if you are low on RAM since using this argument will force LC to use only 1.5 GB of RAM.  
 
 ```
--Xmx3G  
+-Xmx700m  
 ```
 
 2. This is a slightly modified version of MC's default arguments for OpenJDK 16. From what I have seen using these arguments will make LC use 6 GB RAM and should provide optimal performance.  
