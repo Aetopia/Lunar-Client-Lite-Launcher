@@ -23,12 +23,12 @@ Gui, Add, Edit, w260 h20, %GUIArguments%
 Gui, Add, Text,, Game Options:
 IniRead, OptiPatchToggle, Config.ini, Minecraft, OptiPatch
 If (OptiPatchToggle = 1){
-	Gui, Add, Checkbox, Checked vOptiPatch gOptiPatchToggle, Optifine Patcher
+	Gui, Add, Checkbox, Checked vOptiPatch gOptiPatchToggle, OptiFine Patcher
 }
 else if (OptiPatchToggle = 0){
-	Gui, Add, Checkbox, vOptiPatch gOptiPatchToggle, Optifine Patcher
+	Gui, Add, Checkbox, vOptiPatch gOptiPatchToggle, OptiFine Patcher
 }
-Gui, Add, Button, x105 y65 gConfigurePatcher, Configure
+Gui, Add, Button, x110 y65 gConfigurePatcher, Configure
 Gui, Add, Text, x10 y105, Version:
 Gui, Add, ListBox, x10 y121 gVersionWrite c30 r5, 1.7|1.8|1.12|1.16|1.17
 Gui, Add, Button, x270 y22 w25 h25 gJVMArgsHelp, ?
@@ -48,8 +48,10 @@ Launch(){
 	If (OptiPatchToggle=1){
 		OptifinePatcher()
 	}
-     Run, wrapper.cmd %LCVer% %MCAssetIndex% %LCArgs%,, Hide
+     	Run, wrapper.cmd %LCVer% %MCAssetIndex% %LCArgs%,, Hide
+	Process, Exist, cmd.exe
 	Sleep, 250
+	Process, Close, cmd.exe
 	ExitApp
 }
 
@@ -123,7 +125,7 @@ VersionRead(){
 }
 
 JVMArgsHelp(){
-	MsgBox,, Help: JVM Arguments,Here, you can set custom JVM arguments for LC.`nOnly change the JVM arguments if you know what you are doing!`nAlways make sure you enclose the arguments with double quotes!
+	MsgBox,, Help: JVM Arguments,Here, you can set custom JVM arguments for LC.`nOnly change the JVM arguments if you know what you are doing!`nAlways make sure you enClose the arguments with double quotes!
 }
 
 LCCheck(){
@@ -146,12 +148,21 @@ OptifinePatcher(){
 	IniRead, PatcherVersion, Config.ini, LC, Version
 	If (PatcherVersion = 1.7){
 		run, patcher.cmd "1",, hide
+		Process, Exist, cmd.exe
+		Sleep, 250
+		Process, Close, cmd.exe
 	}
 	else If (PatcherVersion = 1.8){
 		run, patcher.cmd "2",, hide
+		Process, Exist, cmd.exe
+		Sleep, 250
+		Process, Close, cmd.exe
 	}
 	else If (PatcherVersion = 1.12 or patcherVersion = 1.16 or patcherVersion = 1.17){
 		run, patcher.cmd "3",, hide
+		Process, Exist, cmd.exe
+		Sleep, 250
+		Process, Close, cmd.exe
 	}
 	return
 }
@@ -165,9 +176,10 @@ ConfigurePatcher(){
 	
 	IfNotExist C:\Program Files\Notepad++\notepad++.exe
 		Run, notepad.exe patcher.cmd	
+		
 	
 	IfNotExist C:\Windows\notepad.exe
-		return
+		return	
 }
 
 ;Dependencies	
