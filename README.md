@@ -21,7 +21,6 @@ https://github.com/Aetopia/Lunar-Client-Lite-Launcher/releases
 4. You can specify custom JVM Arguments within `Java VM Arguments` section.  
 By default the arguments are set to `"-Xms3G -Xmx3G"`.  
 To save your custom JVM Arguments, you must at least launch LC once via LC Lite to save them.  
-You can click on the handy `?` button for help with the `Java VM Arguments` section!
 
 5. Within the `Game Options` Section, you can enable the `OptiFine Patcher`.  
 Enabling this option will patch your optifine settings, everytime you use LC Lite.  
