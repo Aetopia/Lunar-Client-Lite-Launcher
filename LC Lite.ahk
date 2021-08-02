@@ -51,7 +51,7 @@ Launch(){
 	}
      	Run, wrapper.cmd %LCVer% %MCAssetIndex% %LCArgs%,, Hide
 	Process, Exist, cmd.exe
-	Sleep, 250
+	Sleep, 100
 	Process, Close, cmd.exe
 	ExitApp
 }
