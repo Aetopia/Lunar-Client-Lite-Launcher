@@ -31,7 +31,7 @@ else if (OptiPatchToggle = 0){
 Gui, Add, Button, x110 y65 gConfigurePatcher, Configure
 Gui, Add, Text, x10 y105, Version:
 Gui, Add, ListBox, x10 y121 gVersionWrite c30 r5, 1.7|1.8|1.12|1.16|1.17
-Gui, Add, Button, x270 y22 w25 h25 gJVMArgsHelp, ?
+Gui, Add, Button, x272 y22 w25 h25 gAbout, ?
 VersionRead()
 Gui, Add, Button, x191 y141 w100 h50 gLaunch +default, Launch
 GuiControl, Focus, Button3
@@ -125,8 +125,8 @@ VersionRead(){
 	return
 }
 
-JVMArgsHelp(){
-	MsgBox,, Help: JVM Arguments,Here, you can set custom JVM arguments for LC.`nOnly change the JVM arguments if you know what you are doing!`nAlways make sure you enClose the arguments with double quotes!
+About(){
+	MsgBox,, About, Made by Aetopia`nhttps://github.com/Aetopia/Lunar-Client-Lite-Launcher
 }
 
 LCCheck(){
