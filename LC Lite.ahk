@@ -49,7 +49,8 @@ Launch(){
 	If (OptiPatchToggle=1){
 		OptifinePatcher()
 	}
-     	Run, wrapper.cmd %LCVer% %MCAssetIndex% %LCArgs%,, Hide
+	VersionCheck()
+	Run, wrapper.cmd %LCVer% %MCAssetIndex% %LCArgs%,, Hide
 	Process, Exist, cmd.exe
 	Sleep, 100
 	Process, Close, cmd.exe
@@ -180,7 +181,48 @@ ConfigurePatcher(){
 		
 	
 	IfNotExist C:\Windows\notepad.exe
+		MsgBox,, Error, Notepad not found!
 		return	
+}
+
+VersionCheck(){
+	IniRead, CheckVersion, Config.ini, LC, Version
+	If (CheckVersion = 1.7) 
+	{
+		IfNotExist C:\Users\%A_UserName%\.lunarclient\offline\1.7
+		MsgBox,, Error: Version not installed., LC 1.7 wasn't found on your device.`nPlease download LC 1.7!
+		Run, C:\Users\%A_UserName%\AppData\Local\Programs\lunarclient\Lunar Client.exe
+		ExitApp
+	}	
+	Else If (CheckVersion = 1.8) 
+	{
+		IfNotExist C:\Users\%A_UserName%\.lunarclient\offline\1.8
+		MsgBox,, Error: Version not installed., LC 1.8 wasn't found on your device.`nPlease download LC 1.8!
+		Run, C:\Users\%A_UserName%\AppData\Local\Programs\lunarclient\Lunar Client.exe
+		ExitApp
+	}
+	Else If (CheckVersion = 1.12) 
+	{
+		IfNotExist C:\Users\%A_UserName%\.lunarclient\offline\1.7
+		MsgBox,, Error: Version not installed., LC 1.12 wasn't found on your device.`nPlease download LC 1.12!
+		Run, C:\Users\%A_UserName%\AppData\Local\Programs\lunarclient\Lunar Client.exe
+		ExitApp	
+	}
+	Else If (CheckVersion = 1.16) 
+	{
+		IfNotExist C:\Users\%A_UserName%\.lunarclient\offline\1.7
+		MsgBox,, Error: Version not installed., LC 1.16 wasn't found on your device.`nPlease download LC 1.16!
+		Run, C:\Users\%A_UserName%\AppData\Local\Programs\lunarclient\Lunar Client.exe
+		ExitApp	
+	}
+	Else If (CheckVersion = 1.17) 
+	{
+		IfNotExist C:\Users\%A_UserName%\.lunarclient\offline\1.17
+		MsgBox,, Error: Version not installed., LC 1.17 wasn't found on your device.`nPlease download LC 1.17!
+		Run, C:\Users\%A_UserName%\AppData\Local\Programs\lunarclient\Lunar Client.exe
+		ExitApp
+	}
+	return
 }
 
 ;Dependencies	
