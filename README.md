@@ -11,7 +11,8 @@ Before you begin using LC Lite, make sure that you have Lunar Client installed a
 (If you don't have LC installed then the application will redirect you to the download page of Lunar Client.)  
 ## How to use & setup?
 1. Download the latest release from here.  
-https://github.com/Aetopia/Lunar-Client-Lite-Launcher/releases
+https://github.com/Aetopia/Lunar-Client-Lite-Launcher/releases  
+NOTE: I currently only provide 64 Bit builds of LC Lite. You need to compile 32 Bit builds manually using `Ahk2Exe`.
 
 2. Extract the zip file's contents and then start `LC Lite.exe`.
 
