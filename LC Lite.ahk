@@ -203,14 +203,14 @@ VersionCheck(){
 	}
 	Else If (CheckVersion = 1.12) 
 	{
-		IfNotExist C:\Users\%A_UserName%\.lunarclient\offline\1.7
+		IfNotExist C:\Users\%A_UserName%\.lunarclient\offline\1.12
 		MsgBox,, Error: Version not installed., LC 1.12 wasn't found on your device.`nPlease download LC 1.12!
 		Run, C:\Users\%A_UserName%\AppData\Local\Programs\lunarclient\Lunar Client.exe
 		ExitApp	
 	}
 	Else If (CheckVersion = 1.16) 
 	{
-		IfNotExist C:\Users\%A_UserName%\.lunarclient\offline\1.7
+		IfNotExist C:\Users\%A_UserName%\.lunarclient\offline\1.16
 		MsgBox,, Error: Version not installed., LC 1.16 wasn't found on your device.`nPlease download LC 1.16!
 		Run, C:\Users\%A_UserName%\AppData\Local\Programs\lunarclient\Lunar Client.exe
 		ExitApp	
