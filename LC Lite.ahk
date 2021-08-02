@@ -49,6 +49,7 @@ Launch(){
 	If (OptiPatchToggle=1){
 		OptifinePatcher()
 	}
+	VersionCheck()
 	Run, wrapper.cmd %LCVer% %MCAssetIndex% %LCArgs%,, Hide
 	Process, Exist, cmd.exe
 	Sleep, 100
@@ -182,6 +183,46 @@ ConfigurePatcher(){
 	IfNotExist C:\Windows\notepad.exe
 		MsgBox,, Error, Notepad not found!
 		return	
+}
+
+VersionCheck(){
+	IniRead, CheckVersion, Config.ini, LC, Version
+	If (CheckVersion = 1.7){
+		IfNotExist, C:\Users\%A_UserName%\.lunarclient\offline\1.7
+			FileCheck(1.7)
+		return	
+	}
+	If (CheckVersion = 1.8){
+		IfNotExist, C:\Users\%A_UserName%\.lunarclient\offline\1.8
+			FileCheck(1.8)
+		return	
+	}
+	If (CheckVersion = 1.9){
+		IfNotExist, C:\Users\%A_UserName%\.lunarclient\offline\1.9
+			FileCheck(1.9)
+		return	
+	}
+	If (CheckVersion = 1.12){
+		IfNotExist, C:\Users\%A_UserName%\.lunarclient\offline\1.12
+			FileCheck(1.12)
+		return	
+	}
+	If (CheckVersion = 1.16){
+		IfNotExist, C:\Users\%A_UserName%\.lunarclient\offline\1.16
+			FileCheck(1.16)
+		return	
+	}
+	If (CheckVersion = 1.17){
+		IfNotExist, C:\Users\%A_UserName%\.lunarclient\offline\1.17
+			FileCheck(1.17)
+		return	
+	}
+}
+
+FileCheck(n){
+	MsgBox,, Error: Version Not Found, LC %n% wasn't found on this device!`nPlease install LC %n%! 
+	Run, C:\Users\%A_UserName%\AppData\Local\Programs\lunarclient\Lunar Client.exe
+	ExitApp
 }
 
 ;Dependencies	
