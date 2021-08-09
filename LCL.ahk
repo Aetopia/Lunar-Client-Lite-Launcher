@@ -32,7 +32,7 @@ Gui, Add, Button, x110 y65 w25 h25 gConfigurePatcher, ✎
 Gui, Add, Text, x10 y105, Version:
 Gui, Add, ListBox, x10 y121 gVersionWrite c30 r5, 1.7|1.8|1.12|1.16|1.17
 Gui, Add, Button, x272 y22 w25 h25 gAbout, ?
-Gui, Add, Button, w25 h25 gUpdateDependencies, ↓
+Gui, Add, Button, w25 h25 gUpdateDependencies, ❐
 VersionRead()
 Gui, Add, Button, x191 y141 w100 h50 gLaunch +default, Launch
 GuiControl, Focus, Button5
@@ -66,7 +66,6 @@ ConfigCreate()
 	IniWrite, '1.8', Config.ini, Minecraft, AssetIndex
 	IniWrite, ""-Xms3G -Xmx3G"", Config.ini, LC, Arguments	
 	IniWrite, 0, Config.ini, Minecraft, OptiPatch
-	IniWrite, 0, Config.ini, LC, LCChecks
 }
 
 VersionWrite()
