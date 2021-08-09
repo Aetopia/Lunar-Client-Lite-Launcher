@@ -59,7 +59,7 @@ Click on any version, you would like to use.
 
 8. Finally click on the launch button to launch Lunar Client!  
 <i>LC not launching via LC Lite? Make sure you have your desired versions installed via the official LC Launcher!</i>  
-<b>Click on the `↓` button to update LC Lite's dependencies! This will also reset your `patcher.cmd` and `wrapper.cmd` settings.</b>  
+<b>Click on the `❐` button to update LC Lite's dependencies! This will also reset your `patcher.cmd` and `wrapper.cmd` settings.</b>  
 <b>NOTE: To update Lunar Client and its dependencies, you must use the official LC launcher to update them.</b>
 ### Which JVM Arguments are good for LC?  
 <b>Make sure that you enclose your custom JVM Arguments entered within LC Lite with double quotes or else the entered JVM Arguments won't be detected correctly by LC Lite.</b>
