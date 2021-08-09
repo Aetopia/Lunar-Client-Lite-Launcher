@@ -16,7 +16,7 @@ https://github.com/Aetopia/Lunar-Client-Lite-Launcher/releases
 2. Extract the zip file's contents and then start `LCL.exe`.
 
 3. Once LC Lite is started, it should look like this:  
-[![image.png](https://i.postimg.cc/hjrJKgcJ/image.png)](https://postimg.cc/jwDqhpWK)
+[![image.png](https://i.postimg.cc/ZqKHyc8d/image.png)](https://postimg.cc/mPJCv76L)
 
 4. You can specify custom JVM Arguments within `Java VM Arguments` section.  
 By default the arguments are set to `"-Xms3G -Xmx3G"`.  
