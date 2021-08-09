@@ -144,7 +144,7 @@ OptiPatchToggle(){
 	If (OptiPatch = 1){
 		IniWrite, 1, Config.ini, Minecraft, OptiPatch
 	}	
-	else{ 
+	Else { 
 		IniWrite, 0, Config.ini, Minecraft, OptiPatch
 	}
 }
@@ -157,13 +157,13 @@ OptifinePatcher(){
 		Sleep, 250
 		Process, Close, cmd.exe
 	}
-	else If (PatcherVersion = 1.8){
+	Else If (PatcherVersion = 1.8){
 		run, patcher.cmd "2",, hide
 		Process, Exist, cmd.exe
 		Sleep, 250
 		Process, Close, cmd.exe
 	}
-	else If (PatcherVersion = 1.12 or patcherVersion = 1.16 or patcherVersion = 1.17){
+	Else If (PatcherVersion = 1.12 or patcherVersion = 1.16 or patcherVersion = 1.17){
 		run, patcher.cmd "3",, hide
 		Process, Exist, cmd.exe
 		Sleep, 250
@@ -232,13 +232,13 @@ FileCheck(n){
 nowrappercmd(){
 	MsgBox,, Error: Dependency not found.,"wrapper.cmd" wasn't found.`nClick on the "OK" button to download the dependency`nand relaunch LC Lite.
 	URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/wrapper.cmd, %A_WorkingDir%\wrapper.cmd
-     ExitApp
+     	ExitApp
 }
 
 nopatchercmd(){
 	MsgBox,, Error: Dependency not found.,"patcher.cmd" wasn't found.`nClick on the "OK" button to download the dependency`nand relaunch LC Lite.
 	URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/patcher.cmd, %A_WorkingDir%\patcher.cmd
-     ExitApp
+     	ExitApp
 }
 
 UpdateDependencies(){
