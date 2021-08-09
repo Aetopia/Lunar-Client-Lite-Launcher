@@ -28,11 +28,11 @@ If (OptiPatchToggle = 1){
 else if (OptiPatchToggle = 0){
 	Gui, Add, Checkbox, vOptiPatch gOptiPatchToggle, OptiFine Patcher
 }
-Gui, Add, Button, x110 y65 gConfigurePatcher, Configure
+Gui, Add, Button, x110 y65 w25 h25 gConfigurePatcher, ✎
 Gui, Add, Text, x10 y105, Version:
 Gui, Add, ListBox, x10 y121 gVersionWrite c30 r5, 1.7|1.8|1.12|1.16|1.17
 Gui, Add, Button, x272 y22 w25 h25 gAbout, ?
-Gui, Add, Button, w25 h25 gUpdateDependencies, +
+Gui, Add, Button, w25 h25 gUpdateDependencies, ↓
 VersionRead()
 Gui, Add, Button, x191 y141 w100 h50 gLaunch +default, Launch
 GuiControl, Focus, Button5
