@@ -66,6 +66,7 @@ ConfigCreate()
 	IniWrite, '1.8', Config.ini, Minecraft, AssetIndex
 	IniWrite, ""-Xms3G -Xmx3G"", Config.ini, LC, Arguments	
 	IniWrite, 0, Config.ini, Minecraft, OptiPatch
+	IniWrite, 0, Config.ini, LC, LCChecks
 }
 
 VersionWrite()
