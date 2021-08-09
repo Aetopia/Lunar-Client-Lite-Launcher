@@ -13,7 +13,7 @@ Before you begin using LC Lite, make sure that you have Lunar Client installed a
 1. Download the latest release from here.  
 https://github.com/Aetopia/Lunar-Client-Lite-Launcher/releases  
 
-2. Extract the zip file's contents and then start `LC Lite.exe`.
+2. Extract the zip file's contents and then start `LCL.exe`.
 
 3. Once LC Lite is started, it should look like this:  
 [![image.png](https://i.postimg.cc/hjrJKgcJ/image.png)](https://postimg.cc/jwDqhpWK)
