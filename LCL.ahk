@@ -130,7 +130,7 @@ VersionRead(){
 }
 
 About(){
-	MsgBox,, About, Made by Aetopia`nhttps://github.com/Aetopia/Lunar-Client-Lite-Launcher`nLC Lite v1.1.1
+	MsgBox,, About, Made by Aetopia`nhttps://github.com/Aetopia/Lunar-Client-Lite-Launcher
 }
 
 LCCheck(){
