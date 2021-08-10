@@ -130,11 +130,11 @@ VersionRead(){
 }
 
 About(){
-	MsgBox,, About, Made by Aetopia`nhttps://github.com/Aetopia/Lunar-Client-Lite-Launcher
+	MsgBox, 64, About, Made by Aetopia`nhttps://github.com/Aetopia/Lunar-Client-Lite-Launcher
 }
 
 LCCheck(){
-	MsgBox,, No LC Installation Detected, No Lunar Client installation is present on this device.`nPlease download the latest version of Lunar Client!
+	MsgBox, 16, No LC Installation Detected, No Lunar Client installation is present on this device.`nPlease download the latest version of Lunar Client!
 	Run, https://www.lunarclient.com/download/
 	ExitApp
 }
@@ -223,20 +223,20 @@ VersionCheck(){
 }
 
 FileCheck(n){
-	MsgBox,, Error: Version Not Found, LC %n% wasn't found on this device!`nPlease install LC %n%! 
+	MsgBox, 16, Error: Version Not Found, LC %n% wasn't found on this device!`nPlease install LC %n%! 
 	Run, C:\Users\%A_UserName%\AppData\Local\Programs\lunarclient\Lunar Client.exe
 	ExitApp
 }
 
 ;Dependencies	
 nowrappercmd(){
-	MsgBox,, Error: Dependency not found.,"wrapper.cmd" wasn't found.`nClick on the "OK" button to download the dependency`nand relaunch LC Lite.
+	MsgBox, 16, Error: Dependency not found.,"wrapper.cmd" wasn't found.`nClick on the "OK" button to download the dependency`nand relaunch LC Lite.
 	URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/wrapper.cmd, %A_WorkingDir%\wrapper.cmd
      	ExitApp
 }
 
 nopatchercmd(){
-	MsgBox,, Error: Dependency not found.,"patcher.cmd" wasn't found.`nClick on the "OK" button to download the dependency`nand relaunch LC Lite.
+	MsgBox, 16, Error: Dependency not found.,"patcher.cmd" wasn't found.`nClick on the "OK" button to download the dependency`nand relaunch LC Lite.
 	URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/patcher.cmd, %A_WorkingDir%\patcher.cmd
      	ExitApp
 }
@@ -244,7 +244,7 @@ nopatchercmd(){
 UpdateDependencies(){
 	URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/patcher.cmd, %A_WorkingDir%\patcher.cmd
 	URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/wrapper.cmd, %A_WorkingDir%\wrapper.cmd
-	MsgBox,, Dependencies Updated!, LC Lite's dependencies are now updated!
+	MsgBox, 64, Dependencies Updated!, LC Lite's dependencies are now updated!
 }
 
 GuiClose(){
