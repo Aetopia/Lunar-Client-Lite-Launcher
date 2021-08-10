@@ -20,6 +20,7 @@ https://github.com/Aetopia/Lunar-Client-Lite-Launcher/releases
 
 4. You can specify custom JVM Arguments within the `JVM Arguments` section.  
 By default the arguments are set to `"-Xms3G -Xmx3G"`.  
+<b>Make sure that you enclose your custom JVM Arguments entered within LC Lite with double quotes or else your custom JVM Arguments won't be detected correctly by LC Lite.</b>  
 To save your custom JVM Arguments, you must at least launch LC once via LC Lite to save them.  
 
 5. Within the `Game Options` Section, you can enable the `OptiFine Patcher`.  
@@ -62,7 +63,6 @@ Click on any version, you would like to use.
 <b>Click on the `❐` button to update LC Lite's dependencies! This will also reset your `patcher.cmd` and `wrapper.cmd` settings.</b>  
 <b>NOTE: To update Lunar Client and its dependencies, you must use the official LC launcher to update them.</b>
 ### Which JVM Arguments are good for LC?  
-<b>Make sure that you enclose your custom JVM Arguments entered within LC Lite with double quotes or else the entered JVM Arguments won't be detected correctly by LC Lite.</b>
 
 LC uses OpenJDK 16 so they aren't many "optimal" JVM arguments which you can find online.  
 Here is a list of arguments you can use for LC via LC Lite which I consider optimal.  
