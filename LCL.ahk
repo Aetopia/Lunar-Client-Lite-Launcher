@@ -130,12 +130,12 @@ VersionRead(){
 }
 
 About(){
-	MsgBox,, About, Made by Aetopia`nhttps://github.com/Aetopia/Lunar-Client-Lite-Launcher
+	MsgBox,, About, Made by Aetopia`nhttps://github.com/Aetopia/Lunar-Client-Lite-Launcher`nLC Lite v1.1.1
 }
 
 LCCheck(){
 	MsgBox,, No LC Installation Detected, No Lunar Client installation is present on this device.`nPlease download the latest version of Lunar Client!
-     	Run, https://www.lunarclient.com/download/
+	Run, https://www.lunarclient.com/download/
 	ExitApp
 }
 
