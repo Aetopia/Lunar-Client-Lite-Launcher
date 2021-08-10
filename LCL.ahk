@@ -18,9 +18,9 @@ IfNotExist, patcher.cmd
 Gui, New
 Gui, -MaximizeBox -MinimizeBox
 IniRead, GUIArguments, Config.ini, LC, Arguments
-Gui, Add, Text,, Java VM Arguments:
+Gui, Add, Text,, JVM Arguments
 Gui, Add, Edit, w260 h20, %GUIArguments%
-Gui, Add, Text,, Game Options:
+Gui, Add, Text,, Game Options
 IniRead, OptiPatchToggle, Config.ini, Minecraft, OptiPatch
 If (OptiPatchToggle = 1){
 	Gui, Add, Checkbox, Checked vOptiPatch gOptiPatchToggle, OptiFine Patcher
