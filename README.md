@@ -103,6 +103,11 @@ To use this functionality of the script, use the following format:
 `patcher.cmd "2"` for 1.8   
 `patcher.cmd "3"` for 1.12+
 
+## Logs
+LC Lite also generates a `logs` folder.  
+[![image.png](https://i.postimg.cc/5yJkDYfn/image.png)](https://postimg.cc/TLk9DPLD)  
+Here, you can view the latest log for the current minecraft instance or view any log for a previous minecraft instance.
+
 ## Credits
 <b>Original launch command made by [`lemons#2555`](https://github.com/respecting)  
 LCLI Settings Patcher made by [CTT](https://dsc.gg/CTT) (Original Optifine Patcher made by `temp`)  
