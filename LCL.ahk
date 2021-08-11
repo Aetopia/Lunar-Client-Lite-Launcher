@@ -37,7 +37,7 @@ VersionRead()
 Gui, Add, Button, x191 y141 w100 h50 gLaunch +default, Launch
 GuiControl, Focus, Button5
 GuiControl, Focus, +default
-Gui, Show, w300 h200, LC Lite
+Gui, Show, w300 h200, Lunar Client Lite
 
 ;Functions
 Launch(){	
