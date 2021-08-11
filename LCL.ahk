@@ -3,8 +3,8 @@ SendMode Input
 SetWorkingDir %A_ScriptDir%
 #SingleInstance, Force
 #NoTrayIcon
-
-;File Existence Checks
+Progress=0
+;File Existence Checkss
 IfNotExist, C:\Users\%A_UserName%\AppData\Local\Programs\lunarclient\Lunar Client.exe
 	LCCheck()
 IfNotExist, Config.ini
@@ -51,6 +51,10 @@ Launch(){
 		OptifinePatcher()
 	}
 	VersionCheck()
+	IfNotExist, patcher.cmd
+		DependencyRemoved(1)
+	IfNotExist, wrapper.cmd
+		DependencyRemoved(2)
 	Run, wrapper.cmd %LCVer% %MCAssetIndex% %LCArgs%,, Hide
 	Process, Exist, cmd.exe
 	Sleep, 100
@@ -132,10 +136,40 @@ VersionRead(){
 About(){
 	MsgBox, 64, About, Made by Aetopia`nhttps://github.com/Aetopia/Lunar-Client-Lite-Launcher
 }
-
+DependencyRemoved(x){
+	If (x=1){
+		Gui,Destroy
+		MsgBox, 16, Fatal Error!, LC Lite has detected a single dependency or multiple dependencies missing upon launching Lunar Client.`nClick on OK to download the missing dependencies and then relaunch LC Lite.
+		URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/patcher.cmd, %A_WorkingDir%\patcher.cmd
+		MsgBox, 64, Dependency Downloaded., The missing dependency has been downloaded!, 5
+	}
+	if(x=2){
+		Gui,Destroy
+		MsgBox, 16, Fatal Error!, LC Lite has detected a single dependency or multiple dependencies missing upon launching Lunar Client.`nClick on OK to download the missing dependencies and then relaunch LC Lite.
+		URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/wrapper.cmd, %A_WorkingDir%\wrapper.cmd
+		MsgBox, 64, Dependency Downloaded., The missing dependency has been downloaded!, 5
+	}
+	ExitApp
+}
 LCCheck(){
-	MsgBox, 16, No LC Installation Detected., No Lunar Client installation is present on this device.`nPlease download the latest version of Lunar Client!
-	Run, https://www.lunarclient.com/download/
+	MsgBox, 16, No LC Installation Detected., No Lunar Client installation is present on this device.`nClick on OK to install the latest version of Lunar Client.
+	Gui, New
+	Gui, -MaximizeBox -MinimizeBox
+	Gui, Add, Progress, w200 h20 vProgress, 20
+	Gui, Add, Text,, Downloading Lunar Client..
+	Gui,Show,, Lunar Client Lite
+	URLDownloadToFile, https://launcherupdates.lunarclientcdn.com/Lunar Client v2.7.4.exe, C:\Users\%A_UserName%\AppData\Local\Temp\lunar.exe
+	GuiControl,, Progress, +100
+	Sleep 500
+	IfNotExist, C:\Users\%A_UserName%\AppData\Local\Temp\lunar.exe
+		LCNotExist()
+	FileExist, ("%Temp%\lunar.exe")
+		Run, C:\Users\%A_UserName%\AppData\Local\Temp\lunar.exe
+	ExitApp	
+}
+LCNotExist(){
+	Gui,Destroy
+	MsgBox, 16, Download Error, Lunar Client couldn't be downloaded.`nCheck your internet connection and try again.
 	ExitApp
 }
 
@@ -230,15 +264,26 @@ FileCheck(n){
 
 ;Dependencies	
 nowrappercmd(){
-	MsgBox, 16, Error: Dependency not found.,"wrapper.cmd" wasn't found.`nClick on the "OK" button to download the dependency`nand relaunch LC Lite.
+	MsgBox, 16, Error: Dependency not found.,"wrapper.cmd" wasn't found.`nClick on the "OK" button to download the dependency.
 	URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/wrapper.cmd, %A_WorkingDir%\wrapper.cmd
-     	ExitApp
+	IfNotExist, wrapper.cmd
+		NotExist(1)
 }
-
+NotExist(y){
+	if (y=1){
+		MsgBox, 16, Download Failed., The dependency could not be downloaded. Check your internet connection.
+		ExitApp
+	}
+	if (y=2){
+		MsgBox, 16, Download Failed., The dependency could not be downloaded. Check your internet connection.
+		ExitApp
+	}
+}
 nopatchercmd(){
-	MsgBox, 16, Error: Dependency not found.,"patcher.cmd" wasn't found.`nClick on the "OK" button to download the dependency`nand relaunch LC Lite.
+	MsgBox, 16, Error: Dependency not found.,"patcher.cmd" wasn't found.`nClick on the "OK" button to download the dependency.
 	URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/patcher.cmd, %A_WorkingDir%\patcher.cmd
-     	ExitApp
+	IfNotExist, patcher.cmd
+		NotExist(2)
 }
 
 UpdateDependencies(){
