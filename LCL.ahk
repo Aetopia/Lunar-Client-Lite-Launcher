@@ -134,7 +134,7 @@ About(){
 }
 
 LCCheck(){
-	MsgBox, 16, No LC Installation Detected, No Lunar Client installation is present on this device.`nPlease download the latest version of Lunar Client!
+	MsgBox, 16, No LC Installation Detected., No Lunar Client installation is present on this device.`nPlease download the latest version of Lunar Client!
 	Run, https://www.lunarclient.com/download/
 	ExitApp
 }
