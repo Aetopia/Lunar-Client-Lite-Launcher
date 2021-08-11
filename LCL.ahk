@@ -4,7 +4,7 @@ SetWorkingDir %A_ScriptDir%
 #SingleInstance, Force
 #NoTrayIcon
 Progress=0
-;File Existence Checkss
+;File Existence Checks
 IfNotExist, C:\Users\%A_UserName%\AppData\Local\Programs\lunarclient\Lunar Client.exe
 	LCCheck()
 IfNotExist, Config.ini
@@ -158,7 +158,10 @@ LCCheck(){
 	Gui, Add, Progress, w200 h20 vProgress, 20
 	Gui, Add, Text,, Downloading Lunar Client..
 	Gui,Show,, Lunar Client Lite
-	URLDownloadToFile, https://launcherupdates.lunarclientcdn.com/Lunar Client v2.7.4.exe, C:\Users\%A_UserName%\AppData\Local\Temp\lunar.exe
+	URLDownloadToFile, https://launcherupdates.lunarclientcdn.com/latest.yml, C:\Users\%A_UserName%\AppData\Local\Temp\ver.txt
+	FileReadLine, LauncherYML, C:\Users\%A_UserName%\AppData\Local\Temp\ver.txt, 1
+	StringTrimLeft, LauncherVer, LauncherYML, 9
+	URLDownloadToFile, https://launcherupdates.lunarclientcdn.com/Lunar Client v%LauncherVer%.exe, C:\Users\%A_UserName%\AppData\Local\Temp\lunar.exe
 	GuiControl,, Progress, +100
 	Sleep 500
 	IfNotExist, C:\Users\%A_UserName%\AppData\Local\Temp\lunar.exe
