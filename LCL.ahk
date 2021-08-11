@@ -52,9 +52,9 @@ Launch(){
 	}
 	VersionCheck()
 	IfNotExist, patcher.cmd
-		DependencyRemoved(1)
+		DependencyRemoved()
 	IfNotExist, wrapper.cmd
-		DependencyRemoved(2)
+		DependencyRemoved()
 	Run, wrapper.cmd %LCVer% %MCAssetIndex% %LCArgs%,, Hide
 	Process, Exist, cmd.exe
 	Sleep, 100
@@ -136,23 +136,14 @@ VersionRead(){
 About(){
 	MsgBox, 64, About, Made by Aetopia`nhttps://github.com/Aetopia/Lunar-Client-Lite-Launcher
 }
-DependencyRemoved(x){
-	If (x=1){
-		Gui,Destroy
-		MsgBox, 16, Launch Error, LC Lite has detected a single dependency or multiple dependencies missing upon launching Lunar Client.`nClick on OK to download the missing dependencies and then relaunch LC Lite.
-		URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/patcher.cmd, %A_WorkingDir%\patcher.cmd
-		IfNotExist, patcher.cmd
-			NotExist()
-		MsgBox, 64, Dependency Downloaded, The missing dependency has been downloaded!, 5
-	}
-	if(x=2){
-		Gui,Destroy
-		MsgBox, 16, Launch Error, LC Lite has detected a single dependency or multiple dependencies missing upon launching Lunar Client.`nClick on OK to download the missing dependencies and then relaunch LC Lite.
-		URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/wrapper.cmd, %A_WorkingDir%\wrapper.cmd
-		IfNotExist, wrapper.cmd
-			NotExist()
-		MsgBox, 64, Dependency Downloaded, The missing dependency has been downloaded!, 5
-	}
+DependencyRemoved(){
+	Gui,Destroy
+	MsgBox, 16, Launch Error, LC Lite has detected a single dependency or multiple dependencies are missing.`nClick on OK to download the missing dependencies and then relaunch LC Lite.
+	URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/patcher.cmd, %A_WorkingDir%\patcher.cmd
+	URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/wrapper.cmd, %A_WorkingDir%\wrapper.cmd
+	IfNotExist, patcher.cmd
+		NotExist()
+	MsgBox, 64, Dependencies Downloaded, The missing dependencies have been downloaded!, 5	
 	ExitApp
 }
 LCCheck(){
