@@ -106,7 +106,7 @@ To use this functionality of the script, use the following format:
 ## Logs
 LC Lite also generates a `logs` folder.  
 [![image.png](https://i.postimg.cc/5yJkDYfn/image.png)](https://postimg.cc/TLk9DPLD)  
-Here, you can view the latest log for the current Lunar Client instance or view any log for a previous Lunar Client instance.
+Here, you can view the latest log for the latest Lunar Client instance or view any log for a previous Lunar Client instance.
 
 ## Credits
 <b>Original launch command made by [`lemons#2555`](https://github.com/respecting)  
