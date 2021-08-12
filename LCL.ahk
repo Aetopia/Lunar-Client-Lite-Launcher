@@ -281,6 +281,10 @@ nopatchercmd(){
 UpdateDependencies(){
 	URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/patcher.cmd, %A_WorkingDir%\patcher.cmd
 	URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/wrapper.cmd, %A_WorkingDir%\wrapper.cmd
+	IfNotExist, wrapper.cmd
+		NotExist()
+	IfNotExist, patcher.cmd
+		NotExist()
 	MsgBox, 64, Dependencies Updated, LC Lite's dependencies are now updated!
 }
 
