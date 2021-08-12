@@ -142,7 +142,7 @@ DependencyRemoved(){
 	URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/patcher.cmd, %A_WorkingDir%\patcher.cmd
 	URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/wrapper.cmd, %A_WorkingDir%\wrapper.cmd
 	IfNotExist, patcher.cmd
-		NotExist()
+		NotExist(1)
 	MsgBox, 64, Dependencies Downloaded, The missing dependencies have been downloaded!, 5	
 	ExitApp
 }
@@ -159,6 +159,7 @@ LCCheck(){
 	URLDownloadToFile, https://launcherupdates.lunarclientcdn.com/Lunar Client v%LauncherVer%.exe, C:\Users\%A_UserName%\AppData\Local\Temp\lunar.exe
 	GuiControl,, Progress, +100
 	Sleep 500
+	Gui, Destroy
 	IfNotExist, C:\Users\%A_UserName%\AppData\Local\Temp\lunar.exe
 		LCNotExist()
 	FileExist, ("%Temp%\lunar.exe")
@@ -259,33 +260,42 @@ FileCheck(n){
 	Run, C:\Users\%A_UserName%\AppData\Local\Programs\lunarclient\Lunar Client.exe
 	ExitApp
 }
-
-;Dependencies	
+	
 nowrappercmd(){
 	MsgBox, 16, Error: Dependency not found,"wrapper.cmd" wasn't found.`nClick on the "OK" button to download the dependency.
 	URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/wrapper.cmd, %A_WorkingDir%\wrapper.cmd
 	IfNotExist, wrapper.cmd
-		NotExist()
+		NotExist(1)
 }
-NotExist(){
-	MsgBox, 16, Download Failed, The dependency could not be downloaded. Check your internet connection.
-	ExitApp
-	}
+	
 nopatchercmd(){
 	MsgBox, 16, Error: Dependency not found,"patcher.cmd" wasn't found.`nClick on the "OK" button to download the dependency.
 	URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/patcher.cmd, %A_WorkingDir%\patcher.cmd
 	IfNotExist, patcher.cmd
-		NotExist()
+		NotExist(1)
 }
 
 UpdateDependencies(){
+	FileDelete, C:\Users\%A_UserName%\AppData\Local\Temp\internetcheck.ico
 	URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/patcher.cmd, %A_WorkingDir%\patcher.cmd
 	URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/wrapper.cmd, %A_WorkingDir%\wrapper.cmd
-	IfNotExist, wrapper.cmd
-		NotExist()
-	IfNotExist, patcher.cmd
-		NotExist()
-	MsgBox, 64, Dependencies Updated, LC Lite's dependencies are now updated!
+	URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/Logo.ico, C:\Users\%A_UserName%\AppData\Local\Temp\internetcheck.ico
+	IfNotExist, C:\Users\%A_UserName%\AppData\Local\Temp\internetcheck.ico
+		NotExist(2)
+	IfExist, C:\Users\%A_UserName%\AppData\Local\Temp\internetcheck.ico
+		MsgBox, 64, Dependencies Updated, LC Lite's dependencies are now updated!
+}
+
+NotExist(x){
+	if (x=1){
+		MsgBox, 16, Download Failed, The dependency could not be downloaded.`nCheck your internet connection.
+		ExitApp
+		
+	}
+	
+	if (x=2){
+		MsgBox, 16, Download Failed, Failed to update dependencies.`nCheck your internet connection.
+	}
 }
 
 GuiClose(){
