@@ -20,8 +20,7 @@ https://github.com/Aetopia/Lunar-Client-Lite-Launcher/releases
 [![image.png](https://i.postimg.cc/VvwtXGyT/image.png)](https://postimg.cc/Pp6NjM5z)
 
 4. You can specify custom JVM Arguments within the `JVM Arguments` section.  
-By default the arguments are set to `"-Xms3G -Xmx3G"`.  
-<b>Make sure that you enclose your custom JVM Arguments entered within LC Lite with double quotes or else your custom JVM Arguments won't be detected correctly by LC Lite.</b>  
+By default the arguments are set to `-Xms3G -Xmx3G`.   
 To save your custom JVM Arguments, you must at least launch LC once via LC Lite to save them.  
 
 5. You can also setup different directories for LC 1.7-1.8 and 1.12-1.17.  
