@@ -4,6 +4,10 @@ SetWorkingDir %A_ScriptDir%
 #SingleInstance, Force
 #NoTrayIcon
 Progress=0
+LegacyDir=0
+ModernDir=0
+Launch=0
+Save=0
 ;File Existence Checks
 IfNotExist, C:\Users\%A_UserName%\AppData\Local\Programs\lunarclient\Lunar Client.exe
 	LCCheck()
@@ -11,65 +15,69 @@ IfNotExist, Config.ini
 	ConfigCreate()
 IfNotExist, wrapper.cmd
 	nowrappercmd()
-IfNotExist, patcher.cmd
-	nopatchercmd()
 
 ;GUI
 Gui, New
-Gui, -MaximizeBox -MinimizeBox
+Gui, -MaximizeBox -MinimizeBox +OwnDialogs
 IniRead, GUIArguments, Config.ini, LC, Arguments
 Gui, Add, Text,, JVM Arguments
-Gui, Add, Edit, w260 h20, %GUIArguments%
-Gui, Add, Text,, Game Options
-IniRead, OptiPatchToggle, Config.ini, Minecraft, OptiPatch
-If (OptiPatchToggle = 1){
-	Gui, Add, Checkbox, Checked vOptiPatch gOptiPatchToggle, OptiFine Patcher
-}
-else if (OptiPatchToggle = 0){
-	Gui, Add, Checkbox, vOptiPatch gOptiPatchToggle, OptiFine Patcher
-}
-Gui, Add, Button, x110 y65 w25 h25 gConfigurePatcher, ✎
+Gui, Add, Edit, w255 h75, %GUIArguments%
 Gui, Add, Text, x10 y105, Version:
 Gui, Add, ListBox, x10 y121 gVersionWrite c30 r5, 1.7|1.8|1.12|1.16|1.17
-Gui, Add, Button, x272 y22 w25 h25 gAbout, ?
+Gui, Add, Button, x270 y20 w25 h25 gAbout, ?
 Gui, Add, Button, w25 h25 gUpdateDependencies, ❐
+Gui, Add, Button, w25 h25 gPathGUIConfig, ✎
 VersionRead()
-Gui, Add, Button, x191 y141 w100 h50 gLaunch +default, Launch
-GuiControl, Focus, Button5
+Gui, Add, Button, x191 y141 w100 h50 gLaunch +default vLaunch, Launch
+GuiControl, Focus, Launch
 GuiControl, Focus, +default
 Gui, Show, w300 h200, Lunar Client Lite
 
 ;Functions
 Launch(){	
 	GuiControlGet, JVMArgs,, Edit1
-	IniWrite, '%JVMArgs%', Config.ini, LC, Arguments
+	IniWrite, %JVMArgs%, Config.ini, LC, Arguments
 	IniRead, LCArgs, Config.ini, LC, Arguments
 	IniRead, LCVer, Config.ini, LC, Version
 	IniRead, MCAssetIndex, Config.ini, Minecraft, AssetIndex
 	IniRead, OptiPatchToggle, Config.ini, Minecraft, OptiPatch
-	If (OptiPatchToggle=1){
-		OptifinePatcher()
-	}
 	VersionCheck()
-	IfNotExist, patcher.cmd
-		DependencyRemoved()
 	IfNotExist, wrapper.cmd
 		DependencyRemoved()
-	Run, wrapper.cmd %LCVer% %MCAssetIndex% %LCArgs%,, Hide
-	Process, Exist, cmd.exe
-	Sleep, 100
-	Process, Close, cmd.exe
+	IniRead, PathVersion, Config.ini, LC, Version
+	If (PathVersion = 1.7) 
+	{
+		IniRead, Path, Config.ini, Paths, Legacy
+	}	
+	Else If (PathVersion = 1.8) 
+	{
+		IniRead, Path, Config.ini, Paths, Legacy
+	}
+	Else If (PathVersion = 1.12) 
+	{
+		IniRead, Path, Config.ini, Paths, Modern
+	}
+	Else If (PathVersion = 1.16) 
+	{
+		IniRead, Path, Config.ini, Paths, Modern
+	}
+	Else If (pathVersion = 1.17) 
+	{
+		IniRead, Path, Config.ini, Paths, Modern
+	}
+	Run, wrapper.cmd "%LCVer%" "%MCAssetIndex%" "%LCArgs%" "%Path%",, Hide
+	Sleep, 100 
 	ExitApp
 }
 
 ConfigCreate()
 {
-	URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/patcher.cmd, %A_WorkingDir%\patcher.cmd
 	URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/wrapper.cmd, %A_WorkingDir%\wrapper.cmd
 	IniWrite, '1.8', Config.ini, LC, Version
 	IniWrite, '1.8', Config.ini, Minecraft, AssetIndex
-	IniWrite, ""-Xms3G -Xmx3G"", Config.ini, LC, Arguments	
+	IniWrite, -Xms3G -Xmx3G, Config.ini, LC, Arguments	
 	IniWrite, 0, Config.ini, Minecraft, OptiPatch
+	PathConfig()
 }
 
 VersionWrite()
@@ -138,12 +146,11 @@ About(){
 }
 DependencyRemoved(){
 	Gui,Destroy
-	MsgBox, 16, Launch Error, LC Lite has detected a single dependency or multiple dependencies are missing.`nClick on OK to download the missing dependencies and then relaunch LC Lite.
-	URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/patcher.cmd, %A_WorkingDir%\patcher.cmd
+	MsgBox, 16, Launch Error, LC Lite has detected a dependency missing.`nClick on OK to download the missing dependency and then relaunch LC Lite.
 	URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/wrapper.cmd, %A_WorkingDir%\wrapper.cmd
-	IfNotExist, patcher.cmd
+	IfNotExist, wrapper.cmd
 		NotExist(1)
-	MsgBox, 64, Dependencies Downloaded, The missing dependencies have been downloaded!, 5	
+	MsgBox, 64, Dependency Downloaded, The missing dependency have been downloaded!, 5	
 	ExitApp
 }
 LCCheck(){
@@ -172,54 +179,7 @@ LCNotExist(){
 	ExitApp
 }
 
-OptiPatchToggle(){
-	GuiControlGet, OptiPatch
-	If (OptiPatch = 1){
-		IniWrite, 1, Config.ini, Minecraft, OptiPatch
-	}	
-	Else { 
-		IniWrite, 0, Config.ini, Minecraft, OptiPatch
-	}
-}
 
-OptifinePatcher(){
-	IniRead, PatcherVersion, Config.ini, LC, Version
-	If (PatcherVersion = 1.7){
-		run, patcher.cmd "1",, hide
-		Process, Exist, cmd.exe
-		Sleep, 250
-		Process, Close, cmd.exe
-	}
-	Else If (PatcherVersion = 1.8){
-		run, patcher.cmd "2",, hide
-		Process, Exist, cmd.exe
-		Sleep, 250
-		Process, Close, cmd.exe
-	}
-	Else If (PatcherVersion = 1.12 or patcherVersion = 1.16 or patcherVersion = 1.17){
-		run, patcher.cmd "3",, hide
-		Process, Exist, cmd.exe
-		Sleep, 250
-		Process, Close, cmd.exe
-	}
-	return
-}
-
-ConfigurePatcher(){
-	IfExist C:\Program Files\Notepad++\notepad++.exe
-		Run, C:\Program Files\Notepad++\notepad++.exe patcher.cmd
-		
-	IfExist C:\Program Files (x86)\Notepad++\notepad++.exe
-		Run, C:\Program Files (x86)\Notepad++\notepad++.exe patcher.cmd	
-	
-	IfNotExist C:\Program Files\Notepad++\notepad++.exe
-		Run, notepad.exe patcher.cmd	
-		
-	
-	IfNotExist C:\Windows\notepad.exe
-		MsgBox,, Error, Notepad not found!
-		return	
-}
 
 VersionCheck(){
 	IniRead, CheckVersion, Config.ini, LC, Version
@@ -268,22 +228,16 @@ nowrappercmd(){
 		NotExist(1)
 }
 	
-nopatchercmd(){
-	MsgBox, 16, Error: Dependency not found,"patcher.cmd" wasn't found.`nClick on the "OK" button to download the dependency.
-	URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/patcher.cmd, %A_WorkingDir%\patcher.cmd
-	IfNotExist, patcher.cmd
-		NotExist(1)
-}
+
 
 UpdateDependencies(){
 	FileDelete, C:\Users\%A_UserName%\AppData\Local\Temp\internetcheck.ico
-	URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/patcher.cmd, %A_WorkingDir%\patcher.cmd
 	URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/wrapper.cmd, %A_WorkingDir%\wrapper.cmd
 	URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/Logo.ico, C:\Users\%A_UserName%\AppData\Local\Temp\internetcheck.ico
 	IfNotExist, C:\Users\%A_UserName%\AppData\Local\Temp\internetcheck.ico
-		NotExist(2)
+		NotExist(1)
 	IfExist, C:\Users\%A_UserName%\AppData\Local\Temp\internetcheck.ico
-		MsgBox, 64, Dependencies Updated, LC Lite's dependencies are now updated!
+		MsgBox, 64, Dependency Updated, LC Lite's dependency is now updated!
 }
 
 NotExist(x){
@@ -300,4 +254,53 @@ NotExist(x){
 
 GuiClose(){
 	ExitApp
+}
+
+;Custom Paths
+;------------------------------------------------------------------------------------
+PathConfig(){
+	IniWrite, %A_AppData%\.minecraft, Config.ini, Paths, Legacy
+	IniWrite, %A_AppData%\.minecraft, Config.ini, Paths, Modern
+}
+
+PathGUIConfig(){
+	IniRead, LPath, Config.ini, Paths, Legacy
+	IniRead, MPath, Config.ini, Paths, Modern
+	Gui, Dir: New
+	Gui, -MaximizeBox -MinimizeBox +OwnDialogs
+	IniRead, LPath, Config.ini, Paths, Legacy
+	IniRead, MPath, Config.ini, Paths, Modern
+	Gui, Add, Text,, Legacy Directory
+	Gui, Add, Edit, w260 h20 vLegacyDir, %LPath%
+	Gui, Add, Text,, Modern Directory
+	Gui, Add, Edit, w260 h20 vModernDir, %MPath%
+	Gui, Add, Button, x255 y110 w50 h25 vSave gSave +default, Save
+	Gui, Add, Button, x280 y23 w25 h25 gLFolderSelect, ✎
+	Gui, Add, Button, x280 y68 w25 h25 gMFolderSelect, ✎
+	GuiControl, Focus, Save
+	GuiControl, Focus, +default
+	Gui, Show,, Directory Options
+}
+
+LFolderSelect(){
+	FileSelectFolder, LPathSelected,, 3, Select a Directory for Lunar Client 1.7-1.8
+	guicontrol,, LegacyDir, %LPathSelected%
+}
+
+MFolderSelect(){
+	FileSelectFolder, MPathSelected,, 3, Select a Directory for Lunar Client 1.12-1.17
+	guicontrol,, ModernDir, %MPathSelected%
+	
+}
+
+Save(){
+	Gui, Submit
+	guicontrolget, LPath,, LegacyDir
+	guicontrolget, MPath,, ModernDir
+	IniWrite, %LPath%, Config.ini, Paths, Legacy
+	IniWrite, %MPath%, Config.ini, Paths, Modern
+}
+
+DirGuiClose(){
+	Gui, Destroy
 }
