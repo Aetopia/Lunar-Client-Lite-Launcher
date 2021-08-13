@@ -2,10 +2,11 @@
 A lightweight launcher for Lunar Client.
 ## What is Lunar Client Lite?
 Lunar Client Lite is a simple lightweight launcher which features the following: 
-1. Optifine Settings Patcher 
-2. Quick Version Switching 
-3. Custom JVM Arguments Support 
+1. Quick Version Switching 
+2. Custom JVM Arguments Support 
+3. Multi Directories
 4. A Simple-to-Use Interface  
+
 ## Requirements
 Before you begin using LC Lite, make sure that you have Lunar Client installed and also ensure you have your favourite LC versions installed.  
 (If you don't have LC installed then the application will redirect you to the download page of Lunar Client.)  
@@ -13,7 +14,7 @@ Before you begin using LC Lite, make sure that you have Lunar Client installed a
 1. Download the latest release from here.  
 https://github.com/Aetopia/Lunar-Client-Lite-Launcher/releases  
 
-2. Extract the zip file's contents and then start `LCL.exe`.
+2. Start `LCL.exe`.
 
 3. Once LC Lite is started, it should look like this:  
 [![image.png](https://i.postimg.cc/VvwtXGyT/image.png)](https://postimg.cc/Pp6NjM5z)
