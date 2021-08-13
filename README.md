@@ -23,35 +23,14 @@ By default the arguments are set to `"-Xms3G -Xmx3G"`.
 <b>Make sure that you enclose your custom JVM Arguments entered within LC Lite with double quotes or else your custom JVM Arguments won't be detected correctly by LC Lite.</b>  
 To save your custom JVM Arguments, you must at least launch LC once via LC Lite to save them.  
 
-5. You can also configure the OptiFine Patcher.  
-
+5. You can also setup different directories for LC 1.7-1.8 and 1.12-1.17.  
 Click on the `✎` Button.  
-If you have `Notepad++ x64` or `Notepad++ x86` then `patcher.cmd` will open in `Notepad++` else `patcher.cmd` will open in Notepad.
+A new window will pop-up with the title "Directory Options".
+[![image.png](https://i.postimg.cc/nrMJSZtQ/image.png)](https://postimg.cc/bSXWd7rz)  
+Here, you can set up a "Legacy Directory" for LC 1.7-1.8 by clicking on `✎`.  
+Here, you can set up a "Modern Directory" for LC 1.12-1.17 by clicking on `✎`.  
+Click on the "Save" button to save your custom directories.
 
-Here are the options, you can configure within `patcher.cmd`:
-```
-::Configurable Settings
-
-set FullscreenMode=Default
-::'Default' will scale Minecraft according to your current resolution
-::If you want it to force a downscale (like 720p) then type in 1280x720
-::The main downside is long tab-out times (3-5 seconds black screens)
-
-set FastRender=true
-::Setting Fast Render false will decrease FPS but make lc motion-blur work
-
-set SmoothFPS=false
-::Setting Smooth FPS to true will decrease FPS but let more resources to OBS (e.g encoding lag)
-
-set RenderDistance=6
-set CustomSky=false
-
-:: To set 'X' as the zoom key, it's stored as the number 45.
-:: IF YOU WANT A 
-set Zoom Key-old=45
-set Zoom Key-new=x
-:: In older versions, 45 = X for controls
-```
 6. You can select version you would like to use via the `Version` Listbox. 
 Click on any version, you would like to use.  
 
