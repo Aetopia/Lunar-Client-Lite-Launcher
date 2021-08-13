@@ -82,7 +82,7 @@ Here is a list of arguments you can use for LC via LC Lite which I consider opti
 ```
 
 # Extras
-## Information about `patcher.cmd` and `wrapper.cmd`
+## Information about `wrapper.cmd`
 
 The entire core of LC Lite is `wrapper.cmd`, LC Lite only serves as the GUI for the script.  
 Using `wrapper.cmd` its possible to specify arguments to launch a specific version of Lunar Client.  
