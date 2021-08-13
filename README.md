@@ -23,10 +23,7 @@ By default the arguments are set to `"-Xms3G -Xmx3G"`.
 <b>Make sure that you enclose your custom JVM Arguments entered within LC Lite with double quotes or else your custom JVM Arguments won't be detected correctly by LC Lite.</b>  
 To save your custom JVM Arguments, you must at least launch LC once via LC Lite to save them.  
 
-5. Within the `Game Options` Section, you can enable the `OptiFine Patcher`.  
-Enabling this option will patch your optifine settings, everytime you use LC Lite.  
-You can use this option to keep your optifine settings tidy, everytime you switch versions.
-6. You can also configure the OptiFine Patcher.  
+5. You can also configure the OptiFine Patcher.  
 
 Click on the `✎` Button.  
 If you have `Notepad++ x64` or `Notepad++ x86` then `patcher.cmd` will open in `Notepad++` else `patcher.cmd` will open in Notepad.
@@ -55,12 +52,12 @@ set Zoom Key-old=45
 set Zoom Key-new=x
 :: In older versions, 45 = X for controls
 ```
-7. You can select version you would like to use via the `Version` Listbox. 
+6. You can select version you would like to use via the `Version` Listbox. 
 Click on any version, you would like to use.  
 
-8. Finally click on the launch button to launch Lunar Client!  
+7. Finally click on the launch button to launch Lunar Client!  
 <i>LC not launching via LC Lite? Make sure you have your desired versions installed via the official LC Launcher!</i>  
-<b>Click on the `❐` button to update LC Lite's dependencies! This will also reset your `patcher.cmd` and `wrapper.cmd` settings.</b>  
+<b>Click on the `❐` button to update LC Lite's dependencies!</b>  
 <b>NOTE: To update Lunar Client and its dependencies, you must use the official LC launcher to update them.</b>
 ### Which JVM Arguments are good for LC?  
 
@@ -91,17 +88,11 @@ The entire core of LC Lite is `wrapper.cmd`, LC Lite only serves as the GUI for 
 Using `wrapper.cmd` its possible to specify arguments to launch a specific version of Lunar Client.  
 
 To use this functionality of the script, use the following format:  
-`wrapper.cmd "Version" "Asset Index of Version" "JVM Arguments"`  
+`wrapper.cmd "Version" "Asset Index of Version" "JVM Arguments" "Directory"`  
 i.e  
-`wrapper.cmd "1.8" "1.8" "-Xms3072m -Xmx3072m"` 
+`wrapper.cmd "1.8" "1.8" "-Xms3072m -Xmx3072m" "C:\Users\User\AppData\.minecraft"` 
 
 This will launch `LC 1.8` and will allocate 3 GB to LC.  
-
-You can do the same for `patcher.cmd`. This script is used to patch optifine settings.  
-To use this functionality of the script, use the following format:  
-`patcher.cmd "1"` for 1.7   
-`patcher.cmd "2"` for 1.8   
-`patcher.cmd "3"` for 1.12+
 
 ## Logs
 LC Lite also generates a `logs` folder.  
