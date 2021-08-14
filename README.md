@@ -4,7 +4,7 @@ A lightweight launcher for Lunar Client.
 Lunar Client Lite is a simple lightweight launcher which features the following: 
 1. Quick Version Switching 
 2. Custom JVM Arguments Support 
-3. Multi Directories
+3. Multi Launch Directory Support
 4. A Simple-to-Use Interface  
 
 ## Requirements
