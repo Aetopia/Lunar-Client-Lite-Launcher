@@ -17,7 +17,7 @@ IfNotExist, wrapper.cmd
 	nowrappercmd()
 
 ;GUI
-Gui, New
+Gui, Main:Default
 Gui, -MaximizeBox -MinimizeBox +OwnDialogs
 IniRead, GUIArguments, Config.ini, LC, Arguments
 Gui, Add, Text,, JVM Arguments
@@ -252,7 +252,7 @@ NotExist(x){
 	}
 }
 
-GuiClose(){
+MainGuiClose(){
 	ExitApp
 }
 
@@ -264,8 +264,10 @@ PathConfig(){
 }
 
 PathGUIConfig(){
+	
 	IniRead, LPath, Config.ini, Paths, Legacy
 	IniRead, MPath, Config.ini, Paths, Modern
+	Gui, Main: +Disabled
 	Gui, Dir: New
 	Gui, -MaximizeBox -MinimizeBox +OwnDialogs
 	IniRead, LPath, Config.ini, Paths, Legacy
@@ -294,13 +296,17 @@ MFolderSelect(){
 }
 
 Save(){
-	Gui, Submit
 	guicontrolget, LPath,, LegacyDir
 	guicontrolget, MPath,, ModernDir
 	IniWrite, %LPath%, Config.ini, Paths, Legacy
 	IniWrite, %MPath%, Config.ini, Paths, Modern
+	Gui, Main: -Disabled
+	Gui, Destroy
+	#WinActivateForce
 }
 
 DirGuiClose(){
+	Gui, Main: -Disabled
 	Gui, Destroy
+	#WinActivateForce
 }
