@@ -49,7 +49,7 @@ Here is a list of arguments you can use for LC via LC Lite which I consider opti
 -Xmx700m  
 ```
 
-2. This is a slightly modified version of MC's default arguments for OpenJDK 16. From what I have seen using these arguments will make LC use 6 GB RAM and should provide optimal performance.  
+2. This is a slightly modified version of MC's default arguments for OpenJDK 16. From what I have seen using these arguments will make LC use 4 GB (5 and above will cause memory leaks) RAM and should provide optimal performance.  
 
  ```
 -Xms4G -Xmx4G -XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=32M
