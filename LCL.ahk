@@ -24,8 +24,8 @@ Gui, Add, Text,, JVM Arguments
 Gui, Add, Edit, w255 h75, %GUIArguments%
 Gui, Add, Text, x10 y105, Version:
 Gui, Add, ListBox, x10 y121 gVersionWrite c30 r5, 1.7|1.8|1.12|1.16|1.17
-Gui, Add, Button, x270 y20 w25 h25 gAbout, ?
-Gui, Add, Button, w25 h25 gUpdateDependencies, ❐
+Gui, Add, Button, x270 y32 w25 h25 gAbout, ?
+;Gui, Add, Button, w25 h25 gUpdateDependencies, ❐
 Gui, Add, Button, w25 h25 gPathGUIConfig, ✎
 VersionRead()
 Gui, Add, Button, x191 y141 w100 h50 gLaunch +default vLaunch, Launch
