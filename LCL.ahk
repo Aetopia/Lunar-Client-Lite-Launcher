@@ -145,13 +145,9 @@ About(){
 	MsgBox, 64, About, Made by Aetopia`nhttps://github.com/Aetopia/Lunar-Client-Lite-Launcher
 }
 DependencyRemoved(){
-	Gui,Destroy
-	MsgBox, 16, Launch Error, LC Lite has detected a dependency missing.`nClick on OK to download the missing dependency and then relaunch LC Lite.
 	URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/wrapper.cmd, %A_WorkingDir%\wrapper.cmd
 	IfNotExist, wrapper.cmd
 		NotExist(1)
-	MsgBox, 64, Dependency Downloaded, The missing dependency have been downloaded!, 5	
-	ExitApp
 }
 LCCheck(){
 	MsgBox, 16, Error: Lunar Client Not Installed, No Lunar Client installation is present on this device.`nClick on OK to install the latest version of Lunar Client.
@@ -222,7 +218,6 @@ FileCheck(n){
 }
 	
 nowrappercmd(){
-	MsgBox, 16, Error: Dependency not found,"wrapper.cmd" wasn't found.`nClick on the "OK" button to download the dependency.
 	URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/wrapper.cmd, %A_WorkingDir%\wrapper.cmd
 	IfNotExist, wrapper.cmd
 		NotExist(1)
