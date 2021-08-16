@@ -281,12 +281,18 @@ PathGUIConfig(){
 
 LFolderSelect(){
 	FileSelectFolder, LPathSelected,, 3, Select a Directory for Lunar Client 1.7-1.8
-	guicontrol,, LegacyDir, %LPathSelected%
+	if LPathSelected =
+		return
+	else
+		guicontrol,, LegacyDir, %LPathSelected%
 }
 
 MFolderSelect(){
 	FileSelectFolder, MPathSelected,, 3, Select a Directory for Lunar Client 1.12-1.17
-	guicontrol,, ModernDir, %MPathSelected%
+	if MPathSelected =
+		MsgBox, You didn't select a folder.
+	else
+		guicontrol,, ModernDir, %MPathSelected%
 	
 }
 
