@@ -26,13 +26,15 @@ https://github.com/Aetopia/Lunar-Client-Lite-Launcher/releases
 By default the arguments are set to `-Xms3G -Xmx3G`.   
 To save your custom JVM Arguments, you must at least launch LC once via LC Lite to save them.  
 
-5. You can also setup different directories for LC 1.7-1.8 and 1.12-1.17.  
+5. Configuring the Options Window.  
 Click on the `✎` Button.  
-A new window will pop-up with the title "Directory Options".
-[![image.png](https://i.postimg.cc/nrMJSZtQ/image.png)](https://postimg.cc/bSXWd7rz)  
+A new window will pop-up with the title "Options".
+[![image.png](https://i.postimg.cc/mrYZ4tPg/image.png)](https://postimg.cc/4K3Rb4vD)
 Here, you can set up a "Legacy Directory" for LC 1.7-1.8 by clicking on `✎`.  
 Here, you can set up a "Modern Directory" for LC 1.12-1.17 by clicking on `✎`.  
-Click on the "Save" button to save your custom directories.
+Enabling the `Disable Cosmetic Textures` toggle can reduce LC's startup time and also fixes the `"Title Screen Freeze upon Launch"` issue.  
+Enabling this option will not load cosmetic textures. This change is clientside only.
+Click on the "Save" button to save your settings.
 
 6. You can select version you would like to use via the `Version` Listbox. 
 Click on any version, you would like to use.  
