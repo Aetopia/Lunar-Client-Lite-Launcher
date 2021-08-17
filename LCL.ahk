@@ -8,6 +8,7 @@ LegacyDir=0
 ModernDir=0
 Launch=0
 Save=0
+CosmeticDelayFix=0
 ;File Existence Checks
 IfNotExist, C:\Users\%A_UserName%\AppData\Local\Programs\lunarclient\Lunar Client.exe
 	LCCheck()
@@ -26,7 +27,7 @@ Gui, Add, Text, x10 y105, Version:
 Gui, Add, ListBox, x10 y121 gVersionWrite c30 r5, 1.7|1.8|1.12|1.16|1.17
 Gui, Add, Button, x270 y32 w25 h25 gAbout, ?
 ;Gui, Add, Button, w25 h25 gUpdateDependencies, ❐
-Gui, Add, Button, w25 h25 gPathGUIConfig, ✎
+Gui, Add, Button, w25 h25 gGUIConfig, ✎
 VersionRead()
 Gui, Add, Button, x191 y141 w100 h50 gLaunch +default vLaunch, Launch
 GuiControl, Focus, Launch
@@ -35,12 +36,13 @@ Gui, Show, w300 h200, Lunar Client Lite
 
 ;Functions
 Launch(){	
+	Textures=--texturesDir "C:\Users\%A_UserName%\.lunarclient\textures"
 	GuiControlGet, JVMArgs,, Edit1
 	IniWrite, %JVMArgs%, Config.ini, LC, Arguments
 	IniRead, LCArgs, Config.ini, LC, Arguments
 	IniRead, LCVer, Config.ini, LC, Version
 	IniRead, MCAssetIndex, Config.ini, Minecraft, AssetIndex
-	IniRead, OptiPatchToggle, Config.ini, Minecraft, OptiPatch
+	IniRead, TexturesToggle, Config.ini, LC, DisableCosmeticTextures
 	VersionCheck()
 	IfNotExist, wrapper.cmd
 		DependencyRemoved()
@@ -65,7 +67,12 @@ Launch(){
 	{
 		IniRead, Path, Config.ini, Paths, Modern
 	}
-	Run, wrapper.cmd "%LCVer%" "%MCAssetIndex%" "%LCArgs%" "%Path%",, Hide
+	If (TexturesToggle=1){
+		Run, wrapper.cmd "%LCVer%" "%MCAssetIndex%" "%LCArgs%" "%Path%",, Hide
+	}
+	If (TexturesToggle=0){
+		Run, wrapper.cmd "%LCVer%" "%MCAssetIndex%" "%LCArgs%" "%Path%" "%Textures%",, Hide
+	}
 	Sleep, 100 
 	ExitApp
 }
@@ -76,7 +83,7 @@ ConfigCreate()
 	IniWrite, '1.8', Config.ini, LC, Version
 	IniWrite, '1.8', Config.ini, Minecraft, AssetIndex
 	IniWrite, -Xms3G -Xmx3G, Config.ini, LC, Arguments	
-	IniWrite, 0, Config.ini, Minecraft, OptiPatch
+	IniWrite, 0, Config.ini, LC, DisableCosmeticTextures
 	PathConfig()
 }
 
@@ -258,10 +265,11 @@ PathConfig(){
 	IniWrite, %A_AppData%\.minecraft, Config.ini, Paths, Modern
 }
 
-PathGUIConfig(){
+GUIConfig(){
 	
 	IniRead, LPath, Config.ini, Paths, Legacy
 	IniRead, MPath, Config.ini, Paths, Modern
+	IniRead, CosmeticTextures, Config.ini, LC, DisableCosmeticTextures
 	Gui, Main: +Disabled
 	Gui, Dir: New
 	Gui, -MaximizeBox -MinimizeBox +OwnDialogs
@@ -271,12 +279,18 @@ PathGUIConfig(){
 	Gui, Add, Edit, w260 h20 vLegacyDir, %LPath%
 	Gui, Add, Text,, Modern Directory
 	Gui, Add, Edit, w260 h20 vModernDir, %MPath%
+	If (CosmeticTextures = 1){
+		Gui, Add, Checkbox, Checked vCosmeticDelayFix, Disable Cosmetic Textures
+	}
+	Else {
+		Gui, Add, Checkbox, vCosmeticDelayFix, Disable Cosmetic Textures
+	}
 	Gui, Add, Button, x255 y110 w50 h25 vSave gSave +default, Save
 	Gui, Add, Button, x280 y23 w25 h25 gLFolderSelect, ✎
 	Gui, Add, Button, x280 y68 w25 h25 gMFolderSelect, ✎
 	GuiControl, Focus, Save
 	GuiControl, Focus, +default
-	Gui, Show,, Directory Options
+	Gui, Show,, Options
 }
 
 LFolderSelect(){
@@ -299,12 +313,15 @@ MFolderSelect(){
 Save(){
 	guicontrolget, LPath,, LegacyDir
 	guicontrolget, MPath,, ModernDir
+	guicontrolget, TextureLoad,, CosmeticDelayFix
 	IniWrite, %LPath%, Config.ini, Paths, Legacy
 	IniWrite, %MPath%, Config.ini, Paths, Modern
+	IniWrite, %TextureLoad%, Config.ini, LC, DisableCosmeticTextures
 	Gui, Main: -Disabled
 	Gui, Destroy
 	#WinActivateForce
 }
+
 
 DirGuiClose(){
 	Gui, Main: -Disabled
