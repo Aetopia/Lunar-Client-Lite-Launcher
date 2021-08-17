@@ -29,7 +29,7 @@ To save your custom JVM Arguments, you must at least launch LC once via LC Lite 
 5. Configuring the Options Window.  
 Click on the `✎` Button.  
 A new window will pop-up with the title "Options".
-[![image.png](https://i.postimg.cc/mrYZ4tPg/image.png)](https://postimg.cc/4K3Rb4vD)
+[![image.png](https://i.postimg.cc/mrYZ4tPg/image.png)](https://postimg.cc/4K3Rb4vD)  
 Here, you can set up a "Legacy Directory" for LC 1.7-1.8 by clicking on `✎`.  
 Here, you can set up a "Modern Directory" for LC 1.12-1.17 by clicking on `✎`.  
 Enabling the `Disable Cosmetic Textures` toggle can reduce LC's startup time and also fixes the `"Title Screen Freeze upon Launch"` issue.    
