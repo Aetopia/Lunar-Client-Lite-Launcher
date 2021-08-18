@@ -23,8 +23,8 @@ Gui, -MaximizeBox -MinimizeBox +OwnDialogs
 IniRead, GUIArguments, Config.ini, LC, Arguments
 Gui, Add, Text,, JVM Arguments
 Gui, Add, Edit, w255 h75, %GUIArguments%
-Gui, Add, Text, x10 y105, Version:
-Gui, Add, ListBox, x10 y121 gVersionWrite c30 r5, 1.7|1.8|1.12|1.16|1.17
+Gui, Add, Text, x10 y137, Version:
+Gui, Add, DropDownList, x10 y153 w100 h50 vVersionList gVersionWrite c30 r5, 1.7|1.8|1.12|1.16|1.17
 Gui, Add, Button, x270 y32 w25 h25 gAbout, ?
 ;Gui, Add, Button, w25 h25 gUpdateDependencies, ❐
 Gui, Add, Button, w25 h25 gGUIConfig, ✎
@@ -89,7 +89,7 @@ ConfigCreate()
 
 VersionWrite()
 {
-	GuiControlGet, UserVersion,, ListBox1
+	GuiControlGet, UserVersion,, VersionList
 	If (UserVersion = 1.7) 
 	{
 		IniWrite, '1.7', Config.ini, LC, Version
@@ -127,23 +127,23 @@ VersionRead(){
 	IniRead, GUIVersion, Config.ini, LC, Version
 	If (GUIVersion = 1.7) 
 	{
-		GuiControl, Choose, ListBox1, 1
+		GuiControl, Choose, VersionList, 1
 	}	
 	Else If (GUIVersion = 1.8) 
 	{
-		GuiControl, Choose, ListBox1, 2
+		GuiControl, Choose, VersionList, 2
 	}
 	Else If (GUIVersion = 1.12) 
 	{
-		GuiControl, Choose, ListBox1, 3
+		GuiControl, Choose, VersionList, 3
 	}
 	Else If (GUIVersion = 1.16) 
 	{
-		GuiControl, Choose, ListBox1, 4
+		GuiControl, Choose, VersionList, 4
 	}
 	Else If (GUIVersion = 1.17) 
 	{
-		GuiControl, Choose, ListBox1, 5
+		GuiControl, Choose, VersionList, 5
 	}
 	return
 }
