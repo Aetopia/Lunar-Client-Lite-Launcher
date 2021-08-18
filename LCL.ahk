@@ -24,7 +24,7 @@ IniRead, GUIArguments, Config.ini, LC, Arguments
 Gui, Add, Text,, JVM Arguments
 Gui, Add, Edit, w255 h75, %GUIArguments%
 Gui, Add, Text, x10 y137, Version:
-Gui, Add, DropDownList, x10 y153 w100 h50 vVersionList gVersionWrite c30 r5, 1.7|1.8|1.12|1.16|1.17
+Gui, Add, DropDownList, x10 y154 w100 h50 vVersionList gVersionWrite c30 r5, 1.7|1.8|1.12|1.16|1.17
 Gui, Add, Button, x270 y32 w25 h25 gAbout, ?
 ;Gui, Add, Button, w25 h25 gUpdateDependencies, ❐
 Gui, Add, Button, w25 h25 gGUIConfig, ✎
