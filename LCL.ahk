@@ -4,8 +4,11 @@ SetWorkingDir %A_ScriptDir%
 #SingleInstance, Force
 #NoTrayIcon
 Progress=0
-LegacyDir=0
-ModernDir=0
+17Dir=0
+18Dir=0
+112Dir=0
+116Dir=0
+117Dir=0
 Launch=0
 Save=0
 CosmeticDelayFix=0
@@ -49,23 +52,23 @@ Launch(){
 	IniRead, PathVersion, Config.ini, LC, Version
 	If (PathVersion = 1.7) 
 	{
-		IniRead, Path, Config.ini, Paths, Legacy
+		IniRead, Path, Config.ini, Paths, 1.7_Dir
 	}	
 	Else If (PathVersion = 1.8) 
 	{
-		IniRead, Path, Config.ini, Paths, Legacy
+		IniRead, Path, Config.ini, Paths, 1.8_Dir
 	}
 	Else If (PathVersion = 1.12) 
 	{
-		IniRead, Path, Config.ini, Paths, Modern
+		IniRead, Path, Config.ini, Paths, 1.12_Dir
 	}
 	Else If (PathVersion = 1.16) 
 	{
-		IniRead, Path, Config.ini, Paths, Modern
+		IniRead, Path, Config.ini, Paths, 1.16_Dir
 	}
-	Else If (pathVersion = 1.17) 
+	Else If (PathVersion = 1.17) 
 	{
-		IniRead, Path, Config.ini, Paths, Modern
+		IniRead, Path, Config.ini, Paths, 1.17_Dir
 	}
 	If (TexturesToggle=1){
 		Run, wrapper.cmd "%LCVer%" "%MCAssetIndex%" "%LCArgs%" "%Path%",, Hide
@@ -261,61 +264,108 @@ MainGuiClose(){
 ;Custom Paths
 ;------------------------------------------------------------------------------------
 PathConfig(){
-	IniWrite, %A_AppData%\.minecraft, Config.ini, Paths, Legacy
-	IniWrite, %A_AppData%\.minecraft, Config.ini, Paths, Modern
+	IniWrite, %A_AppData%\.minecraft, Config.ini, Paths, 1.7_Dir
+	IniWrite, %A_AppData%\.minecraft, Config.ini, Paths, 1.8_Dir
+	IniWrite, %A_AppData%\.minecraft, Config.ini, Paths, 1.12_Dir
+	IniWrite, %A_AppData%\.minecraft, Config.ini, Paths, 1.16_Dir
+	IniWrite, %A_AppData%\.minecraft, Config.ini, Paths, 1.17_Dir
 }
 
 GUIConfig(){
 	
-	IniRead, LPath, Config.ini, Paths, Legacy
-	IniRead, MPath, Config.ini, Paths, Modern
+	IniRead, 17_Path, Config.ini, Paths, 1.7_Dir
+	IniRead, 18_Path, Config.ini, Paths, 1.8_Dir
+	IniRead, 112_Path, Config.ini, Paths, 1.12_Dir
+	IniRead, 116_Path, Config.ini, Paths, 1.16_Dir
+	IniRead, 117_Path, Config.ini, Paths, 1.17_Dir
 	IniRead, CosmeticTextures, Config.ini, LC, DisableCosmeticTextures
 	Gui, Main: +Disabled
 	Gui, Dir: New
 	Gui, -MaximizeBox -MinimizeBox +OwnDialogs
-	IniRead, LPath, Config.ini, Paths, Legacy
-	IniRead, MPath, Config.ini, Paths, Modern
-	Gui, Add, Text,, Legacy Directory
-	Gui, Add, Edit, w260 h20 vLegacyDir, %LPath%
-	Gui, Add, Text,, Modern Directory
-	Gui, Add, Edit, w260 h20 vModernDir, %MPath%
+	Gui, Add, Text,, 1.7 Directory
+	Gui, Add, Edit, w260 h20 v17Dir, %17_Path%
+	Gui, Add, Text,, 1.8 Directory
+	Gui, Add, Edit, w260 h20 v18Dir, %18_Path%
+	Gui, Add, Text,, 1.12 Directory
+	Gui, Add, Edit, w260 h20 v112Dir, %112_Path%
+	Gui, Add, Text,, 1.16 Directory
+	Gui, Add, Edit, w260 h20 v116Dir, %116_Path%
+	Gui, Add, Text,, 1.17 Directory
+	Gui, Add, Edit, w260 h20 v117Dir, %117_Path%
+	Gui, Add, Text,, Launch Options
 	If (CosmeticTextures = 1){
 		Gui, Add, Checkbox, Checked vCosmeticDelayFix, Disable Cosmetic Textures
 	}
 	Else {
 		Gui, Add, Checkbox, vCosmeticDelayFix, Disable Cosmetic Textures
 	}
-	Gui, Add, Button, x255 y110 w50 h25 vSave gSave +default, Save
-	Gui, Add, Button, x280 y23 w25 h25 gLFolderSelect, ✎
-	Gui, Add, Button, x280 y68 w25 h25 gMFolderSelect, ✎
+	Gui, Add, Button, x255 w50 h25 vSave gSave +default, Save
+	Gui, Add, Button, x280 y23 w25 h25 g17FolderSelect, ✎
+	Gui, Add, Button, x280 y68 w25 h25 g18FolderSelect, ✎
+	Gui, Add, Button, x280 y113 w25 h25 g112FolderSelect, ✎
+	Gui, Add, Button, x280 y158 w25 h25 g116FolderSelect, ✎
+	Gui, Add, Button, x280 y203 w25 h25 g117FolderSelect, ✎
 	GuiControl, Focus, Save
 	GuiControl, Focus, +default
 	Gui, Show,, Options
 }
 
-LFolderSelect(){
-	FileSelectFolder, LPathSelected,, 3, Select a Directory for Lunar Client 1.7-1.8
-	if LPathSelected =
+17FolderSelect(){
+	FileSelectFolder, 17PathSelected,, 3, Select a Directory for Lunar Client 1.7
+	if 17PathSelected =
 		return
 	else
-		guicontrol,, LegacyDir, %LPathSelected%
+		guicontrol,, 17Dir, %17PathSelected%
 }
 
-MFolderSelect(){
-	FileSelectFolder, MPathSelected,, 3, Select a Directory for Lunar Client 1.12-1.17
-	if MPathSelected =
-		MsgBox, You didn't select a folder.
+18FolderSelect(){
+	FileSelectFolder, 18PathSelected,, 3, Select a Directory for Lunar Client 1.8
+	if 18PathSelected =
+		return
 	else
-		guicontrol,, ModernDir, %MPathSelected%
+		guicontrol,, 18Dir, %18PathSelected%
+	
+}
+
+112FolderSelect(){
+	FileSelectFolder, 112PathSelected,, 3, Select a Directory for Lunar Client 1.12
+	if 112PathSelected =
+		return
+	else
+		guicontrol,, 112Dir, %112PathSelected%
+	
+}
+
+116FolderSelect(){
+	FileSelectFolder, 116PathSelected,, 3, Select a Directory for Lunar Client 1.16
+	if 116PathSelected =
+		return
+	else
+		guicontrol,, 116Dir, %116PathSelected%
+	
+}
+
+117FolderSelect(){
+	FileSelectFolder, 117PathSelected,, 3, Select a Directory for Lunar Client 1.17
+	if 117PathSelected =
+		return
+	else
+		guicontrol,, 117Dir, %117PathSelected%
 	
 }
 
 Save(){
-	guicontrolget, LPath,, LegacyDir
-	guicontrolget, MPath,, ModernDir
+	guicontrolget, 17Path,, 17Dir
+	guicontrolget, 18Path,, 18Dir
+	guicontrolget, 112Path,, 112Dir
+	guicontrolget, 116Path,, 116Dir
+	guicontrolget, 117Path,, 117Dir
 	guicontrolget, TextureLoad,, CosmeticDelayFix
-	IniWrite, %LPath%, Config.ini, Paths, Legacy
-	IniWrite, %MPath%, Config.ini, Paths, Modern
+	IniWrite, %17Path%, Config.ini, Paths, 1.7_Dir
+	IniWrite, %18Path%, Config.ini, Paths, 1.8_Dir
+	IniWrite, %112Path%, Config.ini, Paths, 1.12_Dir
+	IniWrite, %116Path%, Config.ini, Paths, 1.16_Dir
+	IniWrite, %117Path%, Config.ini, Paths, 1.17_Dir
 	IniWrite, %TextureLoad%, Config.ini, LC, DisableCosmeticTextures
 	Gui, Main: -Disabled
 	Gui, Destroy
