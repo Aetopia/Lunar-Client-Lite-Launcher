@@ -75,8 +75,7 @@ Launch(){
 	}
 	If (TexturesToggle=0){
 		Run, wrapper.cmd "%LCVer%" "%MCAssetIndex%" "%LCArgs%" "%Path%" "%Textures%",, Hide
-	}
-	Sleep, 100 
+	} 
 	ExitApp
 }
 
@@ -85,7 +84,7 @@ ConfigCreate()
 	URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/wrapper.cmd, %A_WorkingDir%\wrapper.cmd
 	IniWrite, '1.8', Config.ini, LC, Version
 	IniWrite, '1.8', Config.ini, Minecraft, AssetIndex
-	IniWrite, -Xms3G -Xmx3G, Config.ini, LC, Arguments	
+	IniWrite, -Xms3G -Xmx3G -XX:+DisableAttachMechanism, Config.ini, LC, Arguments	
 	IniWrite, 0, Config.ini, LC, DisableCosmeticTextures
 	PathConfig()
 }
