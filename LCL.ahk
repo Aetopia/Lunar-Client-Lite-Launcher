@@ -368,6 +368,8 @@ Save(){
 	IniWrite, %TextureLoad%, Config.ini, LC, DisableCosmeticTextures
 	Gui, Main: -Disabled
 	Gui, Destroy
+	SetTitleMatchMode, 2
+	WinActivateBottom, Lunar Client Lite
 	#WinActivateForce
 }
 
@@ -375,5 +377,7 @@ Save(){
 DirGuiClose(){
 	Gui, Main: -Disabled
 	Gui, Destroy
+	SetTitleMatchMode, 2
+	WinActivateBottom, Lunar Client Lite
 	#WinActivateForce
 }
