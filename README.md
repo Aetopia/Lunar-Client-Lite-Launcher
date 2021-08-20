@@ -1,5 +1,4 @@
 # Lunar-Client-Lite-Launcher
-A lightweight launcher for Lunar Client.
 ## What is Lunar Client Lite?
 Lunar Client Lite is a simple lightweight launcher which features the following: 
 1. Quick Version Switching 
