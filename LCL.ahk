@@ -39,7 +39,7 @@ Gui, Show, w300 h200, Lunar Client Lite
 
 ;Functions
 Launch(){	
-	Textures=--texturesDir "C:\Users\%A_UserName%\.lunarclient\textures"
+	Textures=C:\Users\%A_UserName%\.lunarclient\textures
 	GuiControlGet, JVMArgs,, Edit1
 	IniWrite, %JVMArgs%, Config.ini, LC, Arguments
 	IniRead, LCArgs, Config.ini, LC, Arguments
