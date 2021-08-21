@@ -369,7 +369,7 @@ Save(){
 	Gui, Main: -Disabled
 	Gui, Destroy
 	SetTitleMatchMode, 2
-	WinActivateBottom, Lunar Client Lite
+	WinActivateBottom, Lunar Client Lite ahk_class AutoHotkeyGUI
 	#WinActivateForce
 }
 
@@ -378,6 +378,6 @@ DirGuiClose(){
 	Gui, Main: -Disabled
 	Gui, Destroy
 	SetTitleMatchMode, 2
-	WinActivateBottom, Lunar Client Lite
+	WinActivateBottom, Lunar Client Lite ahk_class AutoHotkeyGUI
 	#WinActivateForce
 }
