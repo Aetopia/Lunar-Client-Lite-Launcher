@@ -69,17 +69,18 @@ Here is a list of arguments you can use for LC via LC Lite which I consider opti
 The entire core of LC Lite is `wrapper.cmd`, LC Lite only serves as the GUI for the script.  
 Using `wrapper.cmd` its possible to specify arguments to launch a specific version of Lunar Client.  
 
-To use this functionality of the script, use the following format:  
+To use this functionality of the script, use the following format: 
 `wrapper.cmd "Version" "Asset Index of Version" "JVM Arguments" "Directory" "Lunar Client Cosmetic Textures Directory`  
 i.e  
-`wrapper.cmd "1.8" "1.8" "-Xms3072m -Xmx3072m" "%APPDATA%\.minecraft" "%USERPROFILE%\.lunarclient\textures"` 
-
+```
+wrapper.cmd "1.8" "1.8" "-Xms3072m -Xmx3072m" "%APPDATA%\.minecraft" "%USERPROFILE%\.lunarclient\textures" 
+```
 This will launch `LC 1.8` and will allocate 3 GB to LC and will have cosmetic textures enabled.    
 
 <b>OR</b>  
-
-`wrapper.cmd "1.8" "1.8" "-Xms3072m -Xmx3072m" "%APPDATA%\.minecraft"` 
-
+```
+wrapper.cmd "1.8" "1.8" "-Xms3072m -Xmx3072m" "%APPDATA%\.minecraft" 
+```
 This will launch `LC 1.8` and will allocate 3 GB to LC and will have cosmetic textures disabled. 
 
 ## Logs
