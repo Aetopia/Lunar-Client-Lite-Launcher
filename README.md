@@ -8,7 +8,7 @@ Lunar Client Lite is a simple lightweight and unlocked launcher which features t
 
 ## Requirements
 Before you begin using LC Lite, make sure that you have Lunar Client installed and also ensure you have your favourite LC versions installed.  
-(If you don't have LC installed then the application will redirect you to the download page of Lunar Client.)  
+(If you don't have LC installed then LC Lite will download the latest Lunar Client installer.)  
 
 <b>LC Lite will only work if you have bought Minecraft.</b>
 ## How to use & setup?
