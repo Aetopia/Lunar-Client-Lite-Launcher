@@ -12,8 +12,11 @@ Progress=0
 Launch=0
 Save=0
 CosmeticDelayFix=0
+EnvGet, vHomeDrive, HOMEDRIVE
+EnvGet, vHomePath, HOMEPATH
+UserProfile=% vHomeDrive vHomePath
 ;File Existence Checks
-IfNotExist, C:\Users\%A_UserName%\AppData\Local\Programs\lunarclient\Lunar Client.exe
+IfNotExist, %UserProfile%\AppData\Local\Programs\lunarclient\Lunar Client.exe
 	LCCheck()
 IfNotExist, Config.ini
 	ConfigCreate()
@@ -39,7 +42,10 @@ Gui, Show, w300 h200, Lunar Client Lite
 
 ;Functions
 Launch(){	
-	Textures=C:\Users\%A_UserName%\.lunarclient\textures
+	EnvGet, vHomeDrive, HOMEDRIVE
+	EnvGet, vHomePath, HOMEPATH
+	UserProfile=% vHomeDrive vHomePath
+	Textures=%UserProfile%\.lunarclient\textures
 	GuiControlGet, JVMArgs,, Edit1
 	IniWrite, %JVMArgs%, Config.ini, LC, Arguments
 	IniRead, LCArgs, Config.ini, LC, Arguments
@@ -165,17 +171,17 @@ LCCheck(){
 	Gui, Add, Progress, w200 h20 vProgress, 20
 	Gui, Add, Text,, Downloading Lunar Client..
 	Gui,Show,, Lunar Client Lite
-	URLDownloadToFile, https://launcherupdates.lunarclientcdn.com/latest.yml, C:\Users\%A_UserName%\AppData\Local\Temp\ver.txt
-	FileReadLine, LauncherYML, C:\Users\%A_UserName%\AppData\Local\Temp\ver.txt, 1
+	URLDownloadToFile, https://launcherupdates.lunarclientcdn.com/latest.yml, %A_Temp%\ver.txt
+	FileReadLine, LauncherYML, %A_Temp%\ver.txt, 1
 	StringTrimLeft, LauncherVer, LauncherYML, 9
-	URLDownloadToFile, https://launcherupdates.lunarclientcdn.com/Lunar Client v%LauncherVer%.exe, C:\Users\%A_UserName%\AppData\Local\Temp\lunar.exe
+	URLDownloadToFile, https://launcherupdates.lunarclientcdn.com/Lunar Client v%LauncherVer%.exe, %A_Temp%\lunar.exe
 	GuiControl,, Progress, +100
 	Sleep 500
 	Gui, Destroy
-	IfNotExist, C:\Users\%A_UserName%\AppData\Local\Temp\lunar.exe
+	IfNotExist, %A_Temp%\lunar.exe
 		LCNotExist()
 	FileExist, ("%Temp%\lunar.exe")
-		Run, C:\Users\%A_UserName%\AppData\Local\Temp\lunar.exe
+		Run, %A_Temp%\lunar.exe
 	ExitApp	
 }
 LCNotExist(){
@@ -188,41 +194,47 @@ LCNotExist(){
 
 VersionCheck(){
 	IniRead, CheckVersion, Config.ini, LC, Version
+	EnvGet, vHomeDrive, HOMEDRIVE
+	EnvGet, vHomePath, HOMEPATH
+	UserProfile=% vHomeDrive vHomePath
 	If (CheckVersion = 1.7){
-		IfNotExist, C:\Users\%A_UserName%\.lunarclient\offline\1.7
+		IfNotExist, %UserProfile%\.lunarclient\offline\1.7
 			FileCheck(1.7)
 		return	
 	}
 	If (CheckVersion = 1.8){
-		IfNotExist, C:\Users\%A_UserName%\.lunarclient\offline\1.8
+		IfNotExist, %UserProfile%\.lunarclient\offline\1.8
 			FileCheck(1.8)
 		return	
 	}
 	If (CheckVersion = 1.9){
-		IfNotExist, C:\Users\%A_UserName%\.lunarclient\offline\1.9
+		IfNotExist, %UserProfile%\.lunarclient\offline\1.9
 			FileCheck(1.9)
 		return	
 	}
 	If (CheckVersion = 1.12){
-		IfNotExist, C:\Users\%A_UserName%\.lunarclient\offline\1.12
+		IfNotExist, %UserProfile%\.lunarclient\offline\1.12
 			FileCheck(1.12)
 		return	
 	}
 	If (CheckVersion = 1.16){
-		IfNotExist, C:\Users\%A_UserName%\.lunarclient\offline\1.16
+		IfNotExist, %UserProfile%\.lunarclient\offline\1.16
 			FileCheck(1.16)
 		return	
 	}
 	If (CheckVersion = 1.17){
-		IfNotExist, C:\Users\%A_UserName%\.lunarclient\offline\1.17
+		IfNotExist, %UserProfile%\.lunarclient\offline\1.17
 			FileCheck(1.17)
 		return	
 	}
 }
 
 FileCheck(n){
+	EnvGet, vHomeDrive, HOMEDRIVE
+	EnvGet, vHomePath, HOMEPATH
+	UserProfile=% vHomeDrive vHomePath
 	MsgBox, 16, Error: Version Not Found, LC %n% wasn't found on this device!`nPlease install LC %n%! 
-	Run, C:\Users\%A_UserName%\AppData\Local\Programs\lunarclient\Lunar Client.exe
+	Run, %UserProfile%\AppData\Local\Programs\lunarclient\Lunar Client.exe
 	ExitApp
 }
 	
@@ -235,12 +247,12 @@ nowrappercmd(){
 
 
 UpdateDependencies(){
-	FileDelete, C:\Users\%A_UserName%\AppData\Local\Temp\internetcheck.ico
+	FileDelete, %A_Temp%\internetcheck.ico
 	URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/wrapper.cmd, %A_WorkingDir%\wrapper.cmd
-	URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/Logo.ico, C:\Users\%A_UserName%\AppData\Local\Temp\internetcheck.ico
-	IfNotExist, C:\Users\%A_UserName%\AppData\Local\Temp\internetcheck.ico
+	URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/Logo.ico, %A_Temp%\internetcheck.ico
+	IfNotExist, %A_Temp%\internetcheck.ico
 		NotExist(1)
-	IfExist, C:\Users\%A_UserName%\AppData\Local\Temp\internetcheck.ico
+	IfExist, %A_Temp%\internetcheck.ico
 		MsgBox, 64, Dependency Updated, LC Lite's dependency is now updated!
 }
 
