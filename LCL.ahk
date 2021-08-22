@@ -28,12 +28,12 @@ Gui, Main:Default
 Gui, -MaximizeBox -MinimizeBox +OwnDialogs
 IniRead, GUIArguments, Config.ini, LC, Arguments
 Gui, Add, Text,, JVM Arguments
-Gui, Add, Edit, w255 h75, %GUIArguments%
+Gui, Add, Edit, w255 h85, %GUIArguments%
 Gui, Add, Text, x10 y137, Version:
 Gui, Add, DropDownList, x10 y154 w100 h50 vVersionList gVersionWrite c30 r5, 1.7|1.8|1.12|1.16|1.17
-Gui, Add, Button, x270 y33 w25 h25 gAbout, ?
-;Gui, Add, Button, w25 h25 gUpdateDependencies, ❐
+Gui, Add, Button, x270 y24 w25 h25 gAbout, ?
 Gui, Add, Button, w25 h25 gGUIConfig, ✎
+Gui, Add, Button, w25 h25 gOpenLCLPath, ❐
 VersionRead()
 Gui, Add, Button, x191 y141 w100 h50 gLaunch +default vLaunch, Launch
 GuiControl, Focus, Launch
@@ -244,18 +244,6 @@ nowrappercmd(){
 		NotExist(1)
 }
 	
-
-
-UpdateDependencies(){
-	FileDelete, %A_Temp%\internetcheck.ico
-	URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/wrapper.cmd, %A_WorkingDir%\wrapper.cmd
-	URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/Logo.ico, %A_Temp%\internetcheck.ico
-	IfNotExist, %A_Temp%\internetcheck.ico
-		NotExist(1)
-	IfExist, %A_Temp%\internetcheck.ico
-		MsgBox, 64, Dependency Updated, LC Lite's dependency is now updated!
-}
-
 NotExist(x){
 	if (x=1){
 		MsgBox, 16, Download Failed, The dependency could not be downloaded.`nCheck your internet connection.
@@ -266,6 +254,10 @@ NotExist(x){
 	if (x=2){
 		MsgBox, 16, Download Failed, Failed to update dependencies.`nCheck your internet connection.
 	}
+}
+
+OpenLCLPath(){
+	Run, %A_WorkingDir%
 }
 
 MainGuiClose(){
