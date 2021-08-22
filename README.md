@@ -1,8 +1,4 @@
 # Lunar-Client-Lite-Launcher
-## Known Issues
-I have been getting multiple reports where LC Lite will prompt to install Lunar Client even though it is installed.  
-Fix: Create a new user account and run `LCL.exe` until you are able to access the GUI.
-
 ## What is Lunar Client Lite?
 Lunar Client Lite is a simple lightweight and unlocked launcher which features the following: 
 1. Quick Version Switching 
@@ -23,10 +19,11 @@ https://github.com/Aetopia/Lunar-Client-Lite-Launcher/releases
 2. Start `LCL.exe`.
 
 3. Once LC Lite is started, it should look like this:  
-[![image.png](https://i.postimg.cc/ryrg5CTr/image.png)](https://postimg.cc/MXzySBv6)  
+[![image.png](https://i.postimg.cc/RVrCKcYv/image.png)](https://postimg.cc/XX800y3P)
 
 4. You can specify custom JVM Arguments within the `JVM Arguments` section.  
 By default the arguments are set to `-Xms3G -Xmx3G -XX:+DisableAttachMechanism`.   
+Click on the `❐` button to open up the directory in which `LCL.exe` is present.  
 To save your custom JVM Arguments, you must at least launch LC once via LC Lite to save them.  
 
 5. Configuring the Options Window.  
@@ -34,6 +31,7 @@ Click on the `✎` Button.
 A new window will pop-up with the title "Options".
 [![image.png](https://i.postimg.cc/PJDsDFqd/image.png)](https://postimg.cc/7JqW897R)  
 Here, you can set up a Custom Launch Directory for LC 1.7-1.17 by clicking on `✎`.  
+
 Enabling the `Disable Cosmetic Textures` toggle can reduce LC's startup time and also fixes the `"Title Screen Freeze upon Launch"` issue.    
 Enabling this option will not load cosmetic textures. This change is client sided only.  
 Click on the `Save` button to save your settings.
