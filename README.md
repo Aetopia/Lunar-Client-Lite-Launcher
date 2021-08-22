@@ -1,4 +1,8 @@
 # Lunar-Client-Lite-Launcher
+## Known Issues
+1. LC Lite will prompt to install Lunar Client even though it is installed.  
+I have still no idea why LC Lite doesn't work even if the user disables all antivirus settings.
+
 ## What is Lunar Client Lite?
 Lunar Client Lite is a simple lightweight and unlocked launcher which features the following: 
 1. Quick Version Switching 
