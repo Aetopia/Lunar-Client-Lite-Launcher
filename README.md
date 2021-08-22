@@ -1,7 +1,9 @@
 # Lunar-Client-Lite-Launcher
 ## Known Issues
-1. LC Lite will prompt to install Lunar Client even though it is installed.  
-I have still no idea why LC Lite doesn't work even if the user disables all antivirus settings.
+I have been getting multiple reports where LC Lite will prompt to install Lunar Client even though it is installed.  
+I have tested LCL on 3 of my machines and I had no issues running it. Check your antivirus and make sure Windows is up to date.  
+LCL checks in your Local AppData folder and User folder to verify your Lunar Client installation.  
+The problem seems to lie where LCL is not able to access folders.
 
 ## What is Lunar Client Lite?
 Lunar Client Lite is a simple lightweight and unlocked launcher which features the following: 
