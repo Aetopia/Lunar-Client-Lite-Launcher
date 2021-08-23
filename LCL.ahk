@@ -74,7 +74,7 @@ Launch(){
 	}
 	Gui, Destroy
 	FileCopyDir, %A_AppData%\.minecraft\assets\indexes, %Path%\assets\indexes, 1
-	FileCopyDir, %A_AppData%\.minecraft\assets\objects, %Path%\assets\objects, 1
+	FileCopyDir, %A_AppData%\.minecraft\assets\objects, %Path%\assets\objects, 0
 	If (TexturesToggle=0){
 		Textures=%UserProfile%\.lunarclient\textures
 	}
