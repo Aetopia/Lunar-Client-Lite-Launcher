@@ -30,8 +30,8 @@ To save your custom JVM Arguments, you must at least launch LC once via LC Lite 
 Click on the `✎` Button.  
 A new window will pop-up with the title "Options".
 [![image.png](https://i.postimg.cc/PJDsDFqd/image.png)](https://postimg.cc/7JqW897R)  
-Here, you can set up a Custom Launch Directory for LC 1.7-1.17 by clicking on `✎`.  
 
+Here, you can set up a Custom Launch Directory for LC 1.7-1.17 by clicking on `✎`.  
 Enabling the `Disable Cosmetic Textures` toggle can reduce LC's startup time and also fixes the `"Title Screen Freeze upon Launch"` issue.    
 Enabling this option will not load cosmetic textures. This change is client sided only.  
 Click on the `Save` button to save your settings.
