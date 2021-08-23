@@ -1,6 +1,8 @@
 #NoEnv
 SendMode Input
 SetWorkingDir %A_ScriptDir%
+SetBatchLines -1
+ListLines Off
 #SingleInstance, Force
 #NoTrayIcon
 Progress=0
@@ -20,9 +22,6 @@ IfNotExist, %UserProfile%\AppData\Local\Programs\lunarclient\Lunar Client.exe
 	LCCheck()
 IfNotExist, Config.ini
 	ConfigCreate()
-IfNotExist, wrapper.cmd
-	nowrappercmd()
-
 ;GUI
 Gui, Main:Default
 Gui, -MaximizeBox -MinimizeBox +OwnDialogs
@@ -45,7 +44,6 @@ Launch(){
 	EnvGet, vHomeDrive, HOMEDRIVE
 	EnvGet, vHomePath, HOMEPATH
 	UserProfile=% vHomeDrive vHomePath
-	Textures=%UserProfile%\.lunarclient\textures
 	GuiControlGet, JVMArgs,, Edit1
 	IniWrite, %JVMArgs%, Config.ini, LC, Arguments
 	IniRead, LCArgs, Config.ini, LC, Arguments
@@ -53,8 +51,6 @@ Launch(){
 	IniRead, MCAssetIndex, Config.ini, Minecraft, AssetIndex
 	IniRead, TexturesToggle, Config.ini, LC, DisableCosmeticTextures
 	VersionCheck()
-	IfNotExist, wrapper.cmd
-		DependencyRemoved()
 	IniRead, PathVersion, Config.ini, LC, Version
 	If (PathVersion = 1.7) 
 	{
@@ -76,18 +72,19 @@ Launch(){
 	{
 		IniRead, Path, Config.ini, Paths, 1.17_Dir
 	}
-	If (TexturesToggle=1){
-		Run, wrapper.cmd "%LCVer%" "%MCAssetIndex%" "%LCArgs%" "%Path%",, Hide
-	}
+	Gui, Destroy
+	FileCopyDir, %A_AppData%\.minecraft\assets\indexes, %Path%\assets\indexes, 1
+	FileCopyDir, %A_AppData%\.minecraft\assets\objects, %Path%\assets\objects, 0
 	If (TexturesToggle=0){
-		Run, wrapper.cmd "%LCVer%" "%MCAssetIndex%" "%LCArgs%" "%Path%" "%Textures%",, Hide
-	} 
+		Textures=%UserProfile%\.lunarclient\textures
+	}
+	Loop, Files, %UserProfile%\.lunarclient\jre\zulu*, D
+		Run, %A_LoopFileLongPath%\bin\javaw.exe --add-modules jdk.naming.dns --add-exports jdk.naming.dns/com.sun.jndi.dns=java.naming -Djna.boot.library.path="%USERPROFILE%\.lunarclient\offline\%LCVer%\natives" --add-opens java.base/java.io=ALL-UNNAMED %LCArgs% -Djava.library.path="%USERPROFILE%\.lunarclient\offline\%LCVer%\natives" -cp "%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-assets-prod-1-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-assets-prod-2-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-assets-prod-3-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-libs.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-prod-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\OptiFine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\vpatcher-prod.jar" com.moonsworth.lunar.patcher.LunarMain --version %LCVer% --accessToken 0 --assetIndex %MCAssetIndex% --userProperties {} --gameDir "%Path%" --texturesDir "%Textures%" --width 854 --height 480
 	ExitApp
 }
 
 ConfigCreate()
 {
-	URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/wrapper.cmd, %A_WorkingDir%\wrapper.cmd
 	IniWrite, '1.8', Config.ini, LC, Version
 	IniWrite, '1.8', Config.ini, Minecraft, AssetIndex
 	IniWrite, -Xms3G -Xmx3G -XX:+DisableAttachMechanism, Config.ini, LC, Arguments	
@@ -160,7 +157,7 @@ About(){
 	MsgBox, 64, About, Made by Aetopia`nhttps://github.com/Aetopia/Lunar-Client-Lite-Launcher
 }
 DependencyRemoved(){
-	URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/wrapper.cmd, %A_WorkingDir%\wrapper.cmd
+	
 	IfNotExist, wrapper.cmd
 		NotExist(1)
 }
@@ -236,12 +233,6 @@ FileCheck(n){
 	MsgBox, 16, Error: Version Not Found, LC %n% wasn't found on this device!`nPlease install LC %n%! 
 	Run, %UserProfile%\AppData\Local\Programs\lunarclient\Lunar Client.exe
 	ExitApp
-}
-	
-nowrappercmd(){
-	URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/wrapper.cmd, %A_WorkingDir%\wrapper.cmd
-	IfNotExist, wrapper.cmd
-		NotExist(1)
 }
 	
 NotExist(x){
