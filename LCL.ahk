@@ -105,9 +105,12 @@ Launch(){
 	if errorlevel
 		GuiControl,, Progress, +100
 		Sleep, 1000
-		ExitApp
 	ExitApp
 	
+}
+
+LaunchGuiClose(){
+	ExitApp
 }
 
 ConfigCreate()
