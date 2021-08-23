@@ -104,7 +104,7 @@ Launch(){
 	Process, Exist, javaw.exe
 	if errorlevel
 		GuiControl,, Progress, +100
-		Sleep, 1000
+		Sleep, 250
 	ExitApp
 	
 }
