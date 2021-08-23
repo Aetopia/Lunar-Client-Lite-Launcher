@@ -38,6 +38,12 @@ Gui, Add, Button, x191 y141 w100 h50 gLaunch +default vLaunch, Launch
 GuiControl, Focus, Launch
 GuiControl, Focus, +default
 Gui, Show, w300 h200, Lunar Client Lite
+Gui Main:+LastFound 
+hWnd := WinExist() 
+hSysMenu:=DllCall("GetSystemMenu","Int",hWnd,"Int",FALSE) 
+nCnt:=DllCall("GetMenuItemCount","Int",hSysMenu) 
+DllCall("RemoveMenu","Int",hSysMenu,"UInt",nCnt-6,"Uint","0x400") 
+DllCall("DrawMenuBar","Int",hWnd)
 
 ;Functions
 Launch(){	
@@ -73,14 +79,35 @@ Launch(){
 		IniRead, Path, Config.ini, Paths, 1.17_Dir
 	}
 	Gui, Destroy
-	FileCopyDir, %A_AppData%\.minecraft\assets\indexes, %Path%\assets\indexes, 1
-	FileCopyDir, %A_AppData%\.minecraft\assets\objects, %Path%\assets\objects, 1
+	Gui, Launch:New
+	Gui, -MaximizeBox -MinimizeBox +AlwaysOnTop
+	Gui, Add, Progress, w200 h20 vProgress cGreen, 25
+	Gui, Add, Text,, Launching Lunar Client...
+	Gui,Show,, Lunar Client Lite
+	Gui Launch:+LastFound 
+	hWnd := WinExist() 
+	hSysMenu:=DllCall("GetSystemMenu","Int",hWnd,"Int",FALSE) 
+	nCnt:=DllCall("GetMenuItemCount","Int",hSysMenu) 
+	DllCall("RemoveMenu","Int",hSysMenu,"UInt",nCnt-6,"Uint","0x400") 
+	DllCall("DrawMenuBar","Int",hWnd)
+	Loop, Files, %A_AppData%\.minecraft\assets\indexes, R
+		FileCopyDir, %A_LoopFileLongName%, %Path%\assets\indexes, 1
+	GuiControl,, Progress, +25
+	Loop, Files, %A_AppData%\.minecraft\assets\objects, R
+		FileCopyDir, %A_AppData%\.minecraft\assets\objects, %Path%\assets\objects, 1
+	GuiControl,, Progress, +25
 	If (TexturesToggle=0){
 		Textures=%UserProfile%\.lunarclient\textures
 	}
 	Loop, Files, %UserProfile%\.lunarclient\jre\zulu*, D
 		Run, %A_LoopFileLongPath%\bin\javaw.exe --add-modules jdk.naming.dns --add-exports jdk.naming.dns/com.sun.jndi.dns=java.naming -Djna.boot.library.path="%USERPROFILE%\.lunarclient\offline\%LCVer%\natives" --add-opens java.base/java.io=ALL-UNNAMED %LCArgs% -Djava.library.path="%USERPROFILE%\.lunarclient\offline\%LCVer%\natives" -cp "%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-assets-prod-1-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-assets-prod-2-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-assets-prod-3-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-libs.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-prod-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\OptiFine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\vpatcher-prod.jar" com.moonsworth.lunar.patcher.LunarMain --version %LCVer% --accessToken 0 --assetIndex %MCAssetIndex% --userProperties {} --gameDir "%Path%" --texturesDir "%Textures%" --width 854 --height 480
+	Process, Exist, javaw.exe
+	if errorlevel
+		GuiControl,, Progress, +100
+		Sleep, 1000
+		ExitApp
 	ExitApp
+	
 }
 
 ConfigCreate()
@@ -156,17 +183,13 @@ VersionRead(){
 About(){
 	MsgBox, 64, About, Made by Aetopia`nhttps://github.com/Aetopia/Lunar-Client-Lite-Launcher
 }
-DependencyRemoved(){
-	
-	IfNotExist, wrapper.cmd
-		NotExist(1)
-}
+
 LCCheck(){
 	MsgBox, 16, Error: Lunar Client Not Installed, No Lunar Client installation is present on this device.`nClick on OK to install the latest version of Lunar Client.
-	Gui, New
+	Gui, Install:New
 	Gui, -MaximizeBox -MinimizeBox
-	Gui, Add, Progress, w200 h20 vProgress, 20
-	Gui, Add, Text,, Downloading Lunar Client..
+	Gui, Add, Progress, w200 h20 vProgress cGreen, 20
+	Gui, Add, Text,, Downloading Lunar Client...
 	Gui,Show,, Lunar Client Lite
 	URLDownloadToFile, https://launcherupdates.lunarclientcdn.com/latest.yml, %A_Temp%\ver.txt
 	FileReadLine, LauncherYML, %A_Temp%\ver.txt, 1
@@ -178,7 +201,7 @@ LCCheck(){
 	IfNotExist, %A_Temp%\lunar.exe
 		LCNotExist()
 	FileExist, ("%Temp%\lunar.exe")
-		Run, %A_Temp%\lunar.exe
+	Run, %A_Temp%\lunar.exe
 	ExitApp	
 }
 LCNotExist(){
@@ -273,8 +296,8 @@ GUIConfig(){
 	IniRead, 116_Path, Config.ini, Paths, 1.16_Dir
 	IniRead, 117_Path, Config.ini, Paths, 1.17_Dir
 	IniRead, CosmeticTextures, Config.ini, LC, DisableCosmeticTextures
-	Gui, Main: +Disabled
-	Gui, Dir: New
+	Gui, Main: Hide
+	Gui, Options: New
 	Gui, -MaximizeBox -MinimizeBox +OwnDialogs
 	Gui, Add, Text,, 1.7 Directory
 	Gui, Add, Edit, w260 h20 v17Dir, %17_Path%
@@ -302,6 +325,12 @@ GUIConfig(){
 	GuiControl, Focus, Save
 	GuiControl, Focus, +default
 	Gui, Show,, Options
+	Gui Options:+LastFound 
+	hWnd := WinExist() 
+	hSysMenu:=DllCall("GetSystemMenu","Int",hWnd,"Int",FALSE) 
+	nCnt:=DllCall("GetMenuItemCount","Int",hSysMenu) 
+	DllCall("RemoveMenu","Int",hSysMenu,"UInt",nCnt-6,"Uint","0x400") 
+	DllCall("DrawMenuBar","Int",hWnd)
 }
 
 17FolderSelect(){
@@ -361,7 +390,7 @@ Save(){
 	IniWrite, %116Path%, Config.ini, Paths, 1.16_Dir
 	IniWrite, %117Path%, Config.ini, Paths, 1.17_Dir
 	IniWrite, %TextureLoad%, Config.ini, LC, DisableCosmeticTextures
-	Gui, Main: -Disabled
+	Gui, Main: Show
 	Gui, Destroy
 	SetTitleMatchMode, 2
 	WinActivateBottom, Lunar Client Lite ahk_class AutoHotkeyGUI
@@ -369,8 +398,8 @@ Save(){
 }
 
 
-DirGuiClose(){
-	Gui, Main: -Disabled
+OptionsGuiClose(){
+	Gui, Main: Show
 	Gui, Destroy
 	SetTitleMatchMode, 2
 	WinActivateBottom, Lunar Client Lite ahk_class AutoHotkeyGUI
