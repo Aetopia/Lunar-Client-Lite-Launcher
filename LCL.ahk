@@ -258,8 +258,8 @@ NotExist(x){
 }
 
 OpenLCLPath(){
+	Run, %A_WorkingDir%,, 
 	GuiControl, Focus, Button
-	Run, %A_WorkingDir%,, Max
 	
 }
 
