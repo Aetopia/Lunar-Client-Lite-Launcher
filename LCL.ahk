@@ -38,7 +38,7 @@ Gui, Add, Button, x191 y141 w100 h50 gLaunch +default vLaunch, Launch
 GuiControl, Focus, Launch
 GuiControl, Focus, +default
 Gui, Show, w300 h200, ⠀
-Gui Main:+LastFound 
+Gui, Main:+LastFound 
 hWnd := WinExist() 
 hSysMenu:=DllCall("GetSystemMenu","Int",hWnd,"Int",FALSE) 
 nCnt:=DllCall("GetMenuItemCount","Int",hSysMenu) 
@@ -160,7 +160,10 @@ VersionRead(){
 }
 
 About(){
+	Gui, Main:Hide
 	MsgBox, 64, About, Made by Aetopia`nhttps://github.com/Aetopia/Lunar-Client-Lite-Launcher
+	IfMsgBox, Ok
+		Gui, Main: Show
 }
 
 LCCheck(){
@@ -250,7 +253,8 @@ NotExist(x){
 }
 
 OpenLCLPath(){
-	Run, %A_WorkingDir%
+	Run, %A_WorkingDir%,, Max
+	
 }
 
 MainGuiClose(){
