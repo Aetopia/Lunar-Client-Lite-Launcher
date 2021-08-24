@@ -19,7 +19,7 @@ https://github.com/Aetopia/Lunar-Client-Lite-Launcher/releases
 2. Start `LCL.exe`.
 
 3. Once LC Lite is started, it should look like this:    
-[![image.png](https://i.postimg.cc/RVrCKcYv/image.png)](https://postimg.cc/XX800y3P)
+[![image.png](https://i.postimg.cc/6pQ2ShDx/image.png)](https://postimg.cc/SJwxYcSg)
 
 4. You can specify custom JVM Arguments within the `JVM Arguments` section.  
 By default the arguments are set to `-Xms3G -Xmx3G -XX:+DisableAttachMechanism`.   
