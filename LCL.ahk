@@ -37,7 +37,7 @@ VersionRead()
 Gui, Add, Button, x191 y141 w100 h50 gLaunch +default vLaunch, Launch
 GuiControl, Focus, Launch
 GuiControl, Focus, +default
-Gui, Show, w300 h200, Lunar Client Lite
+Gui, Show, w300 h200, ⠀
 Gui Main:+LastFound 
 hWnd := WinExist() 
 hSysMenu:=DllCall("GetSystemMenu","Int",hWnd,"Int",FALSE) 
@@ -169,7 +169,7 @@ LCCheck(){
 	Gui, -MaximizeBox -MinimizeBox
 	Gui, Add, Progress, w200 h20 vProgress cGreen, 20
 	Gui, Add, Text,, Downloading Lunar Client...
-	Gui,Show,, Lunar Client Lite
+	Gui,Show,, ⠀
 	URLDownloadToFile, https://launcherupdates.lunarclientcdn.com/latest.yml, %A_Temp%\ver.txt
 	FileReadLine, LauncherYML, %A_Temp%\ver.txt, 1
 	StringTrimLeft, LauncherVer, LauncherYML, 9
@@ -303,7 +303,7 @@ GUIConfig(){
 	Gui, Add, Button, x280 y203 w25 h25 g117FolderSelect, ✎
 	GuiControl, Focus, Save
 	GuiControl, Focus, +default
-	Gui, Show,, Options
+	Gui, Show,, ✎
 	Gui Options:+LastFound 
 	hWnd := WinExist() 
 	hSysMenu:=DllCall("GetSystemMenu","Int",hWnd,"Int",FALSE) 
