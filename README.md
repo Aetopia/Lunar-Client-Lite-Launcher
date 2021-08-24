@@ -19,7 +19,6 @@ https://github.com/Aetopia/Lunar-Client-Lite-Launcher/releases
 2. Start `LCL.exe`.
 
 3. Once LC Lite is started, it should look like this:  
-  
 [![image.png](https://i.postimg.cc/d0xxd4Ks/image.png)](https://postimg.cc/VSXgP96p)
 
 4. You can specify custom JVM Arguments within the `JVM Arguments` section.  
@@ -30,7 +29,6 @@ To save your custom JVM Arguments, you must at least launch LC once via LC Lite 
 5. Configuring the Options Window.  
 Click on the `✎` Button.  
 A new window will pop-up with the title "Options".  
-
 [![image.png](https://i.postimg.cc/d0p5D38D/image.png)](https://postimg.cc/wt5XG64d)  
 
 Here, you can set up a Custom Launch Directory for LC 1.7-1.17 by clicking on `✎`.  
