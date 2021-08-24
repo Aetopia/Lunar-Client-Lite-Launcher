@@ -14,6 +14,7 @@ Progress=0
 Launch=0
 Save=0
 CosmeticDelayFix=0
+Button=0
 EnvGet, vHomeDrive, HOMEDRIVE
 EnvGet, vHomePath, HOMEPATH
 UserProfile=% vHomeDrive vHomePath
@@ -35,7 +36,8 @@ Gui, Add, Button, w25 h25 gGUIConfig, ✎
 Gui, Add, Button, w25 h25 gOpenLCLPath, ❐
 VersionRead()
 Gui, Add, Button, x191 y141 w100 h50 gLaunch +default vLaunch, Launch
-GuiControl, Focus, Launch
+Gui, Add, Button, x0 y0 h0 w0 vButton
+GuiControl, Focus, Button
 GuiControl, Focus, +default
 Gui, Show, w300 h200, ⠀
 Gui, Main:+LastFound 
@@ -47,6 +49,8 @@ DllCall("DrawMenuBar","Int",hWnd)
 
 ;Functions
 Launch(){	
+	Gui, +LastFound
+	GuiControl, Focus, Button
 	EnvGet, vHomeDrive, HOMEDRIVE
 	EnvGet, vHomePath, HOMEPATH
 	UserProfile=% vHomeDrive vHomePath
@@ -160,6 +164,7 @@ VersionRead(){
 }
 
 About(){
+	GuiControl, Focus, Button
 	Gui, Main:Hide
 	MsgBox, 64, About, Made by Aetopia`nhttps://github.com/Aetopia/Lunar-Client-Lite-Launcher
 	IfMsgBox, Ok
@@ -253,6 +258,7 @@ NotExist(x){
 }
 
 OpenLCLPath(){
+	GuiControl, Focus, Button
 	Run, %A_WorkingDir%,, Max
 	
 }
@@ -261,7 +267,7 @@ MainGuiClose(){
 	ExitApp
 }
 
-;Custom Paths
+;Options
 ;------------------------------------------------------------------------------------
 PathConfig(){
 	IniWrite, %A_AppData%\.minecraft, Config.ini, Paths, 1.7_Dir
@@ -272,7 +278,7 @@ PathConfig(){
 }
 
 GUIConfig(){
-	
+	GuiControl, Focus, Button
 	IniRead, 17_Path, Config.ini, Paths, 1.7_Dir
 	IniRead, 18_Path, Config.ini, Paths, 1.8_Dir
 	IniRead, 112_Path, Config.ini, Paths, 1.12_Dir
@@ -388,3 +394,4 @@ OptionsGuiClose(){
 	WinActivateBottom, Lunar Client Lite ahk_class AutoHotkeyGUI
 	#WinActivateForce
 }
+
