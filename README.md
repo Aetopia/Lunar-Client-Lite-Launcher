@@ -12,7 +12,7 @@ Before you begin using LC Lite, make sure that you have Lunar Client installed a
 
 <b>LC Lite will only work if you have bought Minecraft.</b>
 ## How to use & setup?
-<b>Make sure to unblock `LCL.exe` in your antivirus protection settings.</b>
+<b>Make sure to unblock `LCL.exe` in your antivirus protection settings incase if it gets false flagged.</b>
 1. Download the latest release from here.  
 https://github.com/Aetopia/Lunar-Client-Lite-Launcher/releases  
 
