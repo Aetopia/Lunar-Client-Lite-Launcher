@@ -79,37 +79,13 @@ Launch(){
 		IniRead, Path, Config.ini, Paths, 1.17_Dir
 	}
 	Gui, Destroy
-	Gui, Launch:New
-	Gui, -MaximizeBox -MinimizeBox +AlwaysOnTop
-	Gui, Add, Progress, w200 h20 vProgress cGreen, 25
-	Gui, Add, Text,, Launching Lunar Client...
-	Gui,Show,, Lunar Client Lite
-	Gui Launch:+LastFound 
-	hWnd := WinExist() 
-	hSysMenu:=DllCall("GetSystemMenu","Int",hWnd,"Int",FALSE) 
-	nCnt:=DllCall("GetMenuItemCount","Int",hSysMenu) 
-	DllCall("RemoveMenu","Int",hSysMenu,"UInt",nCnt-6,"Uint","0x400") 
-	DllCall("DrawMenuBar","Int",hWnd)
-	Loop, Files, %A_AppData%\.minecraft\assets\indexes, R
-		FileCopyDir, %A_LoopFileLongName%, %Path%\assets\indexes, 1
-	GuiControl,, Progress, +25
 	Loop, Files, %A_AppData%\.minecraft\assets\objects, R
 		FileCopyDir, %A_AppData%\.minecraft\assets\objects, %Path%\assets\objects, 1
-	GuiControl,, Progress, +25
 	If (TexturesToggle=0){
 		Textures=%UserProfile%\.lunarclient\textures
 	}
 	Loop, Files, %UserProfile%\.lunarclient\jre\zulu*, D
 		Run, %A_LoopFileLongPath%\bin\javaw.exe --add-modules jdk.naming.dns --add-exports jdk.naming.dns/com.sun.jndi.dns=java.naming -Djna.boot.library.path="%USERPROFILE%\.lunarclient\offline\%LCVer%\natives" --add-opens java.base/java.io=ALL-UNNAMED %LCArgs% -Djava.library.path="%USERPROFILE%\.lunarclient\offline\%LCVer%\natives" -cp "%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-assets-prod-1-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-assets-prod-2-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-assets-prod-3-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-libs.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-prod-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\OptiFine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\vpatcher-prod.jar" com.moonsworth.lunar.patcher.LunarMain --version %LCVer% --accessToken 0 --assetIndex %MCAssetIndex% --userProperties {} --gameDir "%Path%" --texturesDir "%Textures%" --width 854 --height 480
-	Process, Exist, javaw.exe
-	if errorlevel
-		GuiControl,, Progress, +100
-		Sleep, 250
-	ExitApp
-	
-}
-
-LaunchGuiClose(){
 	ExitApp
 }
 
