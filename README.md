@@ -68,9 +68,7 @@ Here is a list of arguments you can use for LC via LC Lite which I consider opti
 # Extras
 <i><b>I typically push out minor updates for the latest release of LC Lite. If you want the source code then download it from the repository and not from a release.</b></i>
 ## Information about `wrapper.cmd`
-
-The entire core of LC Lite is `wrapper.cmd`, LC Lite only serves as the GUI for the script.  
-Using `wrapper.cmd` its possible to specify arguments to launch a specific version of Lunar Client.  
+Via `wrapper.cmd` its possible to specify arguments to launch a specific version of Lunar Client.  
 
 To use this functionality of the script, use the following format: 
 `wrapper.cmd "Version" "Asset Index of Version" "JVM Arguments" "Directory" "Lunar Client Cosmetic Textures Directory`  
