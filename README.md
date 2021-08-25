@@ -1,5 +1,4 @@
-# Lunar Client Lite Launcher
-![image.png](https://github.com/Aetopia/Lunar-Client-Lite-Launcher/blob/main/Logo.png)  
+# <img src="https://github.com/Aetopia/Lunar-Client-Lite-Launcher/blob/main/Logo.png" alt="image.png" width="50" height="50"> Lunar Client Lite Launcher
 <b>:warning: Project Status: Maintenance Mode (Bug Fixes Only.)</b>  
 
 Lunar Client Lite is a simple lightweight and unlocked launcher which features the following: 
