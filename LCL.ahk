@@ -312,7 +312,7 @@ GUIConfig(){
 	Gui, Add, Button, x280 y203 w25 h25 g117FolderSelect, ✎
 	GuiControl, Focus, Save
 	GuiControl, Focus, +default
-	Gui, Show,, Options
+	Gui, Show,, ⠀
 	Gui Options:+LastFound 
 	hWnd := WinExist() 
 	hSysMenu:=DllCall("GetSystemMenu","Int",hWnd,"Int",FALSE) 
