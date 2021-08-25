@@ -71,7 +71,7 @@ Here is a list of arguments you can use for LC via LC Lite which I consider opti
 Via `wrapper.cmd` its possible to specify arguments to launch a specific version of Lunar Client.    
 
 To use this functionality of the script, use the following format:  
-`wrapper.cmd "Version" "Asset Index of Version" "JVM Arguments" "Directory" "Lunar Client Cosmetic Textures Directory"`  
+`wrapper.cmd "Version" "Asset Index of the Version" "JVM Arguments" "Directory" "Lunar Client Cosmetic Textures Directory"`  
 i.e  
 ```
 wrapper.cmd "1.8" "1.8" "-Xms3072m -Xmx3072m" "%APPDATA%\.minecraft" "%USERPROFILE%\.lunarclient\textures" 
