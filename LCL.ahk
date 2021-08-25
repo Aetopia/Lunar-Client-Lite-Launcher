@@ -322,7 +322,8 @@ GUIConfig(){
 }
 
 17FolderSelect(){
-	FileSelectFolder, 17PathSelected,, 3, Select a Directory for Lunar Client 1.7
+	IniRead, 17_Path, Config.ini, Paths, 1.7_Dir
+	FileSelectFolder, 17PathSelected, *%17_Path%, 3, Select a Directory for Lunar Client 1.7
 	if 17PathSelected =
 		return
 	else
@@ -330,7 +331,8 @@ GUIConfig(){
 }
 
 18FolderSelect(){
-	FileSelectFolder, 18PathSelected,, 3, Select a Directory for Lunar Client 1.8
+	IniRead, 18_Path, Config.ini, Paths, 1.8_Dir
+	FileSelectFolder, 18PathSelected, *%18_Path%, 3, Select a Directory for Lunar Client 1.8
 	if 18PathSelected =
 		return
 	else
@@ -339,7 +341,8 @@ GUIConfig(){
 }
 
 112FolderSelect(){
-	FileSelectFolder, 112PathSelected,, 3, Select a Directory for Lunar Client 1.12
+	IniRead, 112_Path, Config.ini, Paths, 1.12_Dir
+	FileSelectFolder, 112PathSelected, *%112_Path%, 3, Select a Directory for Lunar Client 1.12
 	if 112PathSelected =
 		return
 	else
@@ -348,7 +351,8 @@ GUIConfig(){
 }
 
 116FolderSelect(){
-	FileSelectFolder, 116PathSelected,, 3, Select a Directory for Lunar Client 1.16
+	IniRead, 116_Path, Config.ini, Paths, 1.16_Dir
+	FileSelectFolder, 116PathSelected, *%116_Path%, 3, Select a Directory for Lunar Client 1.16
 	if 116PathSelected =
 		return
 	else
@@ -357,7 +361,8 @@ GUIConfig(){
 }
 
 117FolderSelect(){
-	FileSelectFolder, 117PathSelected,, 3, Select a Directory for Lunar Client 1.17
+	IniRead, 117_Path, Config.ini, Paths, 1.17_Dir
+	FileSelectFolder, 117PathSelected, *%117_Path%, 3, Select a Directory for Lunar Client 1.17
 	if 117PathSelected =
 		return
 	else
