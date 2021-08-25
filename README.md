@@ -25,7 +25,7 @@ By default the arguments are set to `-Xms3G -Xmx3G -XX:+DisableAttachMechanism`.
 Click on the `❐` button to open up LC Lite's directory.  
 To save your custom JVM Arguments, you must at least launch LC once via LC Lite to save them.  
 
-5. Configuring the LCL's Options.  
+5. Configuring LCL's Options.  
 Click on the `✎` Button.  
 This will open up Lunar Client Lite's Options and should look like this:   
 ⠀[![image.png](https://i.postimg.cc/rwCt9zyR/image.png)](https://postimg.cc/3kNR88v3)    
