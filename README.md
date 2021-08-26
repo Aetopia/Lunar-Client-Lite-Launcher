@@ -92,5 +92,5 @@ Here, you can view the latest log for the latest Lunar Client instance or view a
 ## Credits
 <b>Original launch command made by [`lemons#2555`](https://github.com/respecting)  
 LCLI Settings Patcher made by [CTT](https://dsc.gg/CTT) (Original Optifine Patcher made by `temp`)  
-This Project is based off [LCLI](https://github.com/couleur-tweak-tips/utils/blob/main/LCLI.bat)</b>  
+This Project is based off [LCLI](https://github.com/couleur-tweak-tips/utils/blob/main/LCLI.bat) made by [Couleur](https://github.com/couleurm)</b>
 
