@@ -299,10 +299,10 @@ GUIConfig(){
 	Gui, Add, Edit, w260 h20 v117Dir, %117_Path%
 	Gui, Add, Text,, Launch Options
 	If (CosmeticTextures = 1){
-		Gui, Add, Checkbox, Checked vCosmeticDelayFix, Disable Cosmetic Textures
+		Gui, Add, Checkbox, Checked vCosmeticDelayFix, Disable Cosmetics
 	}
 	Else {
-		Gui, Add, Checkbox, vCosmeticDelayFix, Disable Cosmetic Textures
+		Gui, Add, Checkbox, vCosmeticDelayFix, Disable Cosmetics
 	}
 	Gui, Add, Button, x255 w50 h25 vSave gSave +default, Save
 	Gui, Add, Button, x280 y23 w25 h25 g17FolderSelect, ✎
@@ -398,4 +398,3 @@ OptionsGuiClose(){
 	WinActivateBottom, Lunar Client Lite ahk_class AutoHotkeyGUI
 	#WinActivateForce
 }
-
