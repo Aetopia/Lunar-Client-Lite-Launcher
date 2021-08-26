@@ -66,7 +66,7 @@ Here is a list of arguments you can use for LC via LC Lite which I consider opti
 ```
 
 # Extras
-## Information about `wrapper.cmd`
+## Information on `wrapper.cmd`
 Via `wrapper.cmd` its possible to specify arguments to launch a specific version of Lunar Client.    
 
 To use this functionality of the script, use the following format:  
