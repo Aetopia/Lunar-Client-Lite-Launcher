@@ -30,11 +30,11 @@ To save your custom JVM Arguments, you must at least launch LC once via LC Lite 
 5. Configuring LCL's Options.  
 Click on the `✎` Button.  
 This will open up Lunar Client Lite's Options and should look like this:   
-⠀[![image.png](https://i.postimg.cc/rwCt9zyR/image.png)](https://postimg.cc/3kNR88v3)    
+⠀[![image.png](https://i.postimg.cc/0NLN0gsQ/image.png)](https://postimg.cc/Y4zktsjK)     
 
 Here, you can set up a Custom Launch Directory for LC 1.7-1.17 by clicking on `✎`.  
-Enabling the `Disable Cosmetic Textures` toggle can reduce LC's startup time and also fixes the `"Title Screen Freeze upon Launch"` or `"Not Responding upon Launch"` issue.    
-Enabling this option will not load cosmetic textures. This change is client sided only.  
+Enabling the `Disable Cosmetics` toggle can reduce LC's startup time and also fixes the `"Title Screen Freeze upon Launch"` or `"Not Responding upon Launch"` issue.    
+Enabling this option will entirely disable cosmetics. This change is client sided only.  
 Click on the `Save` button to save your settings.
 
 6. You can select version you would like to use via the `Version` Listbox. 
