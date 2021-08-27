@@ -15,6 +15,7 @@ Launch=0
 Save=0
 CosmeticDelayFix=0
 Button=0
+Args=0
 EnvGet, vHomeDrive, HOMEDRIVE
 EnvGet, vHomePath, HOMEPATH
 UserProfile=% vHomeDrive vHomePath
@@ -23,43 +24,88 @@ IfNotExist, %UserProfile%\AppData\Local\Programs\lunarclient\Lunar Client.exe
 	LCCheck()
 IfNotExist, Config.ini
 	ConfigCreate()
+IfNotExist, %A_WorkingDir%\Resources
+	FileCreateDir, %A_WorkingDir%\Resources
+;IfNotExist, Resources/Main.png
+	;Resources(1)
+IfNotExist, Resources/Banner.png
+	Resources(2)
 ;GUI
-Gui, Main:Default
-Gui, -MaximizeBox -MinimizeBox +OwnDialogs
 IniRead, GUIArguments, Config.ini, LC, Arguments
-Gui, Add, Text,, JVM Arguments
-Gui, Add, Edit, w255 h85, %GUIArguments%
-Gui, Add, Text, x10 y137, Version:
-Gui, Add, DropDownList, x10 y154 w100 h50 vVersionList gVersionWrite c30 r5, 1.7|1.8|1.12|1.16|1.17
-Gui, Add, Button, x270 y24 w25 h25 gAbout, ?
-Gui, Add, Button, w25 h25 gGUIConfig, ✎
-Gui, Add, Button, w25 h25 gOpenLCLPath, ❐
+Gui, Main:Default
+Gui, -MaximizeBox -MinimizeBox
+Gui, Font, s10
+Gui, Add, Tab3, w490 h385 x6 Top +Background, Home|Options|About
+Gui, Font, s8
+Gui, Add, Picture, x8 y32, Resources/Banner.png
+IniRead, GUIArguments, Config.ini, LC, Arguments
+Gui, Tab, 1
+;Gui, Add, Text, x20 y295, Version:
+Gui, Add, DropDownList, x196 y315 w108 h40 vVersionList gVersionWrite c30 r5, 1.7|1.8|1.12|1.16|1.17
 VersionRead()
-Gui, Add, Button, x191 y141 w100 h50 gLaunch +default vLaunch, Launch
+Gui, Font, s10
+Gui, Add, Button, x195 y340 w110 h40 gLaunch +default vLaunch, Launch
 Gui, Add, Button, x0 y0 h0 w0 vButton
+
+Gui, Tab, 2
+IniRead, 17_Path, Config.ini, Paths, 1.7_Dir
+IniRead, 18_Path, Config.ini, Paths, 1.8_Dir
+IniRead, 112_Path, Config.ini, Paths, 1.12_Dir
+IniRead, 116_Path, Config.ini, Paths, 1.16_Dir
+IniRead, 117_Path, Config.ini, Paths, 1.17_Dir
+IniRead, CosmeticTextures, Config.ini, LC, Cosmetics
+Gui, Font, s8
+Gui, Add, Text,, 1.7 Directory
+Gui, Add, Edit, w230 h20 v17Dir, %17_Path%
+Gui, Add, Text,, 1.8 Directory
+Gui, Add, Edit, w230 h20 v18Dir, %18_Path%
+Gui, Add, Text,, 1.12 Directory
+Gui, Add, Edit, w230 h20 v112Dir, %112_Path%
+Gui, Add, Text,, 1.16 Directory
+Gui, Add, Edit, w230 h20 v116Dir, %116_Path%
+Gui, Add, Text,, 1.17 Directory
+Gui, Add, Edit, w230 h20 v117Dir, %117_Path%
+Gui, Add, Text,, Launch Options
+If (CosmeticTextures = 1){
+		Gui, Add, Checkbox, Checked vCosmeticDelayFix, Cosmetics
+	}
+	Else {
+		Gui, Add, Checkbox, vCosmeticDelayFix, Cosmetics
+}
+Gui, Font, s10
+Gui, Add, Button, x381 y343 w100 h40 vSave gSave, Save
+Gui, Font, s8
+Gui, Add, Button, x255 y57 w25 h24 g17FolderSelect, ✎
+Gui, Add, Button, x255 y104 w25 h24 g18FolderSelect, ✎
+Gui, Add, Button, x255 y151 w25 h24 g112FolderSelect, ✎
+Gui, Add, Button, x255 y198 w25 h24 g116FolderSelect, ✎
+Gui, Add, Button, x255 y245 w25 h24 g117FolderSelect, ✎
+Gui, Add, Text, x290 y41, JVM Arguments
+Gui, Add, Edit, x290 y58 w190 h275 vArgs 0x7 0x4, %GUIArguments%
+
+Gui, Tab, 3 
+Gui, Add, Link,, Lunar Client Lite made by <a href="https://github.com/Aetopia">Aetopia</a>.
+Gui, Add, Link,, GitHub Repository: <a href="https://github.com/Aetopia/Lunar-Client-Lite-Launcher">https://github.com/Aetopia/Lunar-Client-Lite-Launcher</a>
+Gui, Add, Link,, Couleur Tweaks Tips Discord: <a href="https://dsc.gg/ctt">https://dsc.gg/ctt</a>
+Gui, Add, Text, w463 0x10
+Gui, Add, Text,, Set Lunar Client Lite's settings to default and download a fresh set of resources.
+Gui, Add, Button, gReset, Refresh
+Gui, Add, Text,, Open Lunar Client Lite's Logs Folder.
+Gui, Add, Button, gLogs, Open
+;Gui, Show, w500 h400, ⠀ 
+Gui, Show, w500 h400, Lunar Client Lite
 GuiControl, Focus, Button
 GuiControl, Focus, +default
-Gui, Show, w300 h200, ⠀
-Gui, Main:+LastFound 
-hWnd := WinExist() 
-hSysMenu:=DllCall("GetSystemMenu","Int",hWnd,"Int",FALSE) 
-nCnt:=DllCall("GetMenuItemCount","Int",hSysMenu) 
-DllCall("RemoveMenu","Int",hSysMenu,"UInt",nCnt-6,"Uint","0x400") 
-DllCall("DrawMenuBar","Int",hWnd)
 
 ;Functions
 Launch(){	
-	Gui, +LastFound
-	GuiControl, Focus, Button
 	EnvGet, vHomeDrive, HOMEDRIVE
 	EnvGet, vHomePath, HOMEPATH
 	UserProfile=% vHomeDrive vHomePath
-	GuiControlGet, JVMArgs,, Edit1
-	IniWrite, %JVMArgs%, Config.ini, LC, Arguments
 	IniRead, LCArgs, Config.ini, LC, Arguments
 	IniRead, LCVer, Config.ini, LC, Version
 	IniRead, MCAssetIndex, Config.ini, Minecraft, AssetIndex
-	IniRead, TexturesToggle, Config.ini, LC, DisableCosmeticTextures
+	IniRead, TexturesToggle, Config.ini, LC, Cosmetics
 	VersionCheck()
 	IniRead, PathVersion, Config.ini, LC, Version
 	If (PathVersion = 1.7) 
@@ -85,7 +131,7 @@ Launch(){
 	Gui, Destroy
 	FileCopyDir, %A_AppData%\.minecraft\assets\indexes, %Path%\assets\indexes, 0
 	FileCopyDir, %A_AppData%\.minecraft\assets\objects, %Path%\assets\objects, 0
-	If (TexturesToggle=0){
+	If (TexturesToggle=1){
 		Textures=%UserProfile%\.lunarclient\textures
 	}
 	Loop, Files, %UserProfile%\.lunarclient\jre\zulu*, D
@@ -98,8 +144,17 @@ ConfigCreate()
 	IniWrite, '1.8', Config.ini, LC, Version
 	IniWrite, '1.8', Config.ini, Minecraft, AssetIndex
 	IniWrite, -Xms3G -Xmx3G -XX:+DisableAttachMechanism, Config.ini, LC, Arguments	
-	IniWrite, 0, Config.ini, LC, DisableCosmeticTextures
+	IniWrite, 1, Config.ini, LC, Cosmetics
 	PathConfig()
+}
+
+Resources(x){
+	If (x=1){
+		URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/Logo.png, Resources/Main.png
+	}
+	If (x=2){
+		URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/Banner.png, Resources/Banner.png
+	}
 }
 
 VersionWrite()
@@ -163,21 +218,14 @@ VersionRead(){
 	return
 }
 
-About(){
-	GuiControl, Focus, Button
-	Gui, Main:Hide
-	MsgBox, 64, About, Made by Aetopia`nhttps://github.com/Aetopia/Lunar-Client-Lite-Launcher
-	IfMsgBox, Ok
-		Gui, Main: Show
-}
-
 LCCheck(){
 	MsgBox, 16, Error: Lunar Client Not Installed, No Lunar Client installation is present on this device.`nClick on OK to install the latest version of Lunar Client.
 	Gui, Install:New
 	Gui, -MaximizeBox -MinimizeBox
 	Gui, Add, Progress, w200 h20 vProgress cGreen, 20
 	Gui, Add, Text,, Downloading Lunar Client...
-	Gui,Show,, ⠀
+	;Gui,Show,, ⠀
+	Gui, Show,, Lunar Client Lite
 	URLDownloadToFile, https://launcherupdates.lunarclientcdn.com/latest.yml, %A_Temp%\ver.txt
 	FileReadLine, LauncherYML, %A_Temp%\ver.txt, 1
 	StringTrimLeft, LauncherVer, LauncherYML, 9
@@ -257,9 +305,18 @@ NotExist(x){
 	}
 }
 
-OpenLCLPath(){
+Logs(){
 	GuiControl, Focus, Button
-	Run, %A_WorkingDir%,, Max
+	IfExist, %A_WorkingDir%\logs
+		Run, %A_WorkingDir%\logs,, Max
+	IfNotExist, %A_WorkingDir%\logs
+		MsgBox, 16, Error, Lunar Client Lite couldn't find any Logs folder.
+}
+
+Reset(){
+	FileDelete, Config.ini
+	FileRemoveDir, Resources, 1
+	Reload
 }
 
 MainGuiClose(){
@@ -274,51 +331,6 @@ PathConfig(){
 	IniWrite, %A_AppData%\.minecraft, Config.ini, Paths, 1.12_Dir
 	IniWrite, %A_AppData%\.minecraft, Config.ini, Paths, 1.16_Dir
 	IniWrite, %A_AppData%\.minecraft, Config.ini, Paths, 1.17_Dir
-}
-
-GUIConfig(){
-	GuiControl, Focus, Button
-	IniRead, 17_Path, Config.ini, Paths, 1.7_Dir
-	IniRead, 18_Path, Config.ini, Paths, 1.8_Dir
-	IniRead, 112_Path, Config.ini, Paths, 1.12_Dir
-	IniRead, 116_Path, Config.ini, Paths, 1.16_Dir
-	IniRead, 117_Path, Config.ini, Paths, 1.17_Dir
-	IniRead, CosmeticTextures, Config.ini, LC, DisableCosmeticTextures
-	Gui, Main: Hide
-	Gui, Options: New
-	Gui, -MaximizeBox -MinimizeBox +OwnDialogs
-	Gui, Add, Text,, 1.7 Directory
-	Gui, Add, Edit, w260 h20 v17Dir, %17_Path%
-	Gui, Add, Text,, 1.8 Directory
-	Gui, Add, Edit, w260 h20 v18Dir, %18_Path%
-	Gui, Add, Text,, 1.12 Directory
-	Gui, Add, Edit, w260 h20 v112Dir, %112_Path%
-	Gui, Add, Text,, 1.16 Directory
-	Gui, Add, Edit, w260 h20 v116Dir, %116_Path%
-	Gui, Add, Text,, 1.17 Directory
-	Gui, Add, Edit, w260 h20 v117Dir, %117_Path%
-	Gui, Add, Text,, Launch Options
-	If (CosmeticTextures = 1){
-		Gui, Add, Checkbox, Checked vCosmeticDelayFix, Disable Cosmetics
-	}
-	Else {
-		Gui, Add, Checkbox, vCosmeticDelayFix, Disable Cosmetics
-	}
-	Gui, Add, Button, x255 w50 h25 vSave gSave +default, Save
-	Gui, Add, Button, x280 y23 w25 h25 g17FolderSelect, ✎
-	Gui, Add, Button, x280 y68 w25 h25 g18FolderSelect, ✎
-	Gui, Add, Button, x280 y113 w25 h25 g112FolderSelect, ✎
-	Gui, Add, Button, x280 y158 w25 h25 g116FolderSelect, ✎
-	Gui, Add, Button, x280 y203 w25 h25 g117FolderSelect, ✎
-	GuiControl, Focus, Save
-	GuiControl, Focus, +default
-	Gui, Show,, ⠀
-	Gui Options:+LastFound 
-	hWnd := WinExist() 
-	hSysMenu:=DllCall("GetSystemMenu","Int",hWnd,"Int",FALSE) 
-	nCnt:=DllCall("GetMenuItemCount","Int",hSysMenu) 
-	DllCall("RemoveMenu","Int",hSysMenu,"UInt",nCnt-6,"Uint","0x400") 
-	DllCall("DrawMenuBar","Int",hWnd)
 }
 
 17FolderSelect(){
@@ -371,6 +383,7 @@ GUIConfig(){
 }
 
 Save(){
+	GuiControlGet, JVMArgs,, Args
 	guicontrolget, 17Path,, 17Dir
 	guicontrolget, 18Path,, 18Dir
 	guicontrolget, 112Path,, 112Dir
@@ -382,19 +395,9 @@ Save(){
 	IniWrite, %112Path%, Config.ini, Paths, 1.12_Dir
 	IniWrite, %116Path%, Config.ini, Paths, 1.16_Dir
 	IniWrite, %117Path%, Config.ini, Paths, 1.17_Dir
-	IniWrite, %TextureLoad%, Config.ini, LC, DisableCosmeticTextures
-	Gui, Main: Show
-	Gui, Destroy
-	SetTitleMatchMode, 2
-	WinActivateBottom, Lunar Client Lite ahk_class AutoHotkeyGUI
-	#WinActivateForce
-}
-
-
-OptionsGuiClose(){
-	Gui, Main: Show
-	Gui, Destroy
-	SetTitleMatchMode, 2
-	WinActivateBottom, Lunar Client Lite ahk_class AutoHotkeyGUI
-	#WinActivateForce
+	IniWrite, %TextureLoad%, Config.ini, LC, Cosmetics
+	IniWrite, %JVMArgs%, Config.ini, LC, Arguments
+	GuiControl, Focus, Launch
+	GuiControl, Focus, +default
+	MsgBox, 64, Settings Saved, Your Custom Launch Directories, Launch Options and JVM Arguments are now saved.
 }
