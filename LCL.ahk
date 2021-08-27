@@ -45,6 +45,7 @@ Gui, Add, DropDownList, x196 y315 w108 h40 vVersionList gVersionWrite c30 r5, 1.
 VersionRead()
 Gui, Font, s10
 Gui, Add, Button, x195 y340 w110 h40 gLaunch +default vLaunch, Launch
+Gui, Add, Button, x0 y0 h0 w0 vButton
 
 Gui, Tab, 2
 IniRead, 17_Path, Config.ini, Paths, 1.7_Dir
@@ -93,6 +94,7 @@ Gui, Add, Text,, Open Lunar Client Lite's Logs Folder.
 Gui, Add, Button, gLogs, Open
 ;Gui, Show, w500 h400, ⠀ 
 Gui, Show, w500 h400, Lunar Client Lite
+GuiControl, Focus, Button
 GuiControl, Focus, +default
 
 ;Functions
