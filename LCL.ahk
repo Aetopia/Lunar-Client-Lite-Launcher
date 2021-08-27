@@ -83,7 +83,9 @@ Launch(){
 		IniRead, Path, Config.ini, Paths, 1.17_Dir
 	}
 	Gui, Destroy
-	Loop, Files, %A_AppData%\.minecraft\assets\objects, R
+	Loop, Files, %A_AppData%\.minecraft\assets\indexes, D
+		FileCopyDir, %A_AppData%\.minecraft\assets\indexes, %Path%\assets\indexes, 1
+	Loop, Files, %A_AppData%\.minecraft\assets\objects, D
 		FileCopyDir, %A_AppData%\.minecraft\assets\objects, %Path%\assets\objects, 1
 	If (TexturesToggle=0){
 		Textures=%UserProfile%\.lunarclient\textures
