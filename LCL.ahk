@@ -54,6 +54,8 @@ IniRead, 112_Path, Config.ini, Paths, 1.12_Dir
 IniRead, 116_Path, Config.ini, Paths, 1.16_Dir
 IniRead, 117_Path, Config.ini, Paths, 1.17_Dir
 IniRead, CosmeticTextures, Config.ini, LC, Cosmetics
+Gui, Font, s10
+Gui, Add, Button, x381 y343 w100 h40 vSave gSave, Save
 Gui, Font, s8
 Gui, Add, Text,, 1.7 Directory
 Gui, Add, Edit, w230 h20 v17Dir, %17_Path%
@@ -72,9 +74,6 @@ If (CosmeticTextures = 1){
 	Else {
 		Gui, Add, Checkbox, vCosmeticDelayFix, Cosmetics
 }
-Gui, Font, s10
-Gui, Add, Button, x381 y343 w100 h40 vSave gSave, Save
-Gui, Font, s8
 Gui, Add, Button, x255 y57 w25 h24 g17FolderSelect, ✎
 Gui, Add, Button, x255 y104 w25 h24 g18FolderSelect, ✎
 Gui, Add, Button, x255 y151 w25 h24 g112FolderSelect, ✎
