@@ -51,9 +51,6 @@ IniRead, 112_Path, Config.ini, Paths, 1.12_Dir
 IniRead, 116_Path, Config.ini, Paths, 1.16_Dir
 IniRead, 117_Path, Config.ini, Paths, 1.17_Dir
 IniRead, CosmeticTextures, Config.ini, LC, Cosmetics
-Gui, Font, s10
-Gui, Add, Button, x381 y343 w100 h40 vSave gSave, Save
-Gui, Font, s8
 Gui, Add, Text,, 1.7 Directory
 Gui, Add, Edit, w230 h20 v17Dir, %17_Path%
 Gui, Add, Text,, 1.8 Directory
@@ -76,6 +73,9 @@ Gui, Add, Button, x255 y104 w25 h24 g18FolderSelect, ✎
 Gui, Add, Button, x255 y151 w25 h24 g112FolderSelect, ✎
 Gui, Add, Button, x255 y198 w25 h24 g116FolderSelect, ✎
 Gui, Add, Button, x255 y245 w25 h24 g117FolderSelect, ✎
+Gui, Font, s10
+Gui, Add, Button, x381 y343 w100 h40 vSave gSave, Save
+Gui, Font, s8
 Gui, Add, Text, x290 y41, JVM Arguments
 Gui, Add, Edit, x290 y58 w190 h275 vArgs 0x7 0x4, %GUIArguments%
 
@@ -286,7 +286,7 @@ FileCheck(n){
 	Run, %UserProfile%\AppData\Local\Programs\lunarclient\Lunar Client.exe
 	ExitApp
 }
-	
+
 NotExist(x){
 	if (x=1){
 		MsgBox, 16, Download Failed, The dependency could not be downloaded.`nCheck your internet connection.
@@ -302,7 +302,7 @@ NotExist(x){
 Logs(){
 	GuiControl, Focus, Button
 	IfExist, %A_WorkingDir%\logs
-		Run, %A_WorkingDir%\logs,, Max
+	Run, %A_WorkingDir%\logs,, Max
 	IfNotExist, %A_WorkingDir%\logs
 		MsgBox, 16, Error, Lunar Client Lite couldn't find any Logs folder.
 }
