@@ -40,10 +40,12 @@ Gui, Add, Picture, x8 y32, Resources/Banner.png
 IniRead, GUIArguments, Config.ini, LC, Arguments
 Gui, Tab, 1
 ;Gui, Add, Text, x20 y295, Version:
-Gui, Add, DropDownList, x196 y315 w108 h40 vVersionList gVersionWrite c30 r5, 1.7|1.8|1.12|1.16|1.17
-VersionRead()
 Gui, Font, s10
 Gui, Add, Button, x195 y340 w110 h40 gLaunch +default vLaunch, Launch
+Gui, Font, s8
+Gui, Add, DropDownList, x196 y315 w108 h40 vVersionList gVersionWrite c30 r5, 1.7|1.8|1.12|1.16|1.17
+VersionRead()
+
 
 Gui, Tab, 2
 IniRead, 17_Path, Config.ini, Paths, 1.7_Dir
