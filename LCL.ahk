@@ -87,7 +87,7 @@ Gui, Add, Text, w463 0x10
 Gui, Add, Text,, Set Lunar Client Lite's settings to default and download a fresh set of resources.
 Gui, Add, Button, gReset, Refresh
 Gui, Add, Text,, Open Lunar Client Lite's Logs Folder.
-Gui, Add, Button, gLogs, Open ⠀ 
+Gui, Add, Button, gLogs, Open
 Gui, Show, w500 h400, Lunar Client Lite
 GuiControl, Focus, Launch
 GuiControl, Focus, +default
