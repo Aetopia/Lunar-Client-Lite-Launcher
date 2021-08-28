@@ -25,8 +25,6 @@ IfNotExist, Config.ini
 	ConfigCreate()
 IfNotExist, %A_WorkingDir%\Resources
 	FileCreateDir, %A_WorkingDir%\Resources
-;IfNotExist, Resources/Main.png
-	;Resources(1)
 IfNotExist, Resources/Banner.png
 	Resources(2)
 ;GUI
@@ -39,7 +37,6 @@ Gui, Font, s8
 Gui, Add, Picture, x8 y32, Resources/Banner.png
 IniRead, GUIArguments, Config.ini, LC, Arguments
 Gui, Tab, 1
-;Gui, Add, Text, x20 y295, Version:
 Gui, Font, s10
 Gui, Add, Button, x195 y340 w110 h40 gLaunch +default vLaunch, Launch
 Gui, Font, s8
@@ -69,10 +66,10 @@ Gui, Add, Text,, 1.17 Directory
 Gui, Add, Edit, w230 h20 v117Dir, %117_Path%
 Gui, Add, Text,, Launch Options
 If (CosmeticTextures = 1){
-		Gui, Add, Checkbox, Checked vCosmeticDelayFix, Cosmetics
-	}
-	Else {
-		Gui, Add, Checkbox, vCosmeticDelayFix, Cosmetics
+	Gui, Add, Checkbox, Checked vCosmeticDelayFix, Cosmetics
+}
+Else	 {
+	Gui, Add, Checkbox, vCosmeticDelayFix, Cosmetics
 }
 Gui, Add, Button, x255 y57 w25 h24 g17FolderSelect, ✎
 Gui, Add, Button, x255 y104 w25 h24 g18FolderSelect, ✎
@@ -90,8 +87,7 @@ Gui, Add, Text, w463 0x10
 Gui, Add, Text,, Set Lunar Client Lite's settings to default and download a fresh set of resources.
 Gui, Add, Button, gReset, Refresh
 Gui, Add, Text,, Open Lunar Client Lite's Logs Folder.
-Gui, Add, Button, gLogs, Open
-;Gui, Show, w500 h400, ⠀ 
+Gui, Add, Button, gLogs, Open ⠀ 
 Gui, Show, w500 h400, Lunar Client Lite
 GuiControl, Focus, Launch
 GuiControl, Focus, +default
@@ -223,7 +219,6 @@ LCCheck(){
 	Gui, -MaximizeBox -MinimizeBox
 	Gui, Add, Progress, w200 h20 vProgress cGreen, 20
 	Gui, Add, Text,, Downloading Lunar Client...
-	;Gui,Show,, ⠀
 	Gui, Show,, Lunar Client Lite
 	URLDownloadToFile, https://launcherupdates.lunarclientcdn.com/latest.yml, %A_Temp%\ver.txt
 	FileReadLine, LauncherYML, %A_Temp%\ver.txt, 1
