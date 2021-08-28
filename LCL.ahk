@@ -395,7 +395,5 @@ Save(){
 	IniWrite, %117Path%, Config.ini, Paths, 1.17_Dir
 	IniWrite, %TextureLoad%, Config.ini, LC, Cosmetics
 	IniWrite, %JVMArgs%, Config.ini, LC, Arguments
-	GuiControl, Focus, Launch
-	GuiControl, Focus, +default
-	MsgBox, 64, Settings Saved, Your Custom Launch Directories, Launch Options and JVM Arguments are now saved.
+	MsgBox, 64, Settings Saved, Your Settings are now saved., 1
 }
