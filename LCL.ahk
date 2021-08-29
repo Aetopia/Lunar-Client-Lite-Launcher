@@ -77,7 +77,7 @@ Gui, Font, s10
 Gui, Add, Button, x381 y343 w100 h40 vSave gSave, Save
 Gui, Font, s8
 Gui, Add, Text, x290 y41, JVM Arguments
-Gui, Add, Edit, x290 y58 w190 h275 vArgs 0x7 0x4, %GUIArguments%
+Gui, Add, Edit, x290 y58 w190 h275 vArgs, %GUIArguments%
 
 Gui, Tab, 3 
 Gui, Add, Link,, Lunar Client Lite made by <a href="https://github.com/Aetopia">Aetopia</a>.
