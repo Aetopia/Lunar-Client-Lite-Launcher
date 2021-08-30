@@ -77,6 +77,13 @@ Here is a list of arguments you can use for LC via LC Lite which I consider opti
 ```
 -XX:+UseG1GC -Xmx4G -Xms4G -Dsun.rmi.dgc.server.gcInterval=2147483646 -XX:+UnlockExperimentalVMOptions -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=32M
 ```
+### Advanced
+Here, you mess around with Lunar Client Lite's advanced features.
+[![image.png](https://i.postimg.cc/dV4KvYZ3/image.png)](https://postimg.cc/682PLF0x)  
+
+1. You can specify a Custom Java Executable to use with Lunar Client.  
+Click on the `✎` and select a new Java Executable (`javaw.exe`) to use with Lunar Client.<br><b>You might have issues signing into Lunar Client with another JRE/`javaw.exe`.</b>
+
 
 # Extras
 ## Information on `wrapper.cmd`
