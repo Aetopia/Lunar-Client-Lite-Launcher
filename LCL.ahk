@@ -15,6 +15,7 @@ Launch=0
 Save=0
 CosmeticDelayFix=0
 Args=0
+JRE=0
 EnvGet, vHomeDrive, HOMEDRIVE
 EnvGet, vHomePath, HOMEPATH
 UserProfile=% vHomeDrive vHomePath
@@ -32,7 +33,7 @@ IniRead, GUIArguments, Config.ini, LC, Arguments
 Gui, Main:Default
 Gui, -MaximizeBox -MinimizeBox
 Gui, Font, s10
-Gui, Add, Tab3, w490 h385 x6 Top +Background, Home|Options|About
+Gui, Add, Tab3, w490 h385 x6 Top +Background, Home|Options|Advanced|About
 Gui, Font, s8
 Gui, Add, Picture, x8 y32, Resources/Banner.png
 IniRead, GUIArguments, Config.ini, LC, Arguments
@@ -79,7 +80,15 @@ Gui, Font, s8
 Gui, Add, Text, x290 y41, JVM Arguments
 Gui, Add, Edit, x290 y58 w190 h275 vArgs, %GUIArguments%
 
-Gui, Tab, 3 
+Gui, Tab, 3
+Gui, Add, Text,, This section is only intended for advanced users!
+Gui, Add, Text,, Java Executable
+IniRead, GUIJRE, Config.ini, Minecraft, JRE
+Gui, Add, Edit, h20 w400 vJRE, %GUIJRE%
+Gui, Add, Text,, Specify your own Java Executable to use with Lunar Client.
+Gui, Add, Button, x425 y85 w25 h24 gJRESelect, ✎
+
+Gui, Tab, 4 
 Gui, Add, Link,, Lunar Client Lite made by <a href="https://github.com/Aetopia">Aetopia</a>.
 Gui, Add, Link,, GitHub Repository: <a href="https://github.com/Aetopia/Lunar-Client-Lite-Launcher">https://github.com/Aetopia/Lunar-Client-Lite-Launcher</a>
 Gui, Add, Link,, Couleur Tweaks Tips Discord: <a href="https://dsc.gg/ctt">https://dsc.gg/ctt</a>
@@ -103,6 +112,7 @@ Launch(){
 	IniRead, TexturesToggle, Config.ini, LC, Cosmetics
 	VersionCheck()
 	IniRead, PathVersion, Config.ini, LC, Version
+	IniRead, LaunchJRE, Config.ini, Minecraft, JRE
 	If (PathVersion = 1.7) 
 	{
 		IniRead, Path, Config.ini, Paths, 1.7_Dir
@@ -129,8 +139,11 @@ Launch(){
 	If (TexturesToggle=1){
 		Textures=%UserProfile%\.lunarclient\textures
 	}
-	Loop, Files, %UserProfile%\.lunarclient\jre\zulu*, D
-		Run, %A_LoopFileLongPath%\bin\javaw.exe --add-modules jdk.naming.dns --add-exports jdk.naming.dns/com.sun.jndi.dns=java.naming -Djna.boot.library.path="%USERPROFILE%\.lunarclient\offline\%LCVer%\natives" --add-opens java.base/java.io=ALL-UNNAMED %LCArgs% -Djava.library.path="%USERPROFILE%\.lunarclient\offline\%LCVer%\natives" -cp "%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-assets-prod-1-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-assets-prod-2-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-assets-prod-3-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-libs.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-prod-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\OptiFine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\vpatcher-prod.jar" com.moonsworth.lunar.patcher.LunarMain --version %LCVer% --accessToken 0 --assetIndex %MCAssetIndex% --userProperties {} --gameDir "%Path%" --texturesDir "%Textures%" --width 854 --height 480
+	Try{
+		Run, %LaunchJRE% --add-modules jdk.naming.dns --add-exports jdk.naming.dns/com.sun.jndi.dns=java.naming -Djna.boot.library.path="%USERPROFILE%\.lunarclient\offline\%LCVer%\natives" --add-opens java.base/java.io=ALL-UNNAMED %LCArgs% -Djava.library.path="%USERPROFILE%\.lunarclient\offline\%LCVer%\natives" -cp "%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-assets-prod-1-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-assets-prod-2-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-assets-prod-3-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-libs.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-prod-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\OptiFine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\vpatcher-prod.jar" com.moonsworth.lunar.patcher.LunarMain --version %LCVer% --accessToken 0 --assetIndex %MCAssetIndex% --userProperties {} --gameDir "%Path%" --texturesDir "%Textures%" --width 854 --height 480
+	}
+	Catch Error
+		MsgBox, 16, Launch Error, Lunar Client Lite couldn't launch Lunar Client.`nCheck your specified Java Executable.
 	ExitApp
 }
 
@@ -140,6 +153,11 @@ ConfigCreate()
 	IniWrite, '1.8', Config.ini, Minecraft, AssetIndex
 	IniWrite, -Xms3G -Xmx3G -XX:+DisableAttachMechanism, Config.ini, LC, Arguments	
 	IniWrite, 1, Config.ini, LC, Cosmetics
+	EnvGet, vHomeDrive, HOMEDRIVE
+	EnvGet, vHomePath, HOMEPATH
+	UserProfile=% vHomeDrive vHomePath
+	Loop, Files, %UserProfile%\.lunarclient\jre\zulu*, D
+		IniWrite, %A_LoopFileLongPath%\bin\javaw.exe, Config.ini, Minecraft, JRE
 	PathConfig()
 }
 
@@ -392,4 +410,16 @@ Save(){
 	IniWrite, %TextureLoad%, Config.ini, LC, Cosmetics
 	IniWrite, %JVMArgs%, Config.ini, LC, Arguments
 	MsgBox, 64, Settings Saved, Your Settings are now saved., 1
+}
+
+;Experiments
+
+JRESelect(){
+	IniRead, SavedJRE, Config.ini, Minecraft, JRE
+	FileSelectFile, SelectedJRE, 1, %SavedJRE%, Select a new Jave Executable., Java Executable (javaw.exe)
+	if SelectedJRE=
+		return
+	else
+		IniWrite, %SelectedJRE%, Config.ini, Minecraft, JRE
+		guicontrol,, JRE, %SelectedJRE%
 }
