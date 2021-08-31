@@ -1,6 +1,6 @@
 # <img src="https://github.com/Aetopia/Lunar-Client-Lite-Launcher/blob/main/Logo.png" alt="image.png" width="30" height="30">  Lunar Client Lite Launcher
 
-Lunar Client Lite is a simple lightweight and unlocked launcher which features the following: 
+Lunar Client Lite is a simple lightweight and unlocked launcher for Lunar Client which features the following: 
 1. Quick Version Switching 
 2. Custom JVM Arguments Support 
 3. Multi Launch Directory Support
