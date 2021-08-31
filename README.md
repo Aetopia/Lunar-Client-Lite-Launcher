@@ -20,12 +20,12 @@ https://github.com/Aetopia/Lunar-Client-Lite-Launcher/releases
 
 3. Once LC Lite is started, it should look like this:  
 
-[![image.png](https://i.postimg.cc/L85jVd5R/image.png)](https://postimg.cc/v4R1QN5S)
+![image.png](https://i.imgur.com/MMvMBFz.png)
 
-4. Configuring LCL's Options.  
-Click on the `Options` Tab.    
+4. Configuring LCL's Minecraft's Options.  
+Click on the `Game` Tab.    
 
-[![image.png](https://i.postimg.cc/bvFCRHpV/image.png)](https://postimg.cc/VSnWftSX)     
+![image.png](https://i.imgur.com/chJyWil.png)  
 
 You can specify custom JVM Arguments within the `JVM Arguments` section.  
 By default the arguments are set to `-Xms3G -Xmx3G -XX:+DisableAttachMechanism`. 
@@ -37,22 +37,29 @@ Unchecking this option will entirely disable cosmetics. This change is client si
 
 Click on the `Save` button to save your settings.
 
-5. Click on the `About` Tab to view information on Lunar Client Lite and to access a few extra options. 
+5. Configuring LCL's Options.
+Click on the `Launcher` Tab.  
+
+![image.png](https://i.imgur.com/2nWvbZe.png) 
+
+Here, you can do the following:
+ - Specify a custom Java Executable for Lunar Client to use. Click on the `✎` to specify a Java Executable.
+ - Specify a new Assets folder for Lunar Client Lite to pull Minecraft assets from. Click on the `✎` to specify a new Assets folder.
+
+
+6. Click on the `About` Tab to view information on Lunar Client Lite.
  
-[![image.png](https://i.postimg.cc/T2r8TFRR/image.png)](https://postimg.cc/3WJfBL46)   
+![image.png](https://i.imgur.com/3aJcYrE.png)
 
 In the `About` Tab, you can click on the given links to view my GitHub Profile, to view LC Lite's GitHub Repository and an invite link to join Couleur Tweak Tips Discord Server.  
 
-If you click on the `Refresh` button, you can reset LC Lite's Settings and download a fresh set of assets of LC Lite's GitHub Repository.  
+If you click on the `Refresh` button, you can reset LC Lite's Settings and download a fresh set of resources from LC Lite's GitHub Repository.  
 
 If you click on the `Open` button, you can open up LC Lite's Logs Folder.  
 
-6. Select any version, you would like to use via the `Version` Dropdown List.
+7. Select any version, you would like to use via the `Version` Dropdown List.<br><br>![image.png](https://i.imgur.com/Eqq1qV2.png)
 
-
-[![image.png](https://i.postimg.cc/NFT2nYT2/image.png)](https://postimg.cc/64WQ7kMB)   
-
-7. Finally click on the launch button to launch Lunar Client!  
+8. Finally click on the launch button to launch Lunar Client!  
 <i>LC not launching via LC Lite? Make sure you have your desired versions installed via the official LC Launcher!</i>  
 <b>NOTE: To update Lunar Client and its dependencies, you must use the official LC launcher to update them.</b>
 ### Which JVM Arguments are good for LC?  
