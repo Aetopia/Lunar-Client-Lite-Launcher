@@ -88,7 +88,7 @@ Gui, Add, Edit, h20 w400 vJRE +ReadOnly, %GUIJRE%
 Gui, Add, Text,, Specify your own Java Executable to use with Lunar Client.
 Gui, Add, Text,, Assets Folder
 IniRead, Assets, Config.ini, Minecraft, Assets
-Gui, Add, Edit, h20 w400 vAssets, %Assets%
+Gui, Add, Edit, h20 w400 vAssets +ReadOnly, %Assets%
 Gui, Add, Text,, Specify an Assets folder from which Lunar Client Lite should pull Minecraft assets from.
 Gui, Add, Button, x425 y57 w25 h24 gJRESelect, ✎
 Gui, Add, Button, x425 y132 w25 h24 gAssetsFolderSelect, ✎
