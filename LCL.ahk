@@ -6,17 +6,6 @@ ListLines Off
 #SingleInstance, Force
 #NoTrayIcon
 Progress=0
-17Dir=0
-18Dir=0
-112Dir=0
-116Dir=0
-117Dir=0
-Launch=0
-Save=0
-CosmeticDelayFix=0
-Args=0
-JRE=0
-Assets=0
 EnvGet, vHomeDrive, HOMEDRIVE
 EnvGet, vHomePath, HOMEPATH
 UserProfile=% vHomeDrive vHomePath
