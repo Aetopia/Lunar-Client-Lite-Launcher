@@ -62,10 +62,18 @@ If you click on the `Open` button, you can open up LC Lite's Logs Folder.
 8. Finally click on the launch button to launch Lunar Client!  
 <i>LC not launching via LC Lite? Make sure you have your desired versions installed via the official LC Launcher!</i>  
 <b>NOTE: To update Lunar Client and its dependencies, you must use the official LC launcher to update them.</b>
-### Which JVM Arguments are good for LC?  
 
-LC uses OpenJDK 16 so they aren't many "optimal" JVM arguments which you can find online.  
-Here is a list of arguments you can use for LC via LC Lite which I consider optimal.  
+
+### JREs compatible with Lunar Client
+
+- GraalVM Java 16: https://github.com/graalvm/graalvm-ce-builds/releases 
+
+Optimized JVM Arguments for GraalVM Java 16 JRE made by [he3als](https://github.com/he3als):
+```
+-Xms3G -Xmx3G -XX:+DisableAttachMechanism -XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=32M -XX:+EnableJVMCI -XX:+UseJVMCICompiler -XX:+EagerJVMCI -Djvmci.Compiler=graal
+```
+
+### Zulu x64 Java 16 JRE JVM Arguments  
 
 1. Using this argument can be useful if you are low on RAM since using this argument will force LC to use only 1.5 GB of RAM.  
 
@@ -83,12 +91,6 @@ Here is a list of arguments you can use for LC via LC Lite which I consider opti
 ```
 -XX:+UseG1GC -Xmx4G -Xms4G -Dsun.rmi.dgc.server.gcInterval=2147483646 -XX:+UnlockExperimentalVMOptions -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=32M
 ```
-
-4. GraalVM Arguments made by [he3als](https://github.com/he3als). <b>Recommended to be used with GraalVM.</b>
-```
--Xms3G -Xmx3G -XX:+DisableAttachMechanism -XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=32M -XX:+EnableJVMCI -XX:+UseJVMCICompiler -XX:+EagerJVMCI -Djvmci.Compiler=graal
-```
-
 # Extras
 ## Information on `wrapper.cmd`
 Via `wrapper.cmd` its possible to specify arguments to launch a specific version of Lunar Client.    
