@@ -16,6 +16,7 @@ Save=0
 CosmeticDelayFix=0
 Args=0
 JRE=0
+Assets=0
 EnvGet, vHomeDrive, HOMEDRIVE
 EnvGet, vHomePath, HOMEPATH
 UserProfile=% vHomeDrive vHomePath
@@ -33,7 +34,7 @@ IniRead, GUIArguments, Config.ini, LC, Arguments
 Gui, Main:Default
 Gui, -MaximizeBox -MinimizeBox
 Gui, Font, s10
-Gui, Add, Tab3, w490 h385 x6 Top +Background, Home|Options|Advanced|About
+Gui, Add, Tab3, w490 h385 x6 Top +Background, Home|Game|Launcher|About
 Gui, Font, s8
 Gui, Add, Picture, x8 y32, Resources/Banner.png
 IniRead, GUIArguments, Config.ini, LC, Arguments
@@ -81,12 +82,16 @@ Gui, Add, Text, x290 y41, JVM Arguments
 Gui, Add, Edit, x290 y58 w190 h275 vArgs, %GUIArguments%
 
 Gui, Tab, 3
-Gui, Add, Text,, This section is only intended for advanced users!
 Gui, Add, Text,, Java Executable
 IniRead, GUIJRE, Config.ini, Minecraft, JRE
-Gui, Add, Edit, h20 w400 vJRE, %GUIJRE%
+Gui, Add, Edit, h20 w400 vJRE +ReadOnly, %GUIJRE%
 Gui, Add, Text,, Specify your own Java Executable to use with Lunar Client.
-Gui, Add, Button, x425 y85 w25 h24 gJRESelect, ✎
+Gui, Add, Text,, Assets Folder
+IniRead, Assets, Config.ini, Minecraft, Assets
+Gui, Add, Edit, h20 w400 vAssets, %Assets%
+Gui, Add, Text,, Specify an Assets folder from which Lunar Client Lite should pull Minecraft assets from.
+Gui, Add, Button, x425 y57 w25 h24 gJRESelect, ✎
+Gui, Add, Button, x425 y132 w25 h24 gAssetsFolderSelect, ✎
 
 Gui, Tab, 4 
 Gui, Add, Link,, Lunar Client Lite made by <a href="https://github.com/Aetopia">Aetopia</a>.
@@ -110,6 +115,7 @@ Launch(){
 	IniRead, LCVer, Config.ini, LC, Version
 	IniRead, MCAssetIndex, Config.ini, Minecraft, AssetIndex
 	IniRead, TexturesToggle, Config.ini, LC, Cosmetics
+	IniRead, Assets, Config.ini, Minecraft, Assets
 	VersionCheck()
 	IniRead, PathVersion, Config.ini, LC, Version
 	IniRead, LaunchJRE, Config.ini, Minecraft, JRE
@@ -134,8 +140,8 @@ Launch(){
 		IniRead, Path, Config.ini, Paths, 1.17_Dir
 	}
 	Gui, Destroy
-	FileCopyDir, %A_AppData%\.minecraft\assets\indexes, %Path%\assets\indexes, 0
-	FileCopyDir, %A_AppData%\.minecraft\assets\objects, %Path%\assets\objects, 0
+	FileCopyDir, %Assets%\indexes, %Path%\assets\indexes, 0
+	FileCopyDir, %Assets%\objects, %Path%\assets\objects, 0
 	If (TexturesToggle=1){
 		Textures=%UserProfile%\.lunarclient\textures
 	}
@@ -153,6 +159,7 @@ ConfigCreate()
 	IniWrite, '1.8', Config.ini, Minecraft, AssetIndex
 	IniWrite, -Xms3G -Xmx3G -XX:+DisableAttachMechanism, Config.ini, LC, Arguments	
 	IniWrite, 1, Config.ini, LC, Cosmetics
+	IniWrite, %A_AppData%\.minecraft\assets, Config.ini, Minecraft, Assets
 	EnvGet, vHomeDrive, HOMEDRIVE
 	EnvGet, vHomePath, HOMEPATH
 	UserProfile=% vHomeDrive vHomePath
@@ -422,4 +429,15 @@ JRESelect(){
 	else
 		IniWrite, %SelectedJRE%, Config.ini, Minecraft, JRE
 		guicontrol,, JRE, %SelectedJRE%
+}
+
+AssetsFolderSelect(){
+	IniRead, Assets, Config.ini, Minecraft, Assets
+	FileSelectFolder, AssetsFolderSelected, *%Assets%, 3, Select an Assets folder
+	if AssetsFolderSelected =
+		return
+	else
+		guicontrol,, Assets, %AssetsFolderSelected%
+		IniWrite, %AssetsFolderSelected%, Config.ini, Minecraft, Assets
+	
 }
