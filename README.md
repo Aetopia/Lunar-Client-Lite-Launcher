@@ -84,6 +84,11 @@ Here is a list of arguments you can use for LC via LC Lite which I consider opti
 -XX:+UseG1GC -Xmx4G -Xms4G -Dsun.rmi.dgc.server.gcInterval=2147483646 -XX:+UnlockExperimentalVMOptions -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=32M
 ```
 
+4. GraalVM Arguments made by [he3als](https://github.com/he3als). <b>Recommended to be used with GraalVM.</b>
+```
+-Xms3G -Xmx3G -XX:+DisableAttachMechanism -XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=32M -XX:+EnableJVMCI -XX:+UseJVMCICompiler -XX:+EagerJVMCI -Djvmci.Compiler=graal
+```
+
 # Extras
 ## Information on `wrapper.cmd`
 Via `wrapper.cmd` its possible to specify arguments to launch a specific version of Lunar Client.    
