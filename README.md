@@ -44,7 +44,7 @@ Click on the `Launcher` Tab.
 
 Here, you can do the following:
  - Specify a custom Java Executable for Lunar Client to use. Click on the `✎` to specify a Java Executable.
- - Specify a new Assets folder for Lunar Client Lite to pull Minecraft assets from. Click on the `✎` to specify a new Assets folder.
+ - Specify a new `Assets` folder for Lunar Client Lite to pull Minecraft assets from. Click on the `✎` to specify a new `Assets` folder.
 
 
 6. Click on the `About` Tab to view information on Lunar Client Lite.
