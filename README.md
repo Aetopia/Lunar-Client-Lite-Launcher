@@ -68,7 +68,7 @@ If you click on the `Open` button, you can open up LC Lite's Logs Folder.
 
 - GraalVM Java 16: https://github.com/graalvm/graalvm-ce-builds/releases 
 
-Optimized JVM Arguments for GraalVM Java 16 JRE made by [he3als] and modified by Aetopia(https://github.com/he3als):
+Optimized JVM Arguments for GraalVM Java 16 JRE made by [he3als](https://github.com/he3als) and modified by Aetopia:
 ```
 -Xms3G -Xmx3G -Xmn1G -XX:+DisableAttachMechanism -XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=32M -XX:+EnableJVMCI -XX:+UseJVMCICompiler -XX:+EagerJVMCI -Djvmci.Compiler=graal
 ```
