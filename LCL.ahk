@@ -88,8 +88,8 @@ Gui, Add, Link,, GitHub Repository: <a href="https://github.com/Aetopia/Lunar-Cl
 Gui, Add, Link,, Couleur Tweaks Tips Discord: <a href="https://dsc.gg/ctt">https://dsc.gg/ctt</a>
 Gui, Add, Text, w463 0x10
 Gui, Add, Text,, Set Lunar Client Lite's settings to default and download a fresh set of resources.
-Gui, Add, Button, gReset, Refresh
-Gui, Add, Text,, Open Lunar Client Lite's Logs Folder.
+Gui, Add, Button, gReset, Reset
+Gui, Add, Text,, Open Logs Folder.
 Gui, Add, Button, gLogs, Open
 Gui, Show, w500 h400, Lunar Client Lite
 GuiControl, Focus, Launch
