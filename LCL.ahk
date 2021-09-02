@@ -89,7 +89,7 @@ Gui, Add, Link,, Couleur Tweaks Tips Discord: <a href="https://dsc.gg/ctt">https
 Gui, Add, Text, w463 0x10
 Gui, Add, Text,, Set Lunar Client Lite's settings to default and download a fresh set of resources.
 Gui, Add, Button, gReset, Reset
-Gui, Add, Text,, Open Logs Folder.
+Gui, Add, Text,, Open the Logs Folder.
 Gui, Add, Button, gLogs, Open
 Gui, Show, w500 h400, Lunar Client Lite
 GuiControl, Focus, Launch
@@ -427,6 +427,6 @@ AssetsFolderSelect(){
 		return
 	else
 		guicontrol,, Assets, %AssetsFolderSelected%
-		IniWrite, %AssetsFolderSelected%, Config.ini, Minecraft, Assets
+	IniWrite, %AssetsFolderSelected%, Config.ini, Minecraft, Assets
 	
 }
