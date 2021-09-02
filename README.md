@@ -75,10 +75,10 @@ Optimized JVM Arguments for GraalVM Java 16 JRE made by [he3als](https://github.
 
 ### Zulu x64 Java 16 JRE JVM Arguments  
 
-1. Using this argument can be useful if you are low on RAM since using this argument will force LC to use only 1.5 GB of RAM.  
+1. These arguments are useful if you are running low on RAM.
 
 ```
--Xmx700m  
+-Xms1G -Xmx1G -Xmn768m -XX:+DisableAttachMechanism 
 ```
 
 2. This is a slightly modified version of MC's default arguments for OpenJDK 16. From what I have seen using these arguments will make LC use 3 GB (5 and above will cause memory leaks) RAM and should provide optimal performance.  
