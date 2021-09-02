@@ -81,12 +81,12 @@ Optimized JVM Arguments for GraalVM Java 16 JRE originally made by [he3als](http
 -Xms1G -Xmx1G -Xmn768m -XX:+DisableAttachMechanism 
 ```
 
-2. This is a slightly modified version of MC's default arguments for OpenJDK 16. From what I have seen using these arguments will make LC use 3 GB (5 and above will cause memory leaks) RAM and should provide optimal performance.  
+2. This is a slightly modified version of MC's default arguments. From what I have seen using these arguments will make LC use 3 GB (5 and above will cause memory leaks) RAM and should provide optimal performance.  
 
  ```
 -Xms3G -Xmx3G -Xmn1G -XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=32M
 ```  
-3. This is a slightly modified version of MC's default arguments. Here MC clears out RAM more slowly as compared to any other arguments listed here. This should also provide optimal performance alongside the other arguments listed here.
+3. This is a slightly modified version of MC's default arguments. Here MC clears out the GC more slowly as compared to any other arguments listed here. This should also provide optimal performance alongside the other arguments listed here.
 
 ```
 -XX:+UseG1GC -Xmx3G -Xms3G -Xmn1G -Dsun.rmi.dgc.server.gcInterval=2147483646 -XX:+UnlockExperimentalVMOptions -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=32M
