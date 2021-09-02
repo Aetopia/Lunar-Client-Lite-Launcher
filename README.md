@@ -22,8 +22,7 @@ https://github.com/Aetopia/Lunar-Client-Lite-Launcher/releases
 
 ![image.png](https://i.imgur.com/MMvMBFz.png)
 
-4. Configuring LCL's Minecraft's Options.  
-Click on the `Game` Tab.    
+4. To configure LCL's Lunar Client options, click on the `Game` Tab.    
 
 ![image.png](https://i.imgur.com/chJyWil.png)  
 
@@ -37,8 +36,7 @@ Unchecking this option will entirely disable cosmetics. This change is client si
 
 Click on the `Save` button to save your settings.
 
-5. Configuring LCL's Options.
-Click on the `Launcher` Tab.  
+5. To configure LCL's options, click on the `Launcher` Tab.  
 
 ![image.png](https://i.imgur.com/2nWvbZe.png) 
 
@@ -49,13 +47,13 @@ Here, you can do the following:
 
 6. Click on the `About` Tab to view information on Lunar Client Lite.
  
-![image.png](https://i.imgur.com/3aJcYrE.png)
+![image.png](https://i.imgur.com/fCRcwdm.png)
 
-In the `About` Tab, you can click on the given links to view my GitHub Profile, to view LC Lite's GitHub Repository and an invite link to join Couleur Tweak Tips Discord Server.  
+In the `About` Tab, you can click on the given links to view my GitHub Profile, to view LC Lite's GitHub Repository and to join the Couleur Tweak Tips Discord Server.  
 
-If you click on the `Refresh` button, you can reset LC Lite's Settings and download a fresh set of resources from LC Lite's GitHub Repository.  
+If you click on the `Reset` button, you can reset LC Lite's Settings and download a fresh set of resources from LC Lite's GitHub Repository.  
 
-If you click on the `Open` button, you can open up LC Lite's Logs Folder.  
+If you click on the `Open` button, you can open up the Logs Folder.  
 
 7. Select any version, you would like to use via the `Version` Dropdown List.<br><br>![image.png](https://i.imgur.com/Eqq1qV2.png)
 
@@ -111,7 +109,7 @@ This will launch `LC 1.8` and will allocate 3 GB to LC and will have cosmetic te
 
 ## Logs
 LC Lite also generates a `logs` folder.  
-[![image.png](https://i.postimg.cc/5yJkDYfn/image.png)](https://postimg.cc/TLk9DPLD)  
+![image.png](https://i.postimg.cc/5yJkDYfn/image.png)    
 Here, you can view the latest log for the latest Lunar Client instance or view any log for a previous Lunar Client instance.
 
 ## Credits
