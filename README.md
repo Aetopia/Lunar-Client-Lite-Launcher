@@ -47,7 +47,7 @@ Here, you can do the following:
 
 6. Click on the `About` Tab to view information on Lunar Client Lite.
  
-![image.png](https://i.imgur.com/fCRcwdm.png)
+![image.png](https://i.imgur.com/Eb0cfMy.png)
 
 In the `About` Tab, you can click on the given links to view my GitHub Profile, to view LC Lite's GitHub Repository and to join the Couleur Tweak Tips Discord Server.  
 
