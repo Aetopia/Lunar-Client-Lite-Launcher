@@ -83,7 +83,7 @@ Gui, Add, Button, x425 y57 w25 h24 gJRESelect, ✎
 Gui, Add, Button, x425 y132 w25 h24 gAssetsFolderSelect, ✎
 
 Gui, Tab, 4 
-Gui, Add, Link,, Lunar Client Lite made by <a href="https://github.com/Aetopia">Aetopia</a>.
+Gui, Add, Link,, Lunar Client Lite made by <a href="https://github.com/Aetopia">Aetopia</a>
 Gui, Add, Link,, GitHub Repository: <a href="https://github.com/Aetopia/Lunar-Client-Lite-Launcher">https://github.com/Aetopia/Lunar-Client-Lite-Launcher</a>
 Gui, Add, Link,, Couleur Tweaks Tips Discord: <a href="https://dsc.gg/ctt">https://dsc.gg/ctt</a>
 Gui, Add, Text, w463 0x10
