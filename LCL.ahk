@@ -17,22 +17,22 @@ for n, param in A_Args  ; For each parameter:
 	else If (param=1.8){
 		LCVer=1.8
 		MCAssetIndex=1.8
-		IniRead, Path, Config.ini, Paths, 1.7_Dir
+		IniRead, Path, Config.ini, Paths, 1.8_Dir
 	}
 	else If (param=1.12){
 		LCVer=1.12
 		MCAssetIndex=1.12
-		IniRead, Path, Config.ini, Paths, 1.7_Dir
+		IniRead, Path, Config.ini, Paths, 1.12_Dir
 	}
 	else If (param=1.16){
 		LCVer=1.16
 		MCAssetIndex=1.16
-		IniRead, Path, Config.ini, Paths, 1.7_Dir
+		IniRead, Path, Config.ini, Paths, 1.16_Dir
 	}
 	else If (param=1.17){
 		LCVer=1.17
 		MCAssetIndex=1.17
-		IniRead, Path, Config.ini, Paths, 1.7_Dir
+		IniRead, Path, Config.ini, Paths, 1.17_Dir
 	}
 	else
 	{
