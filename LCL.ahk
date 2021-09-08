@@ -467,7 +467,7 @@ Save(){
 
 JRESelect(){
 	IniRead, SavedJRE, Config.ini, Minecraft, JRE
-	FileSelectFile, SelectedJRE, 1, %SavedJRE%, Select a new Java Executable., Java Executable (javaw.exe)
+	FileSelectFile, SelectedJRE, 1, %SavedJRE%, Select a new Java Executable, Java Executable (javaw.exe)
 	if SelectedJRE=
 		return
 	else
