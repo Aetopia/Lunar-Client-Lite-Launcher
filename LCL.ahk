@@ -9,30 +9,15 @@ ListLines Off
 Arguments := ["1.7", "1.8", "1.12", "1.16", "1.17"]
 for n, param in A_Args  ; For each parameter:
 {
-	If (param=1.7){
-		LCVer=1.7
-		MCAssetIndex=1.7.10
-		IniRead, Path, Config.ini, Paths, 1.7_Dir
-	}
-	else If (param=1.8){
-		LCVer=1.8
-		MCAssetIndex=1.8
-		IniRead, Path, Config.ini, Paths, 1.8_Dir
-	}
-	else If (param=1.12){
-		LCVer=1.12
-		MCAssetIndex=1.12
-		IniRead, Path, Config.ini, Paths, 1.12_Dir
-	}
-	else If (param=1.16){
-		LCVer=1.16
-		MCAssetIndex=1.16
-		IniRead, Path, Config.ini, Paths, 1.16_Dir
-	}
-	else If (param=1.17){
-		LCVer=1.17
-		MCAssetIndex=1.17
-		IniRead, Path, Config.ini, Paths, 1.17_Dir
+	If (param=1.7 or param=1.8 or param=1.12 or param=1.16 or param=1.17){
+		LCVer=%param%
+		If (param=1.7){
+			MCAssetIndex=1.7.10
+		}
+		else {
+			MCAssetIndex=%param%
+		}	
+		IniRead, Path, Config.ini, Paths, %param%_Dir
 	}
 	else
 	{
@@ -151,7 +136,7 @@ GuiControl, Focus, Launch
 GuiControl, Focus, +default
 
 ;Functions
-Launch(){	
+Launch() {	
 	EnvGet, vHomeDrive, HOMEDRIVE
 	EnvGet, vHomePath, HOMEPATH
 	UserProfile=% vHomeDrive vHomePath
@@ -163,33 +148,14 @@ Launch(){
 	VersionCheck()
 	IniRead, PathVersion, Config.ini, LC, Version
 	IniRead, LaunchJRE, Config.ini, Minecraft, JRE
-	If (PathVersion = 1.7) 
-	{
-		IniRead, Path, Config.ini, Paths, 1.7_Dir
-	}	
-	Else If (PathVersion = 1.8) 
-	{
-		IniRead, Path, Config.ini, Paths, 1.8_Dir
-	}
-	Else If (PathVersion = 1.12) 
-	{
-		IniRead, Path, Config.ini, Paths, 1.12_Dir
-	}
-	Else If (PathVersion = 1.16) 
-	{
-		IniRead, Path, Config.ini, Paths, 1.16_Dir
-	}
-	Else If (PathVersion = 1.17) 
-	{
-		IniRead, Path, Config.ini, Paths, 1.17_Dir
-	}
+	IniRead, Path, Config.ini, Paths, %PathVersion%_Dir
 	Gui, Destroy
 	FileCopyDir, %Assets%\indexes, %Path%\assets\indexes, 0
 	FileCopyDir, %Assets%\objects, %Path%\assets\objects, 0
-	If (TexturesToggle=1){
+	If (TexturesToggle=1) {
 		Textures=%UserProfile%\.lunarclient\textures
 	}
-	Try{
+	Try {
 		Run, %LaunchJRE% --add-modules jdk.naming.dns --add-exports jdk.naming.dns/com.sun.jndi.dns=java.naming -Djna.boot.library.path="%USERPROFILE%\.lunarclient\offline\%LCVer%\natives" --add-opens java.base/java.io=ALL-UNNAMED %LCArgs% -Djava.library.path="%USERPROFILE%\.lunarclient\offline\%LCVer%\natives" -cp "%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-assets-prod-1-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-assets-prod-2-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-assets-prod-3-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-libs.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-prod-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\OptiFine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\vpatcher-prod.jar" com.moonsworth.lunar.patcher.LunarMain --version %LCVer% --accessToken 0 --assetIndex %MCAssetIndex% --userProperties {} --gameDir "%Path%" --texturesDir "%Textures%" --width 854 --height 480
 	}
 	Catch Error
@@ -197,10 +163,9 @@ Launch(){
 	ExitApp
 }
 
-ConfigCreate()
-{
-	IniWrite, '1.8', Config.ini, LC, Version
-	IniWrite, '1.8', Config.ini, Minecraft, AssetIndex
+ConfigCreate() {
+	IniWrite, 1.8, Config.ini, LC, Version
+	IniWrite, 1.8, Config.ini, Minecraft, AssetIndex
 	IniWrite, -Xms3G -Xmx3G -XX:+DisableAttachMechanism, Config.ini, LC, Arguments	
 	IniWrite, 1, Config.ini, LC, Cosmetics
 	IniWrite, %A_AppData%\.minecraft\assets, Config.ini, Minecraft, Assets
@@ -212,52 +177,31 @@ ConfigCreate()
 	PathConfig()
 }
 
-Resources(x){
-	If (x=1){
+Resources(x) {
+	If (x=1) {
 		URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/Logo.png, Resources/Main.png
 	}
-	If (x=2){
+	If (x=2) {
 		URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/Banner.png, Resources/Banner.png
 	}
 }
 
-VersionWrite()
-{
+VersionWrite() {
 	GuiControlGet, UserVersion,, VersionList
-	If (UserVersion = 1.7) 
+	If (UserVersion = 1.7 or UserVersion = 1.8 or UserVersion = 1.12 or UserVersion = 1.16 or UserVersion = 1.17) 
 	{
-		IniWrite, '1.7', Config.ini, LC, Version
-		IniWrite, '1.7.10', Config.ini, Minecraft, AssetIndex
+		IniWrite, %UserVersion%, Config.ini, LC, Version
+		If (UserVersion = 1.7) {
+			IniWrite, 1.7.10, Config.ini, Minecraft, AssetIndex
+		}
+		Else {
+			IniWrite, %UserVersion%, Config.ini, Minecraft, AssetIndex
+		}
 	}	
-	Else If (UserVersion = 1.8) 
-	{
-		IniWrite, '1.8', Config.ini, LC, Version
-		IniWrite, '1.8', Config.ini, Minecraft, AssetIndex
-	}
-	Else If (UserVersion = 1.12) 
-	{
-		IniWrite, '1.12', Config.ini, LC, Version
-		IniWrite, '1.12', Config.ini, Minecraft, AssetIndex
-	}
-	Else If (UserVersion = 1.16) 
-	{
-		IniWrite, '1.16', Config.ini, LC, Version
-		IniWrite, '1.16', Config.ini, Minecraft, AssetIndex
-	}
-	Else If (UserVersion = 1.17) 
-	{
-		IniWrite, '1.17', Config.ini, LC, Version
-		IniWrite, '1.17', Config.ini, Minecraft, AssetIndex
-	}
-	Else If (UserVersion = 1.18) 
-	{
-		IniWrite, '1.18', Config.ini, LC, Version
-		IniWrite, '1.18', Config.ini, Minecraft, AssetIndex
-	}
 	return
 }
 
-VersionRead(){
+VersionRead() {
 	IniRead, GUIVersion, Config.ini, LC, Version
 	If (GUIVersion = 1.7) 
 	{
@@ -282,7 +226,7 @@ VersionRead(){
 	return
 }
 
-LCCheck(){
+LCCheck() {
 	MsgBox, 16, Error: Lunar Client Not Installed, No Lunar Client installation is present on this device.`nClick on OK to install the latest version of Lunar Client.
 	Gui, Install:New
 	Gui, -MaximizeBox -MinimizeBox
@@ -298,11 +242,13 @@ LCCheck(){
 	Gui, Destroy
 	IfNotExist, %A_Temp%\lunar.exe
 		LCNotExist()
-	FileExist, ("%Temp%\lunar.exe")
 	Run, %A_Temp%\lunar.exe
+	Process, Exist, lunar.exe
+	WinActivate, ahk_exe lunar.exe
 	ExitApp	
 }
-LCNotExist(){
+
+LCNotExist() {
 	Gui,Destroy
 	MsgBox, 16, Download Error, Lunar Client couldn't be downloaded.`nCheck your internet connection and try again.
 	ExitApp
@@ -310,7 +256,7 @@ LCNotExist(){
 
 
 
-VersionCheck(){
+VersionCheck() {
 	IniRead, CheckVersion, Config.ini, LC, Version
 	EnvGet, vHomeDrive, HOMEDRIVE
 	EnvGet, vHomePath, HOMEPATH
@@ -347,7 +293,7 @@ VersionCheck(){
 	}
 }
 
-FileCheck(n){
+FileCheck(n) {
 	EnvGet, vHomeDrive, HOMEDRIVE
 	EnvGet, vHomePath, HOMEPATH
 	UserProfile=% vHomeDrive vHomePath
@@ -356,19 +302,19 @@ FileCheck(n){
 	ExitApp
 }
 
-NotExist(x){
-	if (x=1){
+NotExist(x) {
+	if (x=1) {
 		MsgBox, 16, Download Failed, The dependency could not be downloaded.`nCheck your internet connection.
 		ExitApp
 		
 	}
 	
-	if (x=2){
+	if (x=2) {
 		MsgBox, 16, Download Failed, Failed to update dependencies.`nCheck your internet connection.
 	}
 }
 
-Logs(){
+Logs() {
 	GuiControl, Focus, Button
 	IfExist, %A_WorkingDir%\logs
 	Run, %A_WorkingDir%\logs,, Max
@@ -376,19 +322,19 @@ Logs(){
 		MsgBox, 16, Error, Lunar Client Lite couldn't find any Logs folder.
 }
 
-Reset(){
+Reset() {
 	FileDelete, Config.ini
 	FileRemoveDir, Resources, 1
 	Reload
 }
 
-MainGuiClose(){
+MainGuiClose() {
 	ExitApp
 }
 
 ;Options
 ;------------------------------------------------------------------------------------
-PathConfig(){
+PathConfig() {
 	IniWrite, %A_AppData%\.minecraft, Config.ini, Paths, 1.7_Dir
 	IniWrite, %A_AppData%\.minecraft, Config.ini, Paths, 1.8_Dir
 	IniWrite, %A_AppData%\.minecraft, Config.ini, Paths, 1.12_Dir
@@ -396,7 +342,7 @@ PathConfig(){
 	IniWrite, %A_AppData%\.minecraft, Config.ini, Paths, 1.17_Dir
 }
 
-17FolderSelect(){
+17FolderSelect() {
 	IniRead, 17_Path, Config.ini, Paths, 1.7_Dir
 	FileSelectFolder, 17PathSelected, *%17_Path%, 3, Select a Directory for Lunar Client 1.7
 	if 17PathSelected =
@@ -405,7 +351,7 @@ PathConfig(){
 		guicontrol,, 17Dir, %17PathSelected%
 }
 
-18FolderSelect(){
+18FolderSelect() {
 	IniRead, 18_Path, Config.ini, Paths, 1.8_Dir
 	FileSelectFolder, 18PathSelected, *%18_Path%, 3, Select a Directory for Lunar Client 1.8
 	if 18PathSelected =
@@ -415,7 +361,7 @@ PathConfig(){
 	
 }
 
-112FolderSelect(){
+112FolderSelect() {
 	IniRead, 112_Path, Config.ini, Paths, 1.12_Dir
 	FileSelectFolder, 112PathSelected, *%112_Path%, 3, Select a Directory for Lunar Client 1.12
 	if 112PathSelected =
@@ -425,7 +371,7 @@ PathConfig(){
 	
 }
 
-116FolderSelect(){
+116FolderSelect() {
 	IniRead, 116_Path, Config.ini, Paths, 1.16_Dir
 	FileSelectFolder, 116PathSelected, *%116_Path%, 3, Select a Directory for Lunar Client 1.16
 	if 116PathSelected =
@@ -435,7 +381,7 @@ PathConfig(){
 	
 }
 
-117FolderSelect(){
+117FolderSelect() {
 	IniRead, 117_Path, Config.ini, Paths, 1.17_Dir
 	FileSelectFolder, 117PathSelected, *%117_Path%, 3, Select a Directory for Lunar Client 1.17
 	if 117PathSelected =
@@ -445,7 +391,7 @@ PathConfig(){
 	
 }
 
-Save(){
+Save() {
 	GuiControlGet, JVMArgs,, Args
 	guicontrolget, 17Path,, 17Dir
 	guicontrolget, 18Path,, 18Dir
@@ -465,7 +411,7 @@ Save(){
 
 ;Experiments
 
-JRESelect(){
+JRESelect() {
 	IniRead, SavedJRE, Config.ini, Minecraft, JRE
 	FileSelectFile, SelectedJRE, 1, %SavedJRE%, Select a new Java Executable, Java Executable (javaw.exe)
 	if SelectedJRE=
@@ -475,7 +421,7 @@ JRESelect(){
 		guicontrol,, JRE, %SelectedJRE%
 }
 
-AssetsFolderSelect(){
+AssetsFolderSelect() {
 	IniRead, Assets, Config.ini, Minecraft, Assets
 	FileSelectFolder, AssetsFolderSelected, *%Assets%, 3, Select an Assets folder
 	if AssetsFolderSelected =
