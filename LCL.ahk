@@ -5,6 +5,61 @@ SetBatchLines -1
 ListLines Off
 #SingleInstance, Force
 #NoTrayIcon
+;Command Line Arguments
+Arguments := ["1.7", "1.8", "1.12", "1.16", "1.17"]
+for n, param in A_Args  ; For each parameter:
+{
+	If (param=1.7){
+		LCVer=1.7
+		MCAssetIndex=1.7.10
+		IniRead, Path, Config.ini, Paths, 1.7_Dir
+	}
+	else If (param=1.8){
+		LCVer=1.8
+		MCAssetIndex=1.8
+		IniRead, Path, Config.ini, Paths, 1.7_Dir
+	}
+	else If (param=1.12){
+		LCVer=1.12
+		MCAssetIndex=1.12
+		IniRead, Path, Config.ini, Paths, 1.7_Dir
+	}
+	else If (param=1.16){
+		LCVer=1.16
+		MCAssetIndex=1.16
+		IniRead, Path, Config.ini, Paths, 1.7_Dir
+	}
+	else If (param=1.17){
+		LCVer=1.17
+		MCAssetIndex=1.17
+		IniRead, Path, Config.ini, Paths, 1.7_Dir
+	}
+	else
+	{
+		MsgBox, 16, Invaild Argument, Lunar Client Lite doesn't recognize "%param%" as a vaild argument.
+		ExitApp
+	}	
+	EnvGet, vHomeDrive, HOMEDRIVE
+	EnvGet, vHomePath, HOMEPATH
+	UserProfile=% vHomeDrive vHomePath
+	IniRead, LCArgs, Config.ini, LC, Arguments
+	IniRead, TexturesToggle, Config.ini, LC, Cosmetics
+	IniRead, Assets, Config.ini, Minecraft, Assets
+	IniRead, LaunchJRE, Config.ini, Minecraft, JRE
+	FileCopyDir, %Assets%\indexes, %Path%\assets\indexes, 0
+	FileCopyDir, %Assets%\objects, %Path%\assets\objects, 0
+	If (TexturesToggle=1){
+		Textures=%UserProfile%\.lunarclient\textures
+	}
+	Try{
+		Run, %LaunchJRE% --add-modules jdk.naming.dns --add-exports jdk.naming.dns/com.sun.jndi.dns=java.naming -Djna.boot.library.path="%USERPROFILE%\.lunarclient\offline\%LCVer%\natives" --add-opens java.base/java.io=ALL-UNNAMED %LCArgs% -Djava.library.path="%USERPROFILE%\.lunarclient\offline\%LCVer%\natives" -cp "%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-assets-prod-1-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-assets-prod-2-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-assets-prod-3-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-libs.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-prod-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\OptiFine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\vpatcher-prod.jar" com.moonsworth.lunar.patcher.LunarMain --version %LCVer% --accessToken 0 --assetIndex %MCAssetIndex% --userProperties {} --gameDir "%Path%" --texturesDir "%Textures%" --width 854 --height 480
+		ExitApp
+	}
+	Catch Error {
+		MsgBox, 16, Launch Error, Lunar Client Lite couldn't launch Lunar Client.`nCheck your specified Java Executable.
+		ExitApp
+	}	
+}
 Progress=0
 EnvGet, vHomeDrive, HOMEDRIVE
 EnvGet, vHomePath, HOMEPATH
@@ -412,7 +467,7 @@ Save(){
 
 JRESelect(){
 	IniRead, SavedJRE, Config.ini, Minecraft, JRE
-	FileSelectFile, SelectedJRE, 1, %SavedJRE%, Select a new Jave Executable., Java Executable (javaw.exe)
+	FileSelectFile, SelectedJRE, 1, %SavedJRE%, Select a new Java Executable., Java Executable (javaw.exe)
 	if SelectedJRE=
 		return
 	else
@@ -428,5 +483,4 @@ AssetsFolderSelect(){
 	else
 		guicontrol,, Assets, %AssetsFolderSelected%
 	IniWrite, %AssetsFolderSelected%, Config.ini, Minecraft, Assets
-	
 }
