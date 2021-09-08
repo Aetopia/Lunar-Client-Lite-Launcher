@@ -113,6 +113,16 @@ LC Lite also generates a `logs` folder.
 ![image.png](https://i.postimg.cc/5yJkDYfn/image.png)    
 Here, you can view the latest log for the latest Lunar Client instance or view any log for a previous Lunar Client instance.
 
+## Command Line Arguments
+Launch any version of Lunar Client directly via the command line.   
+
+Usage:   
+```
+lcl <version>
+```
+
+`<version>` can be `1.7, 1.8, 1.12, 1.16, 1.17`.
+
 ## Credits
 <b>Original launch command made by [`lemons#2555`](https://github.com/respecting)  
 LCLI Settings Patcher made by [CTT](https://dsc.gg/CTT) (Original Optifine Patcher made by [`temp#0001`](https://github.com/temp2742))  
