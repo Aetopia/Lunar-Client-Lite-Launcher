@@ -29,15 +29,15 @@ for n, param in A_Args  ; For each parameter:
 	UserProfile=% vHomeDrive vHomePath
 	IniRead, LCArgs, Config.ini, LC, Arguments
 	IniRead, TexturesToggle, Config.ini, LC, Cosmetics
-	IniRead, Assets, Config.ini, Minecraft, Assets
+	IniRead, colors, Config.ini, Minecraft, colors
 	IniRead, LaunchJRE, Config.ini, Minecraft, JRE
-	FileCopyDir, %Assets%\indexes, %Path%\assets\indexes, 0
-	FileCopyDir, %Assets%\objects, %Path%\assets\objects, 0
+	FileCopyDir, %colors%\indexes, %Path%\colors\indexes, 0
+	FileCopyDir, %colors%\objects, %Path%\colors\objects, 0
 	If (TexturesToggle=1){
 		Textures=%UserProfile%\.lunarclient\textures
 	}
 	Try{
-		Run, %LaunchJRE% --add-modules jdk.naming.dns --add-exports jdk.naming.dns/com.sun.jndi.dns=java.naming -Djna.boot.library.path="%USERPROFILE%\.lunarclient\offline\%LCVer%\natives" --add-opens java.base/java.io=ALL-UNNAMED %LCArgs% -Djava.library.path="%USERPROFILE%\.lunarclient\offline\%LCVer%\natives" -cp "%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-assets-prod-1-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-assets-prod-2-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-assets-prod-3-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-libs.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-prod-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\OptiFine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\vpatcher-prod.jar" com.moonsworth.lunar.patcher.LunarMain --version %LCVer% --accessToken 0 --assetIndex %MCAssetIndex% --userProperties {} --gameDir "%Path%" --texturesDir "%Textures%" --width 854 --height 480
+		Run, %LaunchJRE% --add-modules jdk.naming.dns --add-exports jdk.naming.dns/com.sun.jndi.dns=java.naming -Djna.boot.library.path="%USERPROFILE%\.lunarclient\offline\%LCVer%\natives" --add-opens java.base/java.io=ALL-UNNAMED %LCArgs% -Djava.library.path="%USERPROFILE%\.lunarclient\offline\%LCVer%\natives" -cp "%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-colors-prod-1-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-colors-prod-2-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-colors-prod-3-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-libs.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-prod-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\OptiFine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\vpatcher-prod.jar" com.moonsworth.lunar.patcher.LunarMain --version %LCVer% --accessToken 0 --assetIndex %MCAssetIndex% --userProperties {} --gameDir "%Path%" --texturesDir "%Textures%" --width 854 --height 480
 		ExitApp
 	}
 	Catch Error {
@@ -54,22 +54,25 @@ IfNotExist, %UserProfile%\AppData\Local\Programs\lunarclient\Lunar Client.exe
 	LCCheck()
 IfNotExist, Config.ini
 	ConfigCreate()
-IfNotExist, %A_WorkingDir%\Resources
-	FileCreateDir, %A_WorkingDir%\Resources
-IfNotExist, Resources/Banner.png
-	Resources(2)
+Resources()
 ;GUI
 IniRead, GUIArguments, Config.ini, LC, Arguments
 Gui, Main:Default
-Gui, -MaximizeBox -MinimizeBox
-Gui, Font, s10
-Gui, Add, Tab3, w490 h385 x6 Top +Background, Home|Game|Launcher|About
+Gui, -MaximizeBox -MinimizeBox +0x40000 
+FileReadLine, Font, Resources/colors, 1
+FileReadLine, Background, Resources/colors, 2
+FileReadLine, Control, Resources/colors, 3
+Gui, Font, s10 
+Gui, Font, c%Font%
+Gui, Color, %Background%, %Control%
+Gui, Add, Tab3, w490 h385 x6 Top +Background +0x400 -TabStop, Home|Settings|Java|About
 Gui, Font, s8
 Gui, Add, Picture, x8 y32, Resources/Banner.png
 IniRead, GUIArguments, Config.ini, LC, Arguments
 Gui, Tab, 1
 Gui, Font, s10
-Gui, Add, Button, x195 y340 w110 h40 gLaunch +default vLaunch, Launch
+Gui, Add, Picture, x196 y340 w108 h38 gLaunch vLaunchButton, Resources/Launch.png
+Gui, Add, Button, x0 y0 w0 h0 gLaunch +default vLaunch
 Gui, Font, s8
 Gui, Add, DropDownList, x196 y315 w108 h40 vVersionList gVersionWrite c30 r5, 1.7|1.8|1.12|1.16|1.17
 VersionRead()
@@ -83,15 +86,15 @@ IniRead, 116_Path, Config.ini, Paths, 1.16_Dir
 IniRead, 117_Path, Config.ini, Paths, 1.17_Dir
 IniRead, CosmeticTextures, Config.ini, LC, Cosmetics
 Gui, Add, Text,, 1.7 Directory
-Gui, Add, Edit, w230 h20 v17Dir, %17_Path%
+Gui, Add, Edit, w400 h20 v17Dir, %17_Path%
 Gui, Add, Text,, 1.8 Directory
-Gui, Add, Edit, w230 h20 v18Dir, %18_Path%
+Gui, Add, Edit, w400 h20 v18Dir, %18_Path%
 Gui, Add, Text,, 1.12 Directory
-Gui, Add, Edit, w230 h20 v112Dir, %112_Path%
+Gui, Add, Edit, w400 h20 v112Dir, %112_Path%
 Gui, Add, Text,, 1.16 Directory
-Gui, Add, Edit, w230 h20 v116Dir, %116_Path%
+Gui, Add, Edit, w400 h20 v116Dir, %116_Path%
 Gui, Add, Text,, 1.17 Directory
-Gui, Add, Edit, w230 h20 v117Dir, %117_Path%
+Gui, Add, Edit, w400 h20 v117Dir, %117_Path%
 Gui, Add, Text,, Launch Options
 If (CosmeticTextures = 1){
 	Gui, Add, Checkbox, Checked vCosmeticDelayFix, Cosmetics
@@ -99,28 +102,26 @@ If (CosmeticTextures = 1){
 Else	 {
 	Gui, Add, Checkbox, vCosmeticDelayFix, Cosmetics
 }
-Gui, Add, Button, x255 y57 w25 h24 g17FolderSelect, ✎
-Gui, Add, Button, x255 y104 w25 h24 g18FolderSelect, ✎
-Gui, Add, Button, x255 y151 w25 h24 g112FolderSelect, ✎
-Gui, Add, Button, x255 y198 w25 h24 g116FolderSelect, ✎
-Gui, Add, Button, x255 y245 w25 h24 g117FolderSelect, ✎
+Gui, Add, Picture, x425 y58 w23 h22 g17FolderSelect v17Select, Resources/Edit.png
+Gui, Add, Picture, x425 y105 w23 h22 g18FolderSelect v18Select, Resources/Edit.png
+Gui, Add, Picture, x425 y152 w23 h22 g112FolderSelect v112Select, Resources/Edit.png
+Gui, Add, Picture, x425 y199 w23 h22 g116FolderSelect v116Select, Resources/Edit.png
+Gui, Add, Picture, x425 y246 w23 h22 g117FolderSelect v117Select, Resources/Edit.png
 Gui, Font, s10
-Gui, Add, Button, x381 y343 w100 h40 vSave gSave, Save
+Gui, Add, Picture, x380 y342 w98 h38 vSave gSave, Resources/Save_Settings.png
 Gui, Font, s8
-Gui, Add, Text, x290 y41, JVM Arguments
-Gui, Add, Edit, x290 y58 w190 h275 vArgs, %GUIArguments%
 
 Gui, Tab, 3
 Gui, Add, Text,, Java Executable
 IniRead, GUIJRE, Config.ini, Minecraft, JRE
-Gui, Add, Edit, h20 w400 vJRE +ReadOnly, %GUIJRE%
+Gui, Add, Edit, h20 w400 vJRE, %GUIJRE%
 Gui, Add, Text,, Specify your own Java Executable to use with Lunar Client.
-Gui, Add, Text,, Assets Folder
-IniRead, Assets, Config.ini, Minecraft, Assets
-Gui, Add, Edit, h20 w400 vAssets +ReadOnly, %Assets%
-Gui, Add, Text,, Specify an Assets folder from which Lunar Client Lite should pull Minecraft assets from.
-Gui, Add, Button, x425 y57 w25 h24 gJRESelect, ✎
-Gui, Add, Button, x425 y132 w25 h24 gAssetsFolderSelect, ✎
+Gui, Add, Text,, JVM Arguments
+Gui, Add, Edit, w400 h250 vArgs -0x1000 +0x4 +Wrap +0x100 +Multi, %GUIArguments%
+Gui, Add, Picture, x425 y58 w23 h22 gJRESelect vJRESelect, Resources/Edit.png
+Gui, Font, s10
+Gui, Add, Picture, x425 y134 w58 h34 gSaveJVMArguments vSaveJVMArguments, Resources/Save_JVMArguments.png
+Gui, Font, s8
 
 Gui, Tab, 4 
 Gui, Add, Link,, Lunar Client Lite made by <a href="https://github.com/Aetopia">Aetopia</a>
@@ -128,15 +129,20 @@ Gui, Add, Link,, GitHub Repository: <a href="https://github.com/Aetopia/Lunar-Cl
 Gui, Add, Link,, Couleur Tweaks Tips Discord: <a href="https://dsc.gg/ctt">https://dsc.gg/ctt</a>
 Gui, Add, Text, w463 0x10
 Gui, Add, Text,, Set Lunar Client Lite's settings to default and download a fresh set of resources.
-Gui, Add, Button, gReset, Reset
+Gui, Add, Button, w50 h25 gReset, Reset
 Gui, Add, Text,, Open the Logs Folder.
-Gui, Add, Button, gLogs, Open
+Gui, Add, Button, w50 h25 gLogs, Open
 Gui, Show, w500 h400, Lunar Client Lite
 GuiControl, Focus, Launch
 GuiControl, Focus, +default
 
 ;Functions
+
 Launch() {	
+	FileReadLine, Resources, Resources/colors.txt, 4
+	GuiControl,, LaunchButton, Resources/Launch_Clicked.png
+	Sleep, 75
+	GuiControl,, LaunchButton, Resources/Launch.png
 	EnvGet, vHomeDrive, HOMEDRIVE
 	EnvGet, vHomePath, HOMEPATH
 	UserProfile=% vHomeDrive vHomePath
@@ -144,23 +150,24 @@ Launch() {
 	IniRead, LCVer, Config.ini, LC, Version
 	IniRead, MCAssetIndex, Config.ini, Minecraft, AssetIndex
 	IniRead, TexturesToggle, Config.ini, LC, Cosmetics
-	IniRead, Assets, Config.ini, Minecraft, Assets
+	IniRead, colors, Config.ini, Minecraft, colors
 	VersionCheck()
 	IniRead, PathVersion, Config.ini, LC, Version
 	IniRead, LaunchJRE, Config.ini, Minecraft, JRE
 	IniRead, Path, Config.ini, Paths, %PathVersion%_Dir
 	Gui, Destroy
-	FileCopyDir, %Assets%\indexes, %Path%\assets\indexes, 0
-	FileCopyDir, %Assets%\objects, %Path%\assets\objects, 0
+	FileCopyDir, %colors%\indexes, %Path%\colors\indexes, 0
+	FileCopyDir, %colors%\objects, %Path%\colors\objects, 0
 	If (TexturesToggle=1) {
 		Textures=%UserProfile%\.lunarclient\textures
 	}
 	Try {
-		Run, %LaunchJRE% --add-modules jdk.naming.dns --add-exports jdk.naming.dns/com.sun.jndi.dns=java.naming -Djna.boot.library.path="%USERPROFILE%\.lunarclient\offline\%LCVer%\natives" --add-opens java.base/java.io=ALL-UNNAMED %LCArgs% -Djava.library.path="%USERPROFILE%\.lunarclient\offline\%LCVer%\natives" -cp "%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-assets-prod-1-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-assets-prod-2-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-assets-prod-3-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-libs.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-prod-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\OptiFine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\vpatcher-prod.jar" com.moonsworth.lunar.patcher.LunarMain --version %LCVer% --accessToken 0 --assetIndex %MCAssetIndex% --userProperties {} --gameDir "%Path%" --texturesDir "%Textures%" --width 854 --height 480
+		Run, %LaunchJRE% --add-modules jdk.naming.dns --add-exports jdk.naming.dns/com.sun.jndi.dns=java.naming -Djna.boot.library.path="%USERPROFILE%\.lunarclient\offline\%LCVer%\natives" --add-opens java.base/java.io=ALL-UNNAMED %LCArgs% -Djava.library.path="%USERPROFILE%\.lunarclient\offline\%LCVer%\natives" -cp "%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-colors-prod-1-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-colors-prod-2-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-colors-prod-3-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-libs.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-prod-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\OptiFine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\vpatcher-prod.jar" com.moonsworth.lunar.patcher.LunarMain --version %LCVer% --accessToken 0 --assetIndex %MCAssetIndex% --userProperties {} --gameDir "%Path%" --texturesDir "%Textures%" --width 854 --height 480
 	}
 	Catch Error
 		MsgBox, 16, Launch Error, Lunar Client Lite couldn't launch Lunar Client.`nCheck your specified Java Executable.
 	ExitApp
+	
 }
 
 ConfigCreate() {
@@ -168,7 +175,7 @@ ConfigCreate() {
 	IniWrite, 1.8, Config.ini, Minecraft, AssetIndex
 	IniWrite, -Xms3G -Xmx3G -XX:+DisableAttachMechanism, Config.ini, LC, Arguments	
 	IniWrite, 1, Config.ini, LC, Cosmetics
-	IniWrite, %A_AppData%\.minecraft\assets, Config.ini, Minecraft, Assets
+	IniWrite, %A_AppData%\.minecraft\colors, Config.ini, Minecraft, colors
 	EnvGet, vHomeDrive, HOMEDRIVE
 	EnvGet, vHomePath, HOMEPATH
 	UserProfile=% vHomeDrive vHomePath
@@ -177,13 +184,31 @@ ConfigCreate() {
 	PathConfig()
 }
 
-Resources(x) {
-	If (x=1) {
-		URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/Logo.png, Resources/Main.png
-	}
-	If (x=2) {
-		URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/Banner.png, Resources/Banner.png
-	}
+Resources() {
+	IfNotExist, %A_WorkingDir%\Resources
+		FileCreateDir, %A_WorkingDir%\Resources
+	IfNotExist, Resources\Banner.png
+		URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/Resources/Banner.png, Resources/Banner.png
+	IfNotExist, Resources\Edit.png
+		URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/Resources/Edit.png, Resources/Edit.png
+	IfNotExist, Resources\Edit_Clicked.png
+		URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/Resources/Edit_Clicked.png, Resources/Edit_Clicked.png
+	IfNotExist, Resources\Launch.png
+		URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/Resources/Launch.png, Resources/Launch.png
+	IfNotExist, Resources\Launch_Clicked.png
+		URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/Resources/Launch_Clicked.png, Resources/Launch_Clicked.png
+	IfNotExist, Resources\Save_JVMArguments.png
+		URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/Resources/Save_JVMArguments.png, Resources/Save_JVMArguments.png
+	IfNotExist, Resources\Save_JVMArguments_Clicked.png
+		URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/Resources/Save_JVMArguments_Clicked.png, Resources/Save_JVMArguments_Clicked.png
+	IfNotExist, Resources\Save_Settings.png
+		URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/Resources/Save_Settings.png, Resources/Save_Settings.png
+	IfNotExist, Resources\Save_Settings_Clicked.png
+		URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/Resources/Save_Settings_Clicked.png, Resources/Save_Settings_Clicked.png
+	IfNotExist, Resources\colors
+		URLDownloadToFile, https://raw.githubusercontent.com/Aetopia/Lunar-Client-Lite-Launcher/main/Resources/colors, Resources/colors
+	
+	
 }
 
 VersionWrite() {
@@ -229,7 +254,7 @@ VersionRead() {
 LCCheck() {
 	MsgBox, 16, Error: Lunar Client Not Installed, No Lunar Client installation is present on this device.`nClick on OK to install the latest version of Lunar Client.
 	Gui, Install:New
-	Gui, -MaximizeBox -MinimizeBox
+	Gui, -MaximizeBox -MinimizeBox +0x40000
 	Gui, Add, Progress, w200 h20 vProgress cGreen, 20
 	Gui, Add, Text,, Downloading Lunar Client...
 	Gui, Show,, Lunar Client Lite
@@ -343,6 +368,10 @@ PathConfig() {
 }
 
 17FolderSelect() {
+	FileReadLine, Resources, Resources/colors.txt, 4
+	GuiControl,, 17Select, Resources/Edit_Clicked.png
+	Sleep, 100
+	GuiControl,, 17Select, Resources/Edit.png
 	IniRead, 17_Path, Config.ini, Paths, 1.7_Dir
 	FileSelectFolder, 17PathSelected, *%17_Path%, 3, Select a Directory for Lunar Client 1.7
 	if 17PathSelected =
@@ -352,6 +381,10 @@ PathConfig() {
 }
 
 18FolderSelect() {
+	FileReadLine, Resources, Resources/colors.txt, 4
+	GuiControl,, 18Select, Resources/Edit_Clicked.png
+	Sleep, 100
+	GuiControl,, 18Select, Resources/Edit.png
 	IniRead, 18_Path, Config.ini, Paths, 1.8_Dir
 	FileSelectFolder, 18PathSelected, *%18_Path%, 3, Select a Directory for Lunar Client 1.8
 	if 18PathSelected =
@@ -362,6 +395,10 @@ PathConfig() {
 }
 
 112FolderSelect() {
+	FileReadLine, Resources, Resources/colors.txt, 4
+	GuiControl,, 112Select, Resources/Edit_Clicked.png
+	Sleep, 100
+	GuiControl,, 112Select, Resources/Edit.png
 	IniRead, 112_Path, Config.ini, Paths, 1.12_Dir
 	FileSelectFolder, 112PathSelected, *%112_Path%, 3, Select a Directory for Lunar Client 1.12
 	if 112PathSelected =
@@ -372,7 +409,10 @@ PathConfig() {
 }
 
 116FolderSelect() {
-	IniRead, 116_Path, Config.ini, Paths, 1.16_Dir
+	FileReadLine, Resources, Resources/colors.txt, 4
+	GuiControl,, 116Select, Resources/Edit_Clicked.png
+	Sleep, 100
+	GuiControl,, 116Select, Resources/Edit.png
 	FileSelectFolder, 116PathSelected, *%116_Path%, 3, Select a Directory for Lunar Client 1.16
 	if 116PathSelected =
 		return
@@ -382,6 +422,10 @@ PathConfig() {
 }
 
 117FolderSelect() {
+	FileReadLine, Resources, Resources/colors.txt, 4
+	GuiControl,, 117Select, Resources/Edit_Clicked.png
+	Sleep, 100
+	GuiControl,, 117Select, Resources/Edit.png
 	IniRead, 117_Path, Config.ini, Paths, 1.17_Dir
 	FileSelectFolder, 117PathSelected, *%117_Path%, 3, Select a Directory for Lunar Client 1.17
 	if 117PathSelected =
@@ -392,7 +436,9 @@ PathConfig() {
 }
 
 Save() {
-	GuiControlGet, JVMArgs,, Args
+	GuiControl,, Save, Resources/Save_Settings_Clicked.png
+	Sleep, 100
+	GuiControl,, Save, Resources/Save_Settings.png
 	guicontrolget, 17Path,, 17Dir
 	guicontrolget, 18Path,, 18Dir
 	guicontrolget, 112Path,, 112Dir
@@ -405,28 +451,29 @@ Save() {
 	IniWrite, %116Path%, Config.ini, Paths, 1.16_Dir
 	IniWrite, %117Path%, Config.ini, Paths, 1.17_Dir
 	IniWrite, %TextureLoad%, Config.ini, LC, Cosmetics
-	IniWrite, %JVMArgs%, Config.ini, LC, Arguments
 	MsgBox, 64, Settings Saved, Your Settings are now saved., 1
+}
+
+SaveJVMArguments() {
+	GuiControl,, SaveJVMArguments, Resources/Save_JVMArguments_Clicked.png
+	Sleep, 100
+	GuiControl,, SaveJVMArguments, Resources/Save_JVMArguments.png
+	GuiControlGet, JVMArgs,, Args
+	IniWrite, %JVMArgs%, Config.ini, LC, Arguments
+	MsgBox, 64, JVM Arguments Saved, The entered JVM arguments are now saved., 1
 }
 
 ;Experiments
 
 JRESelect() {
+	GuiControl,, JRESelect, Resources/Edit_Clicked.png
+	Sleep, 100
+	GuiControl,, JRESelect, Resources/Edit.png
 	IniRead, SavedJRE, Config.ini, Minecraft, JRE
 	FileSelectFile, SelectedJRE, 1, %SavedJRE%, Select a new Java Executable, Java Executable (javaw.exe)
 	if SelectedJRE=
 		return
 	else
 		IniWrite, %SelectedJRE%, Config.ini, Minecraft, JRE
-		guicontrol,, JRE, %SelectedJRE%
-}
-
-AssetsFolderSelect() {
-	IniRead, Assets, Config.ini, Minecraft, Assets
-	FileSelectFolder, AssetsFolderSelected, *%Assets%, 3, Select an Assets folder
-	if AssetsFolderSelected =
-		return
-	else
-		guicontrol,, Assets, %AssetsFolderSelected%
-	IniWrite, %AssetsFolderSelected%, Config.ini, Minecraft, Assets
+	guicontrol,, JRE, %SelectedJRE%
 }
