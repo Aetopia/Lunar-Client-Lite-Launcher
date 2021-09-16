@@ -29,21 +29,20 @@ for n, param in A_Args  ; For each parameter:
 	UserProfile=% vHomeDrive vHomePath
 	IniRead, LCArgs, Config.ini, LC, Arguments
 	IniRead, TexturesToggle, Config.ini, LC, Cosmetics
-	IniRead, colors, Config.ini, Minecraft, colors
+	IniRead, Assets, Config.ini, Minecraft, Assets
 	IniRead, LaunchJRE, Config.ini, Minecraft, JRE
-	FileCopyDir, %colors%\indexes, %Path%\colors\indexes, 0
-	FileCopyDir, %colors%\objects, %Path%\colors\objects, 0
-	If (TexturesToggle=1){
+	FileCopyDir, %Assets%\indexes, %Path%\assets\indexes, 0
+	FileCopyDir, %Assets%\objects, %Path%\assets\objects, 0
+	If (TexturesToggle=1) {
 		Textures=%UserProfile%\.lunarclient\textures
 	}
-	Try{
-		Run, %LaunchJRE% --add-modules jdk.naming.dns --add-exports jdk.naming.dns/com.sun.jndi.dns=java.naming -Djna.boot.library.path="%USERPROFILE%\.lunarclient\offline\%LCVer%\natives" --add-opens java.base/java.io=ALL-UNNAMED %LCArgs% -Djava.library.path="%USERPROFILE%\.lunarclient\offline\%LCVer%\natives" -cp "%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-colors-prod-1-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-colors-prod-2-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-colors-prod-3-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-libs.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-prod-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\OptiFine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\vpatcher-prod.jar" com.moonsworth.lunar.patcher.LunarMain --version %LCVer% --accessToken 0 --assetIndex %MCAssetIndex% --userProperties {} --gameDir "%Path%" --texturesDir "%Textures%" --width 854 --height 480
+	Try {
+		Run, %LaunchJRE% --add-modules jdk.naming.dns --add-exports jdk.naming.dns/com.sun.jndi.dns=java.naming -Djna.boot.library.path="%USERPROFILE%\.lunarclient\offline\%LCVer%\natives" --add-opens java.base/java.io=ALL-UNNAMED %LCArgs% -Djava.library.path="%USERPROFILE%\.lunarclient\offline\%LCVer%\natives" -cp "%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-assets-prod-1-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-assets-prod-2-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-assets-prod-3-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-libs.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-prod-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\OptiFine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\vpatcher-prod.jar" com.moonsworth.lunar.patcher.LunarMain --version %LCVer% --accessToken 0 --assetIndex %MCAssetIndex% --userProperties {} --gameDir "%Path%" --texturesDir "%Textures%" --width 854 --height 480
 		ExitApp
 	}
-	Catch Error {
+	Catch Error
 		MsgBox, 16, Launch Error, Lunar Client Lite couldn't launch Lunar Client.`nCheck your specified Java Executable.
 		ExitApp
-	}	
 }
 Progress=0
 EnvGet, vHomeDrive, HOMEDRIVE
@@ -118,7 +117,7 @@ Gui, Add, Edit, h20 w400 vJRE, %GUIJRE%
 Gui, Add, Text,, Specify your own Java Executable to use with Lunar Client.
 Gui, Add, Text,, JVM Arguments
 Gui, Add, Edit, w400 h250 vArgs -0x1000 +0x4 +Wrap +0x100 +Multi, %GUIArguments%
-Gui, Add, Picture, x425 y58 w23 h22 gJRESelect vJRESelect, Resources/Edit.png
+Gui, Add, Picture, x425 y58 w23 h22 gJRESelect vJRESelect +ReadOnly, Resources/Edit.png
 Gui, Font, s10
 Gui, Add, Picture, x425 y134 w58 h34 gSaveJVMArguments vSaveJVMArguments, Resources/Save_JVMArguments.png
 Gui, Font, s8
@@ -138,8 +137,7 @@ GuiControl, Focus, +default
 
 ;Functions
 
-Launch() {	
-	FileReadLine, Resources, Resources/colors.txt, 4
+Launch() {
 	GuiControl,, LaunchButton, Resources/Launch_Clicked.png
 	Sleep, 75
 	GuiControl,, LaunchButton, Resources/Launch.png
@@ -150,19 +148,19 @@ Launch() {
 	IniRead, LCVer, Config.ini, LC, Version
 	IniRead, MCAssetIndex, Config.ini, Minecraft, AssetIndex
 	IniRead, TexturesToggle, Config.ini, LC, Cosmetics
-	IniRead, colors, Config.ini, Minecraft, colors
+	IniRead, Assets, Config.ini, Minecraft, Assets
 	VersionCheck()
 	IniRead, PathVersion, Config.ini, LC, Version
 	IniRead, LaunchJRE, Config.ini, Minecraft, JRE
 	IniRead, Path, Config.ini, Paths, %PathVersion%_Dir
 	Gui, Destroy
-	FileCopyDir, %colors%\indexes, %Path%\colors\indexes, 0
-	FileCopyDir, %colors%\objects, %Path%\colors\objects, 0
+	FileCopyDir, %Assets%\indexes, %Path%\assets\indexes, 0
+	FileCopyDir, %Assets%\objects, %Path%\assets\objects, 0
 	If (TexturesToggle=1) {
 		Textures=%UserProfile%\.lunarclient\textures
 	}
 	Try {
-		Run, %LaunchJRE% --add-modules jdk.naming.dns --add-exports jdk.naming.dns/com.sun.jndi.dns=java.naming -Djna.boot.library.path="%USERPROFILE%\.lunarclient\offline\%LCVer%\natives" --add-opens java.base/java.io=ALL-UNNAMED %LCArgs% -Djava.library.path="%USERPROFILE%\.lunarclient\offline\%LCVer%\natives" -cp "%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-colors-prod-1-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-colors-prod-2-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-colors-prod-3-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-libs.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-prod-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\OptiFine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\vpatcher-prod.jar" com.moonsworth.lunar.patcher.LunarMain --version %LCVer% --accessToken 0 --assetIndex %MCAssetIndex% --userProperties {} --gameDir "%Path%" --texturesDir "%Textures%" --width 854 --height 480
+		Run, %LaunchJRE% --add-modules jdk.naming.dns --add-exports jdk.naming.dns/com.sun.jndi.dns=java.naming -Djna.boot.library.path="%USERPROFILE%\.lunarclient\offline\%LCVer%\natives" --add-opens java.base/java.io=ALL-UNNAMED %LCArgs% -Djava.library.path="%USERPROFILE%\.lunarclient\offline\%LCVer%\natives" -cp "%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-assets-prod-1-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-assets-prod-2-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-assets-prod-3-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-libs.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-prod-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\OptiFine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\vpatcher-prod.jar" com.moonsworth.lunar.patcher.LunarMain --version %LCVer% --accessToken 0 --assetIndex %MCAssetIndex% --userProperties {} --gameDir "%Path%" --texturesDir "%Textures%" --width 854 --height 480
 	}
 	Catch Error
 		MsgBox, 16, Launch Error, Lunar Client Lite couldn't launch Lunar Client.`nCheck your specified Java Executable.
@@ -175,7 +173,7 @@ ConfigCreate() {
 	IniWrite, 1.8, Config.ini, Minecraft, AssetIndex
 	IniWrite, -Xms3G -Xmx3G -XX:+DisableAttachMechanism, Config.ini, LC, Arguments	
 	IniWrite, 1, Config.ini, LC, Cosmetics
-	IniWrite, %A_AppData%\.minecraft\colors, Config.ini, Minecraft, colors
+	IniWrite, %A_AppData%\.minecraft\assets, Config.ini, Minecraft, Assets
 	EnvGet, vHomeDrive, HOMEDRIVE
 	EnvGet, vHomePath, HOMEPATH
 	UserProfile=% vHomeDrive vHomePath
@@ -368,7 +366,7 @@ PathConfig() {
 }
 
 17FolderSelect() {
-	FileReadLine, Resources, Resources/colors.txt, 4
+	
 	GuiControl,, 17Select, Resources/Edit_Clicked.png
 	Sleep, 100
 	GuiControl,, 17Select, Resources/Edit.png
@@ -381,7 +379,7 @@ PathConfig() {
 }
 
 18FolderSelect() {
-	FileReadLine, Resources, Resources/colors.txt, 4
+	
 	GuiControl,, 18Select, Resources/Edit_Clicked.png
 	Sleep, 100
 	GuiControl,, 18Select, Resources/Edit.png
@@ -395,7 +393,7 @@ PathConfig() {
 }
 
 112FolderSelect() {
-	FileReadLine, Resources, Resources/colors.txt, 4
+	
 	GuiControl,, 112Select, Resources/Edit_Clicked.png
 	Sleep, 100
 	GuiControl,, 112Select, Resources/Edit.png
@@ -409,7 +407,7 @@ PathConfig() {
 }
 
 116FolderSelect() {
-	FileReadLine, Resources, Resources/colors.txt, 4
+	
 	GuiControl,, 116Select, Resources/Edit_Clicked.png
 	Sleep, 100
 	GuiControl,, 116Select, Resources/Edit.png
@@ -422,7 +420,7 @@ PathConfig() {
 }
 
 117FolderSelect() {
-	FileReadLine, Resources, Resources/colors.txt, 4
+	
 	GuiControl,, 117Select, Resources/Edit_Clicked.png
 	Sleep, 100
 	GuiControl,, 117Select, Resources/Edit.png
