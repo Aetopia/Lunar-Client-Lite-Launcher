@@ -113,11 +113,11 @@ Gui, Font, s8
 Gui, Tab, 3
 Gui, Add, Text,, Java Executable
 IniRead, GUIJRE, Config.ini, Minecraft, JRE
-Gui, Add, Edit, h20 w400 vJRE, %GUIJRE%
+Gui, Add, Edit, h20 w400 vJRE +ReadOnly, %GUIJRE%
 Gui, Add, Text,, Specify your own Java Executable to use with Lunar Client.
 Gui, Add, Text,, JVM Arguments
 Gui, Add, Edit, w400 h250 vArgs -0x1000 +0x4 +Wrap +0x100 +Multi, %GUIArguments%
-Gui, Add, Picture, x425 y58 w23 h22 gJRESelect vJRESelect +ReadOnly, Resources/Edit.png
+Gui, Add, Picture, x425 y58 w23 h22 gJRESelect vJRESelect, Resources/Edit.png
 Gui, Font, s10
 Gui, Add, Picture, x425 y134 w58 h34 gSaveJVMArguments vSaveJVMArguments, Resources/Save_JVMArguments.png
 Gui, Font, s8
