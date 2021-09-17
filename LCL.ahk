@@ -57,7 +57,7 @@ Resources()
 ;GUI
 IniRead, GUIArguments, Config.ini, LC, Arguments
 Gui, Main:Default
-Gui, -MaximizeBox -MinimizeBox +0x40000 
+Gui, -MaximizeBox -MinimizeBox -Resize
 FileReadLine, Font, Resources/colors, 1
 FileReadLine, Background, Resources/colors, 2
 FileReadLine, Control, Resources/colors, 3
