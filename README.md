@@ -51,7 +51,7 @@ lcl <version>
 `<version>` can be `1.7, 1.8, 1.12, 1.16, 1.17`.
 
 ## Credits
-<b>Original launch command made by [`lemons#2555`](https://github.com/respecting)  
+<b>Original launch command made by [`lem6ns`](https://github.com/lem6ns)  
 LCLI Settings Patcher made by [CTT](https://dsc.gg/CTT) (Original Optifine Patcher made by [`temp#0001`](https://github.com/temp2742))  
 This Project is based off [LCLI](https://github.com/couleur-tweak-tips/utils/blob/main/LCLI.bat) made by [Couleur](https://github.com/couleurm)</b>
 
