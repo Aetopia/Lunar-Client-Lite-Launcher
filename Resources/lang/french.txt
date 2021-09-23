@@ -1,0 +1,19 @@
+﻿Lancer
+Paramètres
+À propos
+Java
+Chemin
+Paramètres de lancement
+Cosmétiques
+Executable Java
+Donnez votre éxécutable JAVA à utiliser avec Lunar Client.
+Arguments JVM
+Lunar Client Lite fait par
+Aetopia
+GitHub Repository
+Remettre Lunar Client Lite à zéro
+Remettre à zero
+Ouvrir le dossier des logs
+Ouvrir
+Langue
+Traduit par Couleur#9249

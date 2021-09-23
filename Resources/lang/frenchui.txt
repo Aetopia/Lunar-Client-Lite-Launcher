@@ -1,0 +1,20 @@
+Argument invalide
+L'argument
+n'est pas valide pour LCL.
+Lunar Client Lite n'a pas réussi à lancer Lunar Client
+Vérifiez votre éxecutable Java
+Erreur: Lunar Client n'est pas installé
+Aucune installation de Lunar Client n'a été trouvée sur cet appareil
+Cliquez OK pour installer la dernière version de Lunar Client
+Téléchargement de Lunar Client...
+Erreur de téléchargement
+Lunar Client n'a pas réussi à être téléchargé
+Vérifiez votre connection internet et ré-essayez
+Erreur: version non trouvée
+n'a pas été trouvée sur cet appareil!
+Installez LC
+Indiquez un chemin pour Lunar Client
+Paramètres sauvegardés
+Vos paramètres ont bien été sauvegardés
+Indiquez un nouvel éxécutable Java
+Éxécutable Java

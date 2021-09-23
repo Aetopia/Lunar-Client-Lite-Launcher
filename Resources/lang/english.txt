@@ -1,0 +1,18 @@
+﻿Home
+Settings
+About
+Java
+Directory
+Launch Options
+Cosmetics
+Java Executable
+Specify your own Java Executable to use with Lunar Client.
+JVM Arguments
+Lunar Client Lite made by
+Aetopia
+GitHub Repository
+Reset Lunar Client Lite.
+Reset
+Open the Logs Folder.
+Open
+Language
