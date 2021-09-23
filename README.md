@@ -41,14 +41,19 @@ LC Lite also generates a `logs` folder.
 Here, you can view the latest log for the latest Lunar Client instance or view any log for a previous Lunar Client instance.
 
 ## Command Line Arguments
-Launch any version of Lunar Client directly via the command line.   
+Launch any version of Lunar Client and join any server directly via the command line.   
 
 Usage:   
 ```
-lcl <version>
+lcl <Version> <Server IP>
 ```
 
-`<version>` can be `1.7, 1.8, 1.12, 1.16, 1.17`.
+`<Version>` can be `1.7, 1.8, 1.12, 1.16, 1.17`.
+
+Example:
+```
+lcl 1.8 hypixel.net
+```
 
 ## Credits
 <b>Original launch command made by [lem6ns](https://github.com/lem6ns)  
