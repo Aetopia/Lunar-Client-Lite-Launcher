@@ -12,9 +12,9 @@ LCLI Settings Patcher made by [CTT](https://dsc.gg/CTT) (Original Optifine Patch
 This Project is based off [LCLI](https://github.com/couleur-tweak-tips/utils/blob/main/LCLI.bat) made by [Couleur](https://github.com/couleurm)</b>
 
 ### Translators
-Arabic: amine#0001 & rezic#6249
-French: [Couleur#9249](https://github.com/couleurm)
-Georgian: zazk#0904
+Arabic: amine#0001 & rezic#6249   
+French: [Couleur#9249](https://github.com/couleurm)   
+Georgian: zazk#0904  
 
 ## Requirements
 Before you begin using LC Lite, make sure that you have Lunar Client installed and also ensure you have your favourite LC versions installed.  
