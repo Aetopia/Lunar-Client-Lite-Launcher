@@ -15,7 +15,8 @@ Before you begin using LC Lite, make sure that you have Lunar Client installed a
 ## How to use & setup?
 <b>Make sure to unblock `LCL.exe` in your antivirus protection settings incase if it gets false flagged.</b>
 
-<b>Check out the Lunar Client Lite Wiki to see how to setup LCL: https://github.com/Aetopia/Lunar-Client-Lite-Launcher/wiki</b>  
+<b>Check out the Lunar Client Lite Wiki to see how to setup LCL:   
+  https://github.com/Aetopia/Lunar-Client-Lite-Launcher/wiki</b>  
 
 # Extras
 ## Information on `wrapper.cmd`
