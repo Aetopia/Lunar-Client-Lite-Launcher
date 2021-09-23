@@ -6,6 +6,15 @@ Lunar Client Lite is a simple lightweight and unlocked launcher for Lunar Client
 3. Multi Launch Directories Support
 4. User Defined Java Executable Support
 5. A Simple-to-Use Interface  
+## Credits
+<b>Original launch command made by [lem6ns](https://github.com/lem6ns)  
+LCLI Settings Patcher made by [CTT](https://dsc.gg/CTT) (Original Optifine Patcher made by [`temp#0001`](https://github.com/temp2742))  
+This Project is based off [LCLI](https://github.com/couleur-tweak-tips/utils/blob/main/LCLI.bat) made by [Couleur](https://github.com/couleurm)</b>
+
+### Translators
+Arabic: amine#0001 & rezic#6249
+French: [Couleur#9249](https://github.com/couleurm)
+Georgian: zazk#0904
 
 ## Requirements
 Before you begin using LC Lite, make sure that you have Lunar Client installed and also ensure you have your favourite LC versions installed.  
@@ -55,9 +64,4 @@ Example:
 ```
 lcl 1.8 hypixel.net
 ```
-
-## Credits
-<b>Original launch command made by [lem6ns](https://github.com/lem6ns)  
-LCLI Settings Patcher made by [CTT](https://dsc.gg/CTT) (Original Optifine Patcher made by [`temp#0001`](https://github.com/temp2742))  
-This Project is based off [LCLI](https://github.com/couleur-tweak-tips/utils/blob/main/LCLI.bat) made by [Couleur](https://github.com/couleurm)</b>
 
