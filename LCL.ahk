@@ -5,10 +5,21 @@ SetBatchLines -1
 ListLines Off
 #SingleInstance, Force
 #NoTrayIcon
+EnvGet, vHomeDrive, HOMEDRIVE
+EnvGet, vHomePath, HOMEPATH
+UserProfile=% vHomeDrive vHomePath
+;File Existence Checks
+IfNotExist, %UserProfile%\AppData\Local\Programs\lunarclient\Lunar Client.exe
+	LCCheck()
+IfNotExist, Config.ini
+	ConfigCreate()
+Resources()
 ;Command Line Arguments
 Arguments := ["1.7", "1.8", "1.12", "1.16", "1.17"]
 for n, param in A_Args  ; For each parameter:
 {
+	LauncherMSA()
+	IniRead, LauncherVer, Config.ini, LC, Launcher_Version
 	If (param=1.7 or param=1.8 or param=1.12 or param=1.16 or param=1.17){
 		LCVer=%param%
 		If (param=1.7){
@@ -37,23 +48,13 @@ for n, param in A_Args  ; For each parameter:
 		Textures=%UserProfile%\.lunarclient\textures
 	}
 	Try {
-		Run, %LaunchJRE% --add-modules jdk.naming.dns --add-exports jdk.naming.dns/com.sun.jndi.dns=java.naming -Djna.boot.library.path="%USERPROFILE%\.lunarclient\offline\%LCVer%\natives" --add-opens java.base/java.io=ALL-UNNAMED %LCArgs% -Djava.library.path="%USERPROFILE%\.lunarclient\offline\%LCVer%\natives" -cp "%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-assets-prod-1-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-assets-prod-2-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-assets-prod-3-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-libs.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-prod-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\OptiFine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\vpatcher-prod.jar" com.moonsworth.lunar.patcher.LunarMain --version %LCVer% --accessToken 0 --assetIndex %MCAssetIndex% --userProperties {} --gameDir "%Path%" --texturesDir "%Textures%" --width 854 --height 480
-		ExitApp
+		Run, %LaunchJRE% --add-modules jdk.naming.dns --add-exports jdk.naming.dns/com.sun.jndi.dns=java.naming -Djna.boot.library.path="%USERPROFILE%\.lunarclient\offline\%LCVer%\natives" --add-opens java.base/java.io=ALL-UNNAMED %LCArgs% -Djava.library.path="%USERPROFILE%\.lunarclient\offline\%LCVer%\natives" -cp "%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-assets-prod-1-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-assets-prod-2-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-assets-prod-3-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-libs.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-prod-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\OptiFine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\vpatcher-prod.jar" com.moonsworth.lunar.patcher.LunarMain --version %LCVer% --accessToken 0 --assetIndex %MCAssetIndex% --userProperties {} --gameDir "%Path%" --texturesDir "%Textures%" --launcherVersion %LauncherVer% --width 854 --height 480,, JavaProcess
 	}
 	Catch Error
 		MsgBox, 16, Launch Error, Lunar Client Lite couldn't launch Lunar Client.`nCheck your specified Java Executable.
-		ExitApp
+	ExitApp
 }
 Progress=0
-EnvGet, vHomeDrive, HOMEDRIVE
-EnvGet, vHomePath, HOMEPATH
-UserProfile=% vHomeDrive vHomePath
-;File Existence Checks
-IfNotExist, %UserProfile%\AppData\Local\Programs\lunarclient\Lunar Client.exe
-	LCCheck()
-IfNotExist, Config.ini
-	ConfigCreate()
-Resources()
 ;GUI
 IniRead, GUIArguments, Config.ini, LC, Arguments
 Gui, Main:Default
@@ -141,6 +142,8 @@ Launch() {
 	GuiControl,, LaunchButton, Resources/Launch_Clicked.png
 	Sleep, 75
 	GuiControl,, LaunchButton, Resources/Launch.png
+	LauncherMSA()
+	IniRead, LauncherVer, Config.ini, LC, Launcher_Version
 	EnvGet, vHomeDrive, HOMEDRIVE
 	EnvGet, vHomePath, HOMEPATH
 	UserProfile=% vHomeDrive vHomePath
@@ -160,12 +163,12 @@ Launch() {
 		Textures=%UserProfile%\.lunarclient\textures
 	}
 	Try {
-		Run, %LaunchJRE% --add-modules jdk.naming.dns --add-exports jdk.naming.dns/com.sun.jndi.dns=java.naming -Djna.boot.library.path="%USERPROFILE%\.lunarclient\offline\%LCVer%\natives" --add-opens java.base/java.io=ALL-UNNAMED %LCArgs% -Djava.library.path="%USERPROFILE%\.lunarclient\offline\%LCVer%\natives" -cp "%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-assets-prod-1-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-assets-prod-2-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-assets-prod-3-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-libs.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-prod-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\OptiFine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\vpatcher-prod.jar" com.moonsworth.lunar.patcher.LunarMain --version %LCVer% --accessToken 0 --assetIndex %MCAssetIndex% --userProperties {} --gameDir "%Path%" --texturesDir "%Textures%" --width 854 --height 480
+		Run, %LaunchJRE% --add-modules jdk.naming.dns --add-exports jdk.naming.dns/com.sun.jndi.dns=java.naming -Djna.boot.library.path="%USERPROFILE%\.lunarclient\offline\%LCVer%\natives" --add-opens java.base/java.io=ALL-UNNAMED %LCArgs% -Djava.library.path="%USERPROFILE%\.lunarclient\offline\%LCVer%\natives" -cp "%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-assets-prod-1-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-assets-prod-2-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-assets-prod-3-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-libs.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\lunar-prod-optifine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\OptiFine.jar";"%USERPROFILE%\.lunarclient\offline\%LCVer%\vpatcher-prod.jar" com.moonsworth.lunar.patcher.LunarMain --version %LCVer% --accessToken 0 --assetIndex %MCAssetIndex% --userProperties {} --gameDir "%Path%" --texturesDir "%Textures%" --launcherVersion %LauncherVer% --width 854 --height 480,, JavaProcess
 	}
-	Catch Error
+	Catch Error {
 		MsgBox, 16, Launch Error, Lunar Client Lite couldn't launch Lunar Client.`nCheck your specified Java Executable.
+	}	
 	ExitApp
-	
 }
 
 ConfigCreate() {
@@ -180,8 +183,8 @@ ConfigCreate() {
 	Loop, Files, %UserProfile%\.lunarclient\jre\zulu*, D
 		IniWrite, %A_LoopFileLongPath%\bin\javaw.exe, Config.ini, Minecraft, JRE
 	PathConfig()
+	LauncherMSA()
 }
-
 Resources() {
 	IfNotExist, %A_WorkingDir%\Resources
 		FileCreateDir, %A_WorkingDir%\Resources
@@ -247,6 +250,14 @@ VersionRead() {
 		GuiControl, Choose, VersionList, 5
 	}
 	return
+}
+
+LauncherMSA(){
+FileDelete, latest.yml
+URLDownloadToFile, https://launcherupdates.lunarclientcdn.com/latest.yml, %A_Temp%\latest.yml
+FileReadLine, LauncherYML, %A_Temp%\latest.yml, 1
+StringTrimLeft, LauncherVer, LauncherYML, 9
+IniWrite, %LauncherVer%, Config.ini, LC, Launcher_Version
 }
 
 LCCheck() {
@@ -340,7 +351,8 @@ NotExist(x) {
 Logs() {
 	GuiControl, Focus, Button
 	IfExist, %A_WorkingDir%\logs
-	Run, %A_WorkingDir%\logs,, Max
+		Run, %A_WorkingDir%\logs,, Max
+		
 	IfNotExist, %A_WorkingDir%\logs
 		MsgBox, 16, Error, Lunar Client Lite couldn't find any Logs folder.
 }
