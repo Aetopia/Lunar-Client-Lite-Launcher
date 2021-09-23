@@ -88,7 +88,10 @@ for n, param in A_Args  ; For each parameter:
 	}
 	else
 	{
-		MsgBox, 16, Invaild Argument, Lunar Client Lite doesn't recognize "%param%" as a vaild argument.
+		FileReadLine, Error1, Resources/lang/%LangUIFile%, 1
+		FileReadLine, Error2, Resources/lang/%LangUIFile%, 2
+		FileReadLine, Error3, Resources/lang/%LangUIFile%, 3
+		MsgBox, 16, %Error1%, %Error2% "%param%" %Error3%
 		ExitApp
 	}	
 	EnvGet, vHomeDrive, HOMEDRIVE
