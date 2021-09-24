@@ -8,11 +8,11 @@ Cosmétiques
 Executable Java
 Donnez votre éxécutable JAVA à utiliser avec Lunar Client.
 Arguments JVM
-Lunar Client Lite fait par
+Lunar Client Lite développé par
 Aetopia
-GitHub Repository
-Remettre Lunar Client Lite à zéro
-Remettre à zero
+Dépôt GitHub
+Réinitialiser les paramètres de Lunar Client Lite
+Réinitialiser
 Ouvrir le dossier des logs
 Ouvrir
 Langue
