@@ -1,0 +1,20 @@
+无效参数
+无法识别 Lunar Client
+作为有效节点
+Lunar Client Lite 无法启动 Lunar Client
+检查Java环境
+错误: 未安装 Lunar Client
+此设备未安装 Lunar Client
+点击确定来安装最新版 Lunar Client
+正在下载 Lunar Client...
+下载错误
+无法下载 Lunar Client
+请检查你的网络连接后重试
+错误: 无法找到该版本
+在这台设备上找不到
+请安装 LC
+为 Lunar Client 选择一个目录
+设置已保存
+你的设置已经保存
+选择新的 Java 可执行文件
+Java可执行文件(java.exe)

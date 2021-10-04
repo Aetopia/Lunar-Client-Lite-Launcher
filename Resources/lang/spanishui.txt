@@ -1,0 +1,20 @@
+Argumento Invalido
+Lunar Client Lite No reconoce
+Eso Es Un Argumento Valido.
+Lunar Client Lite No pudo Abrir Lunar Client.
+Mira tu Java Ejecutable Especifico.
+Error: Lunar Client No Esta Instalado
+La instalacion de Lunar Client No Esta Presente En este Dispocitivo
+Presiona OK para instalar la Ultima version de Lunar Client.
+Descargando Lunar Client...
+Error De Descarga
+Lunar Client No pudo ser Descargado.
+Mira tu coneccion a internet o usa otra E intenta denuevo.
+Error: Version No encontrada
+No fue Encontrado en El Dispocitivo!
+Porfavor instala LC(Lunar Client)
+Selecciona el Directorio de Lunar Client
+Configuracion Guardada
+Tu configuracion Fue Guardada.
+Selecciona un nuevo Java Ejecutable
+Java Ejecutable

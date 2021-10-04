@@ -1,0 +1,18 @@
+主页
+设置
+关于
+Java
+目录
+启动选项
+个性化饰品
+Java.exe目录
+让Lunar Client 使用你的Java环境
+JVM 参数
+Lunar Client LIte made by
+Aetopia
+GitHub 仓库
+重置 Lunar Client Lite
+重置
+打开日志目录
+打开
+语言
