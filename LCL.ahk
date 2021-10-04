@@ -477,7 +477,7 @@ LCNotExist() {
 	}
 	FileReadLine, NotExistLCL1, Resources/lang/%LangUIFile%, 10
 	FileReadLine, NotExistLCL2, Resources/lang/%LangUIFile%, 11
-	FileReadLine, NotExistLCL3, Resources/lang/%LangUIFile%, 13
+	FileReadLine, NotExistLCL3, Resources/lang/%LangUIFile%, 12
 	Gui,Destroy
 	MsgBox, 16, %NotExistLCL1%, %NotExistLCL2%`n%NotExistLCL3%
 	ExitApp
@@ -596,6 +596,7 @@ PathConfig() {
 }
 
 17FolderSelect() {
+	IniRead, Lang, Config.ini, Language, Language
 	If (Lang = "English"){
 		LangUIFile=englishui.txt
 	}
@@ -627,6 +628,7 @@ PathConfig() {
 }
 
 18FolderSelect() {
+	IniRead, Lang, Config.ini, Language, Language
 	If (Lang = "English"){
 		LangUIFile=englishui.txt
 	}
@@ -659,6 +661,7 @@ PathConfig() {
 }
 
 112FolderSelect() {
+	IniRead, Lang, Config.ini, Language, Language
 	If (Lang = "English"){
 		LangUIFile=englishui.txt
 	}
@@ -691,6 +694,7 @@ PathConfig() {
 }
 
 116FolderSelect() {
+	IniRead, Lang, Config.ini, Language, Language
 	If (Lang = "English"){
 		LangUIFile=englishui.txt
 	}
@@ -722,6 +726,7 @@ PathConfig() {
 }
 
 117FolderSelect() {
+	IniRead, Lang, Config.ini, Language, Language
 	If (Lang = "English"){
 		LangUIFile=englishui.txt
 	}
@@ -754,6 +759,7 @@ PathConfig() {
 }
 
 Save() {
+	IniRead, Lang, Config.ini, Language, Language
 	If (Lang = "English"){
 		LangUIFile=englishui.txt
 	}
@@ -793,6 +799,7 @@ Save() {
 }
 
 SaveJVMArguments() {
+	IniRead, Lang, Config.ini, Language, Language
 	If (Lang = "English"){
 		LangUIFile=englishui.txt
 	}
