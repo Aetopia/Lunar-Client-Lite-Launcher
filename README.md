@@ -15,6 +15,8 @@ This Project is based off [LCLI](https://github.com/couleur-tweak-tips/utils/blo
 Arabic: amine#0001 & rezic#6249   
 French: [Couleur#9249](https://github.com/couleurm)   
 Georgian: zazk#0904  
+Chinese: [Cang-Yue](https://github.com/Cang-Yue)
+Spanish: Fumiko!?#6685 & Cosmica#3727
 
 ## Requirements
 Before you begin using LC Lite, make sure that you have Lunar Client installed and also ensure you have your favourite LC versions installed.  
