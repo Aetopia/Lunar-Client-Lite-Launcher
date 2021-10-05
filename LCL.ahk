@@ -548,7 +548,7 @@ FileCheck(n) {
 	FileReadLine, NotExistLCVer1, Resources/lang/%LangUIFile%, 13
 	FileReadLine, NotExistLCVer2, Resources/lang/%LangUIFile%, 14
 	FileReadLine, NotExistLCVer3, Resources/lang/%LangUIFile%, 15
-	MsgBox, 16, %NotExistLCLVer1%, LC %n% %NotExistLCLVer2%`n%NotExistLCLVer3% %n%!
+	MsgBox, 16, %NotExistLCVer1%, LC %n% %NotExistLCVer2%`n%NotExistLCVer3% %n%!
 	Run, %UserProfile%\AppData\Local\Programs\lunarclient\Lunar Client.exe
 	ExitApp
 }
