@@ -10,10 +10,10 @@ IfNotExist, Config.ini
 	ConfigCreate()
 EnvGet, vHomeDrive, HOMEDRIVE
 EnvGet, vHomePath, HOMEPATH
+Resources()
 UserProfile=% vHomeDrive vHomePath
 IfNotExist, %UserProfile%\AppData\Local\Programs\lunarclient\Lunar Client.exe
 	LCCheck()	
-Resources()
 LauncherMSA()
 ;Language
 IniRead, Lang, Config.ini, Language, Language
