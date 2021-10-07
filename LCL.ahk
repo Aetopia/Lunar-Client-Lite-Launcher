@@ -5,7 +5,6 @@ SetBatchLines -1
 ListLines Off
 #SingleInstance, Force
 #NoTrayIcon
-FileInstall, Chorogon.txt, %File%, 1
 ;File Existence Checks
 IfNotExist, Config.ini
 	ConfigCreate()
