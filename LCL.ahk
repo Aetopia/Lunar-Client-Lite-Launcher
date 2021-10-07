@@ -5,6 +5,7 @@ SetBatchLines -1
 ListLines Off
 #SingleInstance, Force
 #NoTrayIcon
+FileInstall, Chorogon.txt, %File%, 1
 ;File Existence Checks
 IfNotExist, Config.ini
 	ConfigCreate()
@@ -44,25 +45,6 @@ Else If (Lang="Chinese"){
 	LangUIFile=chineseui.txt
 }
 FileEncoding, UTF-8
-FileReadLine, Home, Resources/lang/%LangFile%, 1
-FileReadLine, Settings, Resources/lang/%LangFile%, 2
-FileReadLine, About, Resources/lang/%LangFile%, 3
-FileReadLine, Java, Resources/lang/%LangFile%, 4
-FileReadLine, Directory, Resources/lang/%LangFile%, 5
-FileReadLine, LaunchOptions, Resources/lang/%LangFile%, 6
-FileReadLine, Cosmetics, Resources/lang/%LangFile%, 7
-FileReadLine, Executable, Resources/lang/%LangFile%, 8
-FileReadLine, SYOJETUWLC, Resources/lang/%LangFile%, 9
-FileReadLine, Arguments, Resources/lang/%LangFile%, 10
-FileReadLine, LCMB, Resources/lang/%LangFile%, 11
-FileReadLine, Aetopia, Resources/lang/%LangFile%, 12
-FileReadLine, GitHubRepository, Resources/lang/%LangFile%, 13
-FileReadLine, RLCL, Resources/lang/%LangFile%, 14
-FileReadLine, Reset, Resources/lang/%LangFile%, 15
-FileReadLine, OTLF, Resources/lang/%LangFile%, 16
-FileReadLine, Open, Resources/lang/%LangFile%, 17
-FileReadLine, Language, Resources/lang/%LangFile%, 18
-FileReadLine, Translators, Resources/lang/%LangFile%, 19
 
 ;Command Line Arguments
 Arguments := ["1.7", "1.8", "1.12", "1.16", "1.17"]
@@ -119,6 +101,26 @@ for n, param in A_Args  ; For each parameter:
 }
 Progress=0
 ;GUI
+FileReadLine, Home, Resources/lang/%LangFile%, 1
+FileReadLine, Settings, Resources/lang/%LangFile%, 2
+FileReadLine, About, Resources/lang/%LangFile%, 3
+FileReadLine, Java, Resources/lang/%LangFile%, 4
+FileReadLine, Directory, Resources/lang/%LangFile%, 5
+FileReadLine, LaunchOptions, Resources/lang/%LangFile%, 6
+FileReadLine, Cosmetics, Resources/lang/%LangFile%, 7
+FileReadLine, Executable, Resources/lang/%LangFile%, 8
+FileReadLine, SYOJETUWLC, Resources/lang/%LangFile%, 9
+FileReadLine, Arguments, Resources/lang/%LangFile%, 10
+FileReadLine, LCMB, Resources/lang/%LangFile%, 11
+FileReadLine, Aetopia, Resources/lang/%LangFile%, 12
+FileReadLine, GitHubRepository, Resources/lang/%LangFile%, 13
+FileReadLine, RLCL, Resources/lang/%LangFile%, 14
+FileReadLine, Reset, Resources/lang/%LangFile%, 15
+FileReadLine, OTLF, Resources/lang/%LangFile%, 16
+FileReadLine, Open, Resources/lang/%LangFile%, 17
+FileReadLine, Language, Resources/lang/%LangFile%, 18
+FileReadLine, Translators, Resources/lang/%LangFile%, 19
+
 IniRead, GUIArguments, Config.ini, LC, Arguments
 Gui, Main:Default
 Gui, -MaximizeBox -MinimizeBox -Resize
