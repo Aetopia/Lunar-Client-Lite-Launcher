@@ -1,6 +1,6 @@
 Invaild Argument
 Lunar Client Lite doesn't recognize
-as a vaild argument.
+as a valid argument.
 Lunar Client Lite couldn't launch Lunar Client.
 Check your specified Java Executable.
 Error: Lunar Client Not Installed
