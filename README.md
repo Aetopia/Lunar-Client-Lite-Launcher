@@ -2,7 +2,7 @@
 
 <b>From now on, I will be only pushing minor and bug fixes for LCL.    
  I am not really interested working on LCL anymore.    
- Developing it was cool and all but I really want to work on other projects which I have doing in Python.</b>  
+ Developing it was cool and all but I really want to work on other projects which I have doing in Python.</b> 
 
 Lunar Client Lite is a simple lightweight and unlocked launcher for Lunar Client which features the following: 
 1. Quick Version Switching 
