@@ -1,11 +1,18 @@
 # <img src="https://github.com/Aetopia/Lunar-Client-Lite-Launcher/blob/main/Logo.png" alt="image.png" width="30" height="30">  Lunar Client Lite Launcher
-
 Lunar Client Lite is a simple lightweight and unlocked launcher for Lunar Client which features the following: 
 1. Quick Version Switching 
 2. JVM Arguments Support 
 3. Multi Launch Directories Support
 4. User Defined Java Executable Support
-5. A Simple-to-Use Interface  
+5. A Simple-to-Use Interface 
+
+## LCL Flavors
+### Lunar Client Lite Python:  
+> LCLPy (Python): https://github.com/Aetopia/LCLPy
+
+### Lunar Client Lite AutoHotkey (Deprecated):    
+> LCL (AutoHotkey): https://github.com/Aetopia/Lunar-Client-Lite-Launcher 
+
 ## Credits
 <b>Original launch command made by [lem6ns](https://github.com/lem6ns)  
 LCLI Settings Patcher made by [CTT](https://dsc.gg/CTT) (Original Optifine Patcher made by [`temp#0001`](https://github.com/temp2742))  
@@ -18,14 +25,7 @@ Georgian: zazk#0904
 Chinese: [Cang-Yue](https://github.com/Cang-Yue)    
 Spanish: Fumiko!?#6685 & Cosmica#3727
 
-## Requirements
-Before you begin using LC Lite, make sure that you have Lunar Client installed and also ensure you have your favourite LC versions installed.  
-(If you don't have LC installed then LC Lite will download the latest Lunar Client installer.)  
-
-<b>LC Lite will only work if you have bought Minecraft.</b>
 ## How to use & setup?
-<b>Make sure to unblock `LCL.exe` in your antivirus protection settings incase if it gets false flagged.</b>
-
 <b>Check out the Lunar Client Lite Wiki to see how to setup LCL:   
   https://github.com/Aetopia/Lunar-Client-Lite-Launcher/wiki</b>  
 
