@@ -1,3 +1,6 @@
+;@Ahk2Exe-SetName Lunar Client Lite
+;@Ahk2Exe-SetDescription Lunar Client Lite
+;@Ahk2Exe-SetVersion 1.6.4
 #NoEnv
 SendMode Input
 SetWorkingDir %A_ScriptDir%
