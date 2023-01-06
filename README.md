@@ -1,5 +1,5 @@
 # Project Deprecation
-**I have decided on 6 January 2023 to de-archive this repository for those people who like to the project source code. Any releases will be removed only leaving the source for a given respective tag.**
+**I have decided on 6 January 2023 to de-archive this repository for those people who like to see the project's source code. Any releases will be removed only leaving the source for a given respective tag.**
 
 
 # <img src="https://github.com/Aetopia/Lunar-Client-Lite-Launcher/blob/main/Logo.png" alt="image.png" width="30" height="30"> Lunar Client Lite Flavors
